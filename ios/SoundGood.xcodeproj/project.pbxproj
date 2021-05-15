@@ -14,6 +14,7 @@
 		660E12829E9BF2AAD8B6C67B /* libPods-SoundGood-SoundGoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E79F7CD4B2F9A215516F72D1 /* libPods-SoundGood-SoundGoodTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		95D668BDEE56897A48981631 /* libPods-SoundGood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D940EBDCE9687B0F97F926AE /* libPods-SoundGood.a */; };
+		EA22993E26501727008B466E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA22993D26501727008B466E /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		DC3C1E7AAFA6A72C64B001D5 /* Pods-SoundGood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundGood.debug.xcconfig"; path = "Target Support Files/Pods-SoundGood/Pods-SoundGood.debug.xcconfig"; sourceTree = "<group>"; };
 		E79F7CD4B2F9A215516F72D1 /* libPods-SoundGood-SoundGoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoundGood-SoundGoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C25019A4FC16F289FC504A /* Pods-SoundGood-SoundGoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundGood-SoundGoodTests.debug.xcconfig"; path = "Target Support Files/Pods-SoundGood-SoundGoodTests/Pods-SoundGood-SoundGoodTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA22993C26501727008B466E /* SoundGood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundGood-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA22993D26501727008B466E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -114,7 +117,6 @@
 				E8C25019A4FC16F289FC504A /* Pods-SoundGood-SoundGoodTests.debug.xcconfig */,
 				5ED37961AF78C9AF9C64C029 /* Pods-SoundGood-SoundGoodTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -128,12 +130,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EA22993D26501727008B466E /* File.swift */,
 				13B07FAE1A68108700A75B9A /* SoundGood */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SoundGoodTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				5772D42458C19634636200DD /* Pods */,
+				EA22993C26501727008B466E /* SoundGood-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -208,7 +212,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -412,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				EA22993E26501727008B466E /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8C25019A4FC16F289FC504A /* Pods-SoundGood-SoundGoodTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -458,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5ED37961AF78C9AF9C64C029 /* Pods-SoundGood-SoundGoodTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = SoundGoodTests/Info.plist;
@@ -498,6 +505,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SoundGood;
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundGood-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -523,6 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SoundGood;
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundGood-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
