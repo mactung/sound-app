@@ -1,12 +1,54 @@
 // In App.js in a new project
 
-import * as React from 'react';
+import React, { useReducer } from 'react';
 import Navigation from './src/navigation';
 import { setCustomFlatList } from 'utils/customs/setCustomFlatList';
 import { setCustomSectionList } from 'utils/customs/setCustomSectionList';
 import { setCustomScrollView } from 'utils/customs/setCustomScrollView';
+import AudioContext from 'contexts/AudioContext';
 
+const isPlayReducer = (state, actions) => {
+    switch (actions.type) {
+        case 'PLAY':
+            return true;
+        case 'PAUSE':
+            return false;
+        default:
+            break;
+    }
+};
+const soundsReducer = (state, actions) => {
+    switch (actions.type) {
+        case 'ADD':
+            return [...state, actions.payload];
+        case 'REMOVE':
+            return state.filter(item => item.name !== actions.payload.name);
+        case 'CLEAR':
+            return [];
+        default:
+            break;
+    }
+};
 function App() {
+    const [isPlaying, dipatchIsPlaying] = useReducer(isPlayReducer, false);
+    const [sounds, dispatchSounds] = useReducer(soundsReducer, []);
+    const pauseAudio = () => {
+        dipatchIsPlaying({ type: 'PAUSE' });
+    };
+    const playAudio = () => {
+        dipatchIsPlaying({ type: 'PLAY' });
+    };
+    const addSound = (sound: any) => {
+        dispatchSounds({ type: 'ADD', payload: sound });
+    };
+    const removeSound = (sound: string) => {
+        dispatchSounds({ type: 'REMOVE', payload: sound });
+    };
+
+    const clearSounds = () => {
+        dispatchSounds({ type: 'CLEAR' });
+    };
+
     setCustomFlatList({
         keyExtractor: (item: any, index: number) => index.toString(),
         showsHorizontalScrollIndicator: false,
@@ -17,7 +59,11 @@ function App() {
         showsHorizontalScrollIndicator: false,
     });
     setCustomScrollView({ showsHorizontalScrollIndicator: false });
-    return <Navigation />;
+    return (
+        <AudioContext.Provider value={{ isPlaying, sounds, pauseAudio, playAudio, addSound, removeSound, clearSounds }}>
+            <Navigation />
+        </AudioContext.Provider>
+    );
 }
 
 export default App;

@@ -9,7 +9,13 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="HomeScreen" component={HomeScreen} />
+            <Tab.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{
+                    title: 'Sleep Sounds',
+                }}
+            />
             <Tab.Screen name="CustomScreen" component={CustomScreen} />
             <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
         </Tab.Navigator>

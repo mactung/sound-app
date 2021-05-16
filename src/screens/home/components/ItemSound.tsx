@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         width: (width - 60) / 3,
         height: (width - 60) / 3,
         marginBottom: 10,
+        borderRadius: 10,
     },
     titleText: { fontWeight: 'bold' },
 });

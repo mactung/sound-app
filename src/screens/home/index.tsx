@@ -1,3 +1,4 @@
+import CurrentMixFloat from 'components/CurrenMixFloat';
 import React from 'react';
 import { FlatList, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +10,8 @@ const HomeScreen = () => {
     );
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Home Screen</Text>
+            <Text>Recent Mix</Text>
+            <Text>Favouries Mix</Text>
             <FlatList
                 data={data}
                 renderItem={renderItem}
@@ -17,12 +19,14 @@ const HomeScreen = () => {
                 contentContainerStyle={styles.flatListCotainer}
                 columnWrapperStyle={styles.columnWrapperStyle}
             />
+            <CurrentMixFloat />
         </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
+        flex: 1,
     },
     flatListCotainer: {},
     columnWrapperStyle: { justifyContent: 'space-between' },
