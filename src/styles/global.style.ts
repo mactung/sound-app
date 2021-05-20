@@ -12,6 +12,8 @@ export const Colors = {
     darkorange: '#E76F51',
     green: '#006400',
     gold: '#DAA520',
+    bright: '#89c2d9',
+    background: '#61a5c2',
 };
 
 export const BACKGROUND_RANDOM = ['#40E0D0', '#FF8C00', '#FF0080', '#659999', '#f4791f'];

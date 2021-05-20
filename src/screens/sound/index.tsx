@@ -35,7 +35,11 @@ const SoundScreen = ({ route }: any) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <Image key={'blurryImage'} source={{ uri: image_url }} style={styles.absolute} />
+            <Image
+                key={'blurryImage'}
+                source={image_url ? { uri: image_url } : require('assets/images/mix_bg.jpg')}
+                style={styles.absolute}
+            />
             <BlurView
                 style={styles.absolute}
                 blurType="light"
