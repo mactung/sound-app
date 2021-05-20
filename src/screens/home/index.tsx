@@ -1,34 +1,32 @@
 import CurrentMixFloat from 'components/CurrenMixFloat';
-import React from 'react';
-import { FlatList, StyleSheet, Text } from 'react-native';
+import React, { useContext } from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ItemSound from './components/ItemSound';
-import data from './data.json';
+import { Colors } from 'styles/global.style';
+import AudioContext from 'contexts/AudioContext';
+import PlayList from './components/PlayList';
 const HomeScreen = () => {
-    const renderItem = ({ item, index }) => (
-        <ItemSound title={item.title} image_url={item.image_url} _id={index} sound_path={item.sound_path} />
-    );
+    const { sounds }: any = useContext(AudioContext);
     return (
-        <SafeAreaView style={styles.container}>
-            <Text>Recent Mix</Text>
-            <Text>Favouries Mix</Text>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                numColumns={3}
-                contentContainerStyle={styles.flatListCotainer}
-                columnWrapperStyle={styles.columnWrapperStyle}
-            />
-            <CurrentMixFloat />
-        </SafeAreaView>
+        <>
+            <Image style={styles.imageHeader} source={require('assets/images/image_large.png')} />
+            <SafeAreaView style={styles.container}>
+                <PlayList title="Recently Play" />
+                <PlayList title="My Mix" />
+                {sounds.length > 0 && <CurrentMixFloat />}
+            </SafeAreaView>
+        </>
     );
 };
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
         flex: 1,
+        backgroundColor: Colors.dark,
     },
-    flatListCotainer: {},
-    columnWrapperStyle: { justifyContent: 'space-between' },
+    imageHeader: {
+        height: 300,
+        width: '100%',
+    },
+    flatListCotainer: { justifyContent: 'space-between' },
 });
 export default HomeScreen;

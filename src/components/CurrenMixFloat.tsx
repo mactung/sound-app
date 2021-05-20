@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Mixer from './Mixer';
 import AudioContext from 'contexts/AudioContext';
+import { Colors } from 'styles/global.style';
 const CurrentMixFloat = () => {
     const { sounds, isPlaying, pauseAudio, playAudio }: any = useContext(AudioContext);
     const [isVisibleMixer, setIsVisibleMixer] = useState<boolean>(false);
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
         width: '100%',
         bottom: 10,
         marginHorizontal: 20,
+        backgroundColor: Colors.secondary,
     },
     centerView: {
         alignItems: 'center',
