@@ -8,17 +8,31 @@ import ListSounds from './components/ListSounds';
 import ModalSetTime from 'components/ModalSetTime';
 const { width } = Dimensions.get('screen');
 import AudioContext from 'contexts/AudioContext';
+var Sound = require('react-native-sound');
+
+// Enable playback in silence mode
+Sound.setCategory('Playback');
 
 const SoundScreen = ({ route }: any) => {
-    const { sound_path, image_url, name } = route.params;
+    const { image_url } = route.params;
     const { isPlaying, pauseAudio, playAudio, sounds, addSound, clearSounds }: any = useContext(AudioContext);
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
     const refLottieVew = useRef<LottieView>();
     useEffect(() => {
         clearSounds();
+        const forest = new Sound('forest.mp3', Sound.MAIN_BUNDLE,error => {
+            forest.play();
+        });
+        const ocean = new Sound('ocean.mp3', Sound.MAIN_BUNDLE, error => {
+            ocean.play();
+        });
         addSound({
-            name,
-            volume: 1,
+            name: 'forest',
+            sound: forest,
+        });
+        addSound({
+            name: 'ocean',
+            sound: ocean,
         });
     }, []);
     const playSoundHandle = () => {
@@ -63,7 +77,7 @@ const SoundScreen = ({ route }: any) => {
             </View>
 
             <TouchableOpacity style={styles.buttonPlay} onPress={playSoundHandle}>
-                <Text style={styles.buttonTitle}>{!isPlaying ? 'Pause' : 'Play'}</Text>
+                <Text style={styles.buttonTitle}>{isPlaying ? 'Pause' : 'Play'}</Text>
             </TouchableOpacity>
             <ModalSetTime isModalVisible={isModalSetTimeVisible} setIsModalVisible={setIsModalSetTimeVisible} />
         </SafeAreaView>

@@ -56,6 +56,9 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.75.1):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
   - glog (0.3.5)
   - libevent (2.1.12)
   - lottie-ios (3.1.8)
@@ -324,6 +327,9 @@ PODS:
     - React-cxxreact (= 0.64.0)
     - React-jsi (= 0.64.0)
     - React-perflogger (= 0.64.0)
+  - RealmJS (10.4.1):
+    - GCDWebServer
+    - React
   - RNCMaskedView (0.1.11):
     - React
   - RNGestureHandler (1.10.3):
@@ -359,7 +365,10 @@ PODS:
     - Yoga
   - RNScreens (3.2.0):
     - React-Core
-  - RNSoundPlayer (0.10.8):
+  - RNSound (0.11.0):
+    - React
+    - RNSound/Core (= 0.11.0)
+  - RNSound/Core (0.11.0):
     - React
   - RNVectorIcons (8.1.0):
     - React-Core
@@ -420,11 +429,12 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RealmJS (from `../node_modules/realm`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
-  - RNSoundPlayer (from `../node_modules/react-native-sound-player`)
+  - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -439,6 +449,7 @@ SPEC REPOS:
     - Flipper-PeerTalk
     - Flipper-RSocket
     - FlipperKit
+    - GCDWebServer
     - libevent
     - OpenSSL-Universal
     - YogaKit
@@ -506,6 +517,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RealmJS:
+    :path: "../node_modules/realm"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
@@ -514,8 +527,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
-  RNSoundPlayer:
-    :path: "../node_modules/react-native-sound-player"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -534,6 +547,7 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   Flipper-RSocket: 127954abe8b162fcaf68d2134d34dc2bd7076154
   FlipperKit: 8a20b5c5fcf9436cac58551dc049867247f64b00
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
@@ -564,11 +578,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: 0fd6b21751a33cb72fce1a4a33ab9678416d307a
   React-runtimeexecutor: cad74a1eaa53ee6e7a3620231939d8fe2c6afcf0
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
+  RealmJS: 8a51eff2b9eaabf78b53a6819da6da6edde27467
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: c277bfc4b5bb7c2fe977d19635df6f974f95dfd6
-  RNSoundPlayer: aa3c998a1f9beaa0f9fdd4485846a74a53df7d07
+  RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

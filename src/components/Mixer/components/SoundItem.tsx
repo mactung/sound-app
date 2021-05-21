@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Image, View, Text, Animated } from 'react-native';
+import { StyleSheet, Image, View, Text } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
-const SoundItem = ({ item }) => {
-    const [volume, setVolume] = useState<number>(item.volume);
+const SoundItem = ({ item }: any) => {
+    const [volume, setVolume] = useState<number>(item.sound.getVolume());
+    const onChangeValue = (value: number) => {
+        setVolume(value);
+        item.sound.setVolume(value);
+    };
     return (
         <View style={styles.container}>
             <Image style={styles.soundIcon} source={require('assets/images/image_large.png')} />
@@ -10,7 +14,10 @@ const SoundItem = ({ item }) => {
                 <Text>{item.name}</Text>
                 <Slider
                     value={volume}
-                    onValueChange={value => setVolume(value)}
+                    maximumValue={1}
+                    minimumValue={0}
+                    step={0.1}
+                    onValueChange={onChangeValue}
                     thumbTintColor="#517fa4"
                     thumbStyle={{ height: 20, width: 20, backgroundColor: '#517fa4' }}
                     thumbProps={{
@@ -19,7 +26,7 @@ const SoundItem = ({ item }) => {
                                 name="help-buoy"
                                 type="ionicon"
                                 size={20}
-                                containerStyle={{ bottom: 0.5, right:  0}}
+                                containerStyle={{ bottom: 0.5, right: 0 }}
                                 color="#fff"
                             />
                         ),

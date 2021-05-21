@@ -1,20 +1,27 @@
+import NavigationService from 'navigation/NavigationSerivce';
 import React from 'react';
 import { ImageBackground, Pressable, StyleSheet, Text, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Colors } from 'styles/global.style';
 const { width } = Dimensions.get('screen');
 const CreateYourMix = () => {
+    const goToComposer = () => {
+        NavigationService.navigate('ComposerScreen');
+    };
     return (
         <>
             <Text style={styles.title}>Create Your Mix</Text>
-            <Pressable>
-                <ImageBackground
-                    style={styles.imageContainer}
-                    imageStyle={styles.imageView}
-                    source={require('assets/images/mix_bg.png')}>
-                    <Button buttonStyle={styles.buttonView} titleStyle={styles.buttonTitle} title="Create" />
-                </ImageBackground>
-            </Pressable>
+            <ImageBackground
+                style={styles.imageContainer}
+                imageStyle={styles.imageView}
+                source={require('assets/images/mix_bg.png')}>
+                <Button
+                    buttonStyle={styles.buttonView}
+                    titleStyle={styles.buttonTitle}
+                    title="Create"
+                    onPress={goToComposer}
+                />
+            </ImageBackground>
         </>
     );
 };

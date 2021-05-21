@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeScreen from '../screens/home';
 import SettingsScreen from '../screens/settings';
-import CustomScreen from '../screens/custom';
+import ComposerScreen from '../screens/composer';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Colors } from 'styles/global.style';
 import { Icon } from 'react-native-elements';
@@ -26,8 +26,8 @@ function BottomTabs() {
                 }}
             />
             <Tab.Screen
-                name="CustomScreen"
-                component={CustomScreen}
+                name="ComposerScreen"
+                component={ComposerScreen}
                 options={{
                     title: 'Composer',
                     tabBarIcon: ({ focused, color }) => (

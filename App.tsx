@@ -6,6 +6,7 @@ import { setCustomFlatList } from 'utils/customs/setCustomFlatList';
 import { setCustomSectionList } from 'utils/customs/setCustomSectionList';
 import { setCustomScrollView } from 'utils/customs/setCustomScrollView';
 import AudioContext from 'contexts/AudioContext';
+var Sound = require('react-native-sound');
 
 const isPlayReducer = (state, actions) => {
     switch (actions.type) {
@@ -33,12 +34,21 @@ function App() {
     const [isPlaying, dipatchIsPlaying] = useReducer(isPlayReducer, false);
     const [sounds, dispatchSounds] = useReducer(soundsReducer, []);
     const pauseAudio = () => {
+        sounds.forEach(item => {
+            item.sound.pause();
+        });
         dipatchIsPlaying({ type: 'PAUSE' });
     };
     const playAudio = () => {
+        sounds.forEach(item => {
+            item.sound.play();
+        });
         dipatchIsPlaying({ type: 'PLAY' });
     };
     const addSound = (sound: any) => {
+        if (!isPlaying) {
+            dipatchIsPlaying({ type: 'PLAY' });
+        }
         dispatchSounds({ type: 'ADD', payload: sound });
     };
     const removeSound = (sound: string) => {
