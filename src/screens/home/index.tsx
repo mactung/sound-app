@@ -1,28 +1,27 @@
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import CurrentMixFloat from 'components/CurrenMixFloat';
-import React, { useContext } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from 'styles/global.style';
-import AudioContext from 'contexts/AudioContext';
 import PlayList from './components/PlayList';
 import CreateYourMix from './components/CreateYourMix';
+import { useSelector } from 'react-redux';
 const HomeScreen = () => {
-    const { sounds }: any = useContext(AudioContext);
+    const { sounds } = useSelector((state: any) => state.player);
+    console.log(sounds);
     return (
-        <ScrollView style={styles.container}>
-            {/* <Image style={styles.imageHeader} source={require('assets/images/image_large.png')} /> */}
-            <SafeAreaView>
+        <View>
+            <ScrollView style={styles.container}>
                 <PlayList title="Recently Play" />
                 <CreateYourMix />
                 <PlayList title="My Mix" />
-                {sounds.length > 0 && <CurrentMixFloat />}
-            </SafeAreaView>
-        </ScrollView>
+            </ScrollView>
+            {sounds.length > 0 && <CurrentMixFloat />}
+        </View>
     );
 };
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: Colors.background,
     },
     imageHeader: {

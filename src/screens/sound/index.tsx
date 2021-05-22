@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useState, useRef, useContext } from 'react';
+import React, { MutableRefObject, useEffect, useState, useRef } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View, Image, Dimensions, Pressable } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -6,41 +6,49 @@ import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
 import ListSounds from './components/ListSounds';
 import ModalSetTime from 'components/ModalSetTime';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearSounds, addSound } from 'store/player';
 const { width } = Dimensions.get('screen');
-import AudioContext from 'contexts/AudioContext';
 var Sound = require('react-native-sound');
+import usePlayer from 'hooks/usePlayer';
 
 // Enable playback in silence mode
 Sound.setCategory('Playback');
 
 const SoundScreen = ({ route }: any) => {
+    const dispatch = useDispatch();
     const { image_url } = route.params;
-    const { isPlaying, pauseAudio, playAudio, sounds, addSound, clearSounds }: any = useContext(AudioContext);
+    const { isPlaying, sounds } = useSelector((state: any) => state.player);
+    const { playPlayer, pausePlayer} = usePlayer();
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
     const refLottieVew = useRef<LottieView>();
     useEffect(() => {
         clearSounds();
-        const forest = new Sound('forest.mp3', Sound.MAIN_BUNDLE,error => {
+        const forest = new Sound('forest.mp3', Sound.MAIN_BUNDLE, error => {
             forest.play();
+            dispatch(
+                addSound({
+                    name: 'forest',
+                    sound: forest,
+                }),
+            );
         });
         const ocean = new Sound('ocean.mp3', Sound.MAIN_BUNDLE, error => {
             ocean.play();
-        });
-        addSound({
-            name: 'forest',
-            sound: forest,
-        });
-        addSound({
-            name: 'ocean',
-            sound: ocean,
+            dispatch(
+                addSound({
+                    name: 'ocean',
+                    sound: ocean,
+                }),
+            );
         });
     }, []);
     const playSoundHandle = () => {
         if (isPlaying) {
-            pauseAudio();
+            pausePlayer();
             refLottieVew.current?.play();
         } else {
-            playAudio();
+            playPlayer();
             refLottieVew.current?.pause();
         }
     };

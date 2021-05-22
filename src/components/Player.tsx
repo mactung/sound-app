@@ -1,9 +1,12 @@
-import React, { useContext, useState } from 'react';
+import usePlayer from 'hooks/usePlayer';
+import React, { FC, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
-import AudioContext from 'contexts/AudioContext';
-const Player = () => {
-    const { isPlaying, pauseAudio, playAudio }: any = useContext(AudioContext);
+interface Iprops {
+    isPlaying: boolean;
+}
+const Player: FC<Iprops> = ({ isPlaying }) => {
+    const { pausePlayer, playPlayer } = usePlayer();
     const [isSave, setIsSave] = useState<boolean>(false);
     const saveMix = () => {
         setIsSave(!isSave);
@@ -16,7 +19,7 @@ const Player = () => {
                 name={isPlaying ? 'pause-circle-outline' : 'play-circle-outline'}
                 type="ionicon"
                 color="#517fa4"
-                onPress={isPlaying ? pauseAudio : playAudio}
+                onPress={isPlaying ? pausePlayer : playPlayer}
             />
 
             <Icon

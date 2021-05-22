@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, View, Text } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
-const SoundItem = ({ item }: any) => {
+import { Colors } from 'styles/global.style';
+const SoundItem = ({ item, removeSound }: any) => {
     const [volume, setVolume] = useState<number>(item.sound.getVolume());
     const onChangeValue = (value: number) => {
         setVolume(value);
         item.sound.setVolume(value);
+    };
+    const onRemoveSound = () => {
+        removeSound(item.type);
     };
     return (
         <View style={styles.container}>
@@ -33,6 +37,14 @@ const SoundItem = ({ item }: any) => {
                     }}
                 />
             </View>
+            <Icon
+                style={styles.iconClose}
+                type="ionicon"
+                name="close-circle-outline"
+                size={30}
+                onPress={onRemoveSound}
+                color={Colors.black}
+            />
         </View>
     );
 };
@@ -52,6 +64,11 @@ const styles = StyleSheet.create({
     },
     slider: {
         color: '#517fa4',
+    },
+    iconClose: {
+        // position: 'absolute',
+        // top: -5,
+        // left: -5,
     },
 });
 export default SoundItem;

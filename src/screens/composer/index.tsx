@@ -1,31 +1,65 @@
-import React, { useContext } from 'react';
-import { Button, StyleSheet } from 'react-native';
+import React from 'react';
+import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AudioContext from 'contexts/AudioContext';
 import Sound from 'react-native-sound';
 import CurrentMixFloat from 'components/CurrenMixFloat';
-
+import data from './data.json';
+import SoundItem from './components/SoundItem';
+import CategoryFilterItem from './components/CategoryFilterItem';
+import { Colors } from 'styles/global.style';
+import { useDispatch, useSelector } from 'react-redux';
+// import { RootState } from 'store';
+import { addSound, play } from 'store/player';
+Sound.setCategory('Playback');
 const ComposerScreen = () => {
-    const { isPlaying, pauseAudio, playAudio, sounds, addSound, clearSounds }: any = useContext(AudioContext);
-
-    const addSoundToMixer = (name: string) => {
-        const sound = new Sound(name + '.mp3', Sound.MAIN_BUNDLE, error => {
+    const dispatch = useDispatch();
+    const { sounds } = useSelector((state: any) => state.player);
+    const addSoundToMixer = (itemSound: any) => {
+        const sound = new Sound(itemSound.type + '.mp3', Sound.MAIN_BUNDLE, error => {
             sound.play();
-        });
-        addSound({
-            name,
-            sound,
+            sound.setVolume(0.8);
+
+            dispatch(
+                addSound({
+                    ...itemSound,
+                    sound,
+                }),
+            );
+            dispatch(play());
         });
     };
+    const renderItem = ({ item, index }: any) => <SoundItem item={item} onPress={addSoundToMixer} index={index} />;
+    const renderItemCategoryFilter = () => <CategoryFilterItem />;
     return (
         <SafeAreaView style={styles.container}>
-            <Button onPress={() => addSoundToMixer('ocean')} title="Ocean" />
-            <Button onPress={() => addSoundToMixer('forest')} title="Forest" />
+            <Text style={styles.title}>Sounds</Text>
+            <FlatList data={data} renderItem={renderItemCategoryFilter} horizontal style={styles.flatlist} />
+            <ScrollView horizontal={true}>
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    numColumns={Math.ceil(data.length / 4)}
+                    columnWrapperStyle={styles.columnStyles}
+                />
+            </ScrollView>
             {sounds.length > 0 && <CurrentMixFloat />}
         </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({
-    container: { flex: 1 },
+    container: { flex: 1, backgroundColor: Colors.background },
+    title: {
+        color: Colors.white,
+        fontSize: 32,
+        marginLeft: 20,
+    },
+    customeStyle: {
+        marginBottom: 40,
+    },
+    flatlist: {
+        marginVertical: 20,
+        flex: 1,
+    },
+    columnStyles: {},
 });
 export default ComposerScreen;

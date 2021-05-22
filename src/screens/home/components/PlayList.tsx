@@ -12,7 +12,13 @@ const PlayList: FC<Iprops> = ({ title }) => {
         <View>
             <Text style={styles.title}>{title}</Text>
 
-            <FlatList data={data} renderItem={renderItem} contentContainerStyle={styles.flatListCotainer} horizontal />
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                contentContainerStyle={styles.flatListCotainer}
+                horizontal
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+            />
         </View>
     );
 };
@@ -27,5 +33,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     flatListCotainer: { justifyContent: 'space-between' },
+    separator: {
+        width: 10,
+    },
 });
 export default PlayList;

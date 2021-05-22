@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
-import AudioContext from 'contexts/AudioContext';
 
-const HeaderMixer = ({ setIsModalVisible }: any) => {
-    const { sounds }: any = useContext(AudioContext);
+const HeaderMixer = ({ setIsModalVisible, sounds }: any) => {
     return (
         <View style={styles.container}>
             <Icon
