@@ -8,7 +8,7 @@ interface State {
 
 const initialState: State = {
     sounds: [],
-    isPlaying: false,
+    isPlaying: true,
     music: {},
 };
 
@@ -16,6 +16,9 @@ const soundSlice = createSlice({
     name: 'player',
     initialState,
     reducers: {
+        setSounds: (state, action: PayloadAction<any>) => {
+            state.sounds = action.payload;
+        },
         addSound: (state, action: PayloadAction<any>) => {
             state.sounds = [...state.sounds, action.payload];
         },
@@ -42,5 +45,5 @@ const soundSlice = createSlice({
         },
     },
 });
-export const { addSound, clearSounds, removeSound, play, pause, addMusic } = soundSlice.actions;
+export const { addSound, clearSounds, removeSound, play, pause, addMusic, setSounds } = soundSlice.actions;
 export default soundSlice.reducer;

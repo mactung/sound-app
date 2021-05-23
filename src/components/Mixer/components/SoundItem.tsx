@@ -40,7 +40,7 @@ const SoundItem = ({ item, removeSound }: any) => {
                                 name="radio-button-on"
                                 type="ionicon"
                                 size={21}
-                                containerStyle={{ bottom: 0, left: 5 }}
+                                containerStyle={{ bottom: 0, left: 0 }}
                                 color="#fff"
                             />
                         ),

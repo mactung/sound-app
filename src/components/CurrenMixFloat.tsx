@@ -14,8 +14,14 @@ const CurrentMixFloat = () => {
         <TouchableOpacity style={styles.container} onPress={() => setIsVisibleMixer(true)}>
             <Icon size={20} name="chevron-up" type="ionicon" color={Colors.white} />
             <View style={styles.centerView}>
-                <Text style={styles.text}>{sounds.length} items</Text>
-                <Text style={styles.text}>Current Mix</Text>
+                <Text style={styles.text}>
+                    {sounds.length === 1
+                        ? sounds[0].name
+                        : sounds.length === 2
+                        ? sounds[0].name + ' & ' + sounds[1].name
+                        : sounds.length + ' items'}{' '}
+                </Text>
+                <Text style={styles.textName}>Current Mix</Text>
             </View>
             <Icon
                 size={30}
@@ -48,6 +54,11 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.white,
+        fontWeight: '600',
+        fontSize: 13,
+    },
+    textName: {
+        color: Colors.light,
     },
 });
 export default CurrentMixFloat;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, Text, Pressable } from 'react-native';
 import { Colors } from 'styles/global.style';
 const CategoryFilterItem = () => {
     return (
@@ -11,13 +11,13 @@ const CategoryFilterItem = () => {
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 40,
-        paddingVertical: 5,
+        borderRadius: 30,
         paddingHorizontal: 20,
-        marginLeft: 10,
+        marginLeft: 20,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: Colors.light,
+        height: 30,
     },
 });
 

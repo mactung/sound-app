@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import { Colors } from 'styles/global.style';
 import PlayList from './components/PlayList';
 import CreateYourMix from './components/CreateYourMix';
 import { useSelector } from 'react-redux';
+
 const HomeScreen = () => {
     const { sounds } = useSelector((state: any) => state.player);
     return (
