@@ -7,7 +7,6 @@ import CreateYourMix from './components/CreateYourMix';
 import { useSelector } from 'react-redux';
 const HomeScreen = () => {
     const { sounds } = useSelector((state: any) => state.player);
-    console.log(sounds);
     return (
         <View>
             <ScrollView style={styles.container}>

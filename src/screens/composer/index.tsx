@@ -8,17 +8,22 @@ import SoundItem from './components/SoundItem';
 import CategoryFilterItem from './components/CategoryFilterItem';
 import { Colors } from 'styles/global.style';
 import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from 'store';
 import { addSound, play } from 'store/player';
+import usePlayer from 'hooks/usePlayer';
 Sound.setCategory('Playback');
 const ComposerScreen = () => {
     const dispatch = useDispatch();
-    const { sounds } = useSelector((state: any) => state.player);
+    const { playPlayer } = usePlayer();
+    const { sounds, isPlaying } = useSelector((state: any) => state.player);
     const addSoundToMixer = (itemSound: any) => {
         const sound = new Sound(itemSound.type + '.mp3', Sound.MAIN_BUNDLE, error => {
-            sound.play();
+            if (!isPlaying) {
+                playPlayer();
+            } else {
+                sound.play();
+            }
             sound.setVolume(0.8);
-
+            sound.setNumberOfLoops(-1);
             dispatch(
                 addSound({
                     ...itemSound,
@@ -26,6 +31,7 @@ const ComposerScreen = () => {
                 }),
             );
             dispatch(play());
+            
         });
     };
     const renderItem = ({ item, index }: any) => <SoundItem item={item} onPress={addSoundToMixer} index={index} />;

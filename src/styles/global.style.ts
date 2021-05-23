@@ -3,6 +3,8 @@ export const Colors = {
     secondary: '#01497c',
     danger: '#4d194d',
     white: '#ffffff',
+    gray: '#BDBDBD',
+    gray_light: '#E0E0E0',
     light: '#a9d6e5',
     silver: '#C0C0C0',
     dark: '#012a4a',

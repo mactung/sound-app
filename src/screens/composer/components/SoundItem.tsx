@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     container: {
         width: 50,
         height: 50,
+        borderRadius: 15,
         backgroundColor: Colors.orange,
         marginBottom: 80,
         marginLeft: 40,

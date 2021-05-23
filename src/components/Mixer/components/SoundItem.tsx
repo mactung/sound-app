@@ -3,10 +3,10 @@ import { StyleSheet, Image, View, Text } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
 import { Colors } from 'styles/global.style';
 const SoundItem = ({ item, removeSound }: any) => {
-    const [volume, setVolume] = useState<number>(item.sound.getVolume());
+    const [volume, setVolume] = useState<number>(item.sound.getVolume() * 100);
     const onChangeValue = (value: number) => {
         setVolume(value);
-        item.sound.setVolume(value);
+        item.sound.setVolume(value / 100);
     };
     const onRemoveSound = () => {
         removeSound(item.type);
@@ -14,47 +14,51 @@ const SoundItem = ({ item, removeSound }: any) => {
     return (
         <View style={styles.container}>
             <Image style={styles.soundIcon} source={require('assets/images/image_large.png')} />
+            <View style={styles.iconContainer}>
+                <Icon
+                    type="ionicon"
+                    name="close"
+                    size={20}
+                    onPress={onRemoveSound}
+                    color={Colors.white}
+                    iconStyle={styles.icon}
+                />
+            </View>
             <View style={styles.content}>
-                <Text>{item.name}</Text>
+                <Text style={styles.nameText}>{item.name}</Text>
                 <Slider
                     value={volume}
-                    maximumValue={1}
+                    maximumValue={100}
                     minimumValue={0}
-                    step={0.1}
+                    step={1}
                     onValueChange={onChangeValue}
-                    thumbTintColor="#517fa4"
-                    thumbStyle={{ height: 20, width: 20, backgroundColor: '#517fa4' }}
+                    thumbTintColor={Colors.bright}
+                    thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
                     thumbProps={{
                         children: (
                             <Icon
-                                name="help-buoy"
+                                name="radio-button-on"
                                 type="ionicon"
-                                size={20}
-                                containerStyle={{ bottom: 0.5, right: 0 }}
+                                size={21}
+                                containerStyle={{ bottom: 0, left: 5 }}
                                 color="#fff"
                             />
                         ),
                     }}
                 />
             </View>
-            <Icon
-                style={styles.iconClose}
-                type="ionicon"
-                name="close-circle-outline"
-                size={30}
-                onPress={onRemoveSound}
-                color={Colors.black}
-            />
         </View>
     );
 };
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        marginTop: 10,
     },
     soundIcon: {
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
+        borderRadius: 10,
     },
     content: {
         width: '85%',
@@ -65,10 +69,18 @@ const styles = StyleSheet.create({
     slider: {
         color: '#517fa4',
     },
-    iconClose: {
-        // position: 'absolute',
-        // top: -5,
-        // left: -5,
+    iconContainer: {
+        position: 'absolute',
+        top: -10,
+        left: 40,
+        zIndex: 100,
+    },
+    icon: {
+        backgroundColor: Colors.black,
+        borderRadius: 30,
+    },
+    nameText: {
+        color: Colors.white,
     },
 });
 export default SoundItem;
