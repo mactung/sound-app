@@ -1,6 +1,6 @@
 export const Colors = {
     primary: '#013a63',
-    secondary: '#01497c',
+    secondary: '#54498E',
     danger: '#4d194d',
     white: '#ffffff',
     gray: '#BDBDBD',
@@ -15,7 +15,8 @@ export const Colors = {
     green: '#006400',
     gold: '#DAA520',
     bright: '#89c2d9',
-    background: '#012a4a',
+    background: '#35245A',
+    opacity_background: 'rgba(52, 52, 52, 0.9)',
 };
 
 export const BACKGROUND_RANDOM = ['#40E0D0', '#FF8C00', '#FF0080', '#659999', '#f4791f'];

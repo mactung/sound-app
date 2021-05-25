@@ -7,7 +7,6 @@ import { setCustomSectionList } from 'utils/customs/setCustomSectionList';
 import { setCustomScrollView } from 'utils/customs/setCustomScrollView';
 import { Provider } from 'react-redux';
 import { store } from 'store';
-
 function App() {
     setCustomFlatList({
         keyExtractor: (item: any, index: number) => index.toString(),

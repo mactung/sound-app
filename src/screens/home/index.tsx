@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import { Colors } from 'styles/global.style';
 import PlayList from './components/PlayList';
@@ -10,7 +10,8 @@ const HomeScreen = () => {
     const { sounds } = useSelector((state: any) => state.player);
     return (
         <View>
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} bounces={false}>
+                <Image style={styles.imageHeader} source={require('assets/images/header.jpg')} />
                 <PlayList title="Recently Play" />
                 <CreateYourMix />
                 <PlayList title="My Mix" />
@@ -25,8 +26,16 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.background,
     },
     imageHeader: {
-        height: 300,
+        height: 320,
         width: '100%',
+        marginBottom: 30,
+    },
+    absolute: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
     },
     flatListCotainer: { justifyContent: 'space-between' },
 });

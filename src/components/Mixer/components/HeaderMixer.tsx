@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { Colors } from 'styles/global.style';
 
 const HeaderMixer = ({ setIsModalVisible, sounds }: any) => {
     return (
@@ -13,8 +14,8 @@ const HeaderMixer = ({ setIsModalVisible, sounds }: any) => {
                 onPress={() => setIsModalVisible(false)}
             />
             <View style={styles.centerView}>
-                <Text>{sounds.length} items</Text>
-                <Text>Current Mix</Text>
+                <Text style={styles.titleText}>{sounds.length} items</Text>
+                <Text style={styles.subText}>Current Mix</Text>
             </View>
             <Icon size={30} name="share-social" type="ionicon" color="#517fa4" />
         </View>
@@ -29,6 +30,13 @@ const styles = StyleSheet.create({
     },
     centerView: {
         alignItems: 'center',
+    },
+    titleText: {
+        color: Colors.white,
+        fontWeight: '600',
+    },
+    subText: {
+        color: Colors.light,
     },
 });
 

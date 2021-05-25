@@ -9,7 +9,7 @@ const Music = () => {
             <Text style={styles.textTitle}>
                 MUSIC <Text style={styles.textNunber}>(0/1)</Text>
             </Text>
-            <Text style={styles.text}>You don't have any music in this mix.</Text>
+            <Text style={styles.subText}>You don't have any music in this mix.</Text>
             <Button buttonStyle={styles.buttonView} title="Add Music" />
         </View>
     );
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
         width: 150,
     },
     textNunber: {
+        color: Colors.gray,
+    },
+    subText: {
         color: Colors.gray,
     },
 });

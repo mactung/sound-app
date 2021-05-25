@@ -14,7 +14,7 @@ function BottomTabs() {
             initialRouteName="HomeScreen"
             activeColor={Colors.white}
             inactiveColor={Colors.light}
-            barStyle={{ backgroundColor: Colors.dark, justifyContent: 'center' }}>
+            barStyle={{ backgroundColor: Colors.secondary, justifyContent: 'center'}}>
             <Tab.Screen
                 name="HomeScreen"
                 component={HomeScreen}

@@ -1,11 +1,12 @@
 import { ObjectSchema } from 'realm';
-const SoundSchema: ObjectSchema = {
-    name: 'Sound',
+const MusicSchema: ObjectSchema = {
+    name: 'Music',
     properties: {
         _id: { type: 'int', indexed: true },
         name: 'string',
         type: 'string',
         image_path: 'string?',
+        author: 'string?',
         is_new: { type: 'boolean', default: true },
         is_show: { type: 'boolean', default: true },
         created_at: { type: 'date', default: new Date() },
@@ -13,4 +14,4 @@ const SoundSchema: ObjectSchema = {
     },
     primaryKey: '_id',
 };
-export default SoundSchema;
+export default MusicSchema;

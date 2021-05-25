@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SoundIcon = ({ item }: any) => {
     const goToCustomSoundScreen = () => {
-        NavigationService.navigate('CustomScreen');
+        NavigationService.navigate('ComposerScreen');
     };
     return (
         <TouchableOpacity style={styles.container} onPress={goToCustomSoundScreen}>

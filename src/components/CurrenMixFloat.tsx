@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         width: '90%',
         bottom: 10,
         marginHorizontal: 20,
-        backgroundColor: Colors.secondary,
+        backgroundColor: Colors.opacity_background,
     },
     centerView: {
         alignItems: 'center',

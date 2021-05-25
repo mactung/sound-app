@@ -45,6 +45,7 @@ const SoundItem = ({ item, removeSound }: any) => {
                             />
                         ),
                     }}
+                    minimumTrackTintColor={Colors.bright}
                 />
             </View>
         </View>
