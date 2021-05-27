@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { Colors } from 'styles/global.style';
 interface Iprops {
     onPress: (value: string) => void;
@@ -9,8 +8,6 @@ interface Iprops {
 }
 
 const SoundItem: FC<Iprops> = ({ onPress, item }) => {
-    console.log('re render');
-    
     return (
         <Pressable style={styles.container} onPress={() => onPress(item)}>
             <Text style={item.is_selected && { color: Colors.orange }}>{item.name}</Text>

@@ -20,6 +20,7 @@
 		EA2AB2B1265940000035C4B8 /* winds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA2AB2B0265940000035C4B8 /* winds.mp3 */; };
 		EA2AB2B5265941050035C4B8 /* dreams.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA2AB2B4265941050035C4B8 /* dreams.mp3 */; };
 		EA2AB2B9265941660035C4B8 /* morning-dream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA2AB2B8265941660035C4B8 /* morning-dream.mp3 */; };
+		EA9A5909265FDB9700A13A82 /* birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA9A5908265FDB9700A13A82 /* birds.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		EA2AB2B0265940000035C4B8 /* winds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winds.mp3; sourceTree = "<group>"; };
 		EA2AB2B4265941050035C4B8 /* dreams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dreams.mp3; sourceTree = "<group>"; };
 		EA2AB2B8265941660035C4B8 /* morning-dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "morning-dream.mp3"; sourceTree = "<group>"; };
+		EA9A5908265FDB9700A13A82 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FA50E84238F440F9BDA30751 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		FC0382489B9448469CAC8905 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EA9A5908265FDB9700A13A82 /* birds.mp3 */,
 				EA2AB2B8265941660035C4B8 /* morning-dream.mp3 */,
 				EA2AB2B4265941050035C4B8 /* dreams.mp3 */,
 				EA2AB2B0265940000035C4B8 /* winds.mp3 */,
@@ -305,6 +308,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				EA2AB2B1265940000035C4B8 /* winds.mp3 in Resources */,
 				EA0DF00D2658086700C133D1 /* ocean.mp3 in Resources */,
+				EA9A5909265FDB9700A13A82 /* birds.mp3 in Resources */,
 				EA0DF00C2658086700C133D1 /* forest.mp3 in Resources */,
 				EA2AB2B5265941050035C4B8 /* dreams.mp3 in Resources */,
 				EA2AB2B9265941660035C4B8 /* morning-dream.mp3 in Resources */,

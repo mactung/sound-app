@@ -10,8 +10,8 @@ const ListSounds = ({ sounds }: any) => {
     const clearSounds = () => {
         dispatch(clearAction());
     };
-    const removeSound = (type: string) => {
-        dispatch(removeAction(type));
+    const removeSound = (fileName: string) => {
+        dispatch(removeAction(fileName));
     };
     const renderItem = ({ item }: any) => {
         if (item.key === 'end') {

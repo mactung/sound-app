@@ -1,0 +1,44 @@
+[
+    {
+        "_id": 1, 
+        "name": "Classic",
+        "type": "music",
+        "sounds": [
+            {"_id": 13, "file_name": "forest", "name": "Forest", "type": "music"},
+            {"_id": 14,"file_name": "ocean", "name": "Ocean", "type": "music"},
+            {"_id": 15,"file_name": "winds", "name": "Wind", "type": "music"},
+            {"_id": 16,"file_name": "birds", "name": "Birds", "type": "music"}
+        ] 
+    },
+    {
+        "_id": 2, 
+        "name": "Nature",
+        "type": "music",
+        "sounds": [
+            {"_id": 1, "file_name": "forest", "name": "Forest", "type": "music"},
+            {"_id": 2,"file_name": "ocean", "name": "Ocean", "type": "music"},
+            {"_id": 3,"file_name": "winds", "name": "Wind", "type": "music"},
+            {"_id": 4,"file_name": "birds", "name": "Birds", "type": "music"}
+        ]
+    },
+    {
+        "_id": 3, 
+        "name": "Animal",
+        "sounds": [
+            {"_id": 5,"file_name": "forest", "name": "Forest"},
+            {"_id": 6,"file_name": "ocean", "name": "Ocean"},
+            {"_id": 7,"file_name": "winds", "name": "Wind"},
+            {"_id": 8,"file_name": "birds", "name": "Birds"}
+        ]
+    },
+    {
+        "_id": 4, 
+        "name": "City",
+        "sounds": [
+            {"_id": 9,"file_name": "forest", "name": "Forest"},
+            {"_id": 10,"file_name": "ocean", "name": "Ocean"},
+            {"_id": 11,"file_name": "winds", "name": "Wind"},
+            {"_id": 12,"file_name": "birds", "name": "Birds"}
+        ]
+    }
+]

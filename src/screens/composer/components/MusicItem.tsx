@@ -2,28 +2,24 @@ import React, { FC } from 'react';
 import { Text, Pressable, StyleSheet } from 'react-native';
 import { Colors } from 'styles/global.style';
 interface Iprops {
-    onPress: (value: string) => void;
-    item: any;
-    index: number;
+    addSoundToMixer: (value: string) => void;
+    itemMusic: any;
 }
 
-const MusicItem: FC<Iprops> = () => {
-    console.log('re render');
-
+const MusicItem: FC<Iprops> = ({ itemMusic, addSoundToMixer }) => {
     return (
-        <Pressable style={styles.container}>
-            <Text style={styles.nameText}>Music Name</Text>
+        <Pressable style={styles.container} onPress={() => addSoundToMixer(itemMusic)}>
+            <Text style={styles.nameText}>{itemMusic.name}</Text>
         </Pressable>
     );
 };
 const styles = StyleSheet.create({
     container: {
-        width: 120,
-        height: 150,
+        width: 150,
+        height: 180,
         borderRadius: 10,
         backgroundColor: Colors.orange,
         marginLeft: 20,
-        alignItems: 'center',
         justifyContent: 'flex-end',
         padding: 10,
     },

@@ -28,14 +28,18 @@ const soundSlice = createSlice({
         },
         removeSound: (state, action: PayloadAction<any>) => {
             state.sounds = state.sounds.filter((item: any) => {
-                if (item.type === action.payload) {
+                if (item.file_name === action.payload) {
                     item.sound.stop();
                 }
-                return item.type !== action.payload;
+                return item.file_name !== action.payload;
             });
         },
         addMusic: (state, action: PayloadAction<any>) => {
             state.music = action.payload;
+        },
+        removeMusic: state => {
+            state.music.sound.stop();
+            state.music = {};
         },
         play: (state: State) => {
             state.isPlaying = true;

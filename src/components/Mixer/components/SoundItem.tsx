@@ -9,7 +9,7 @@ const SoundItem = ({ item, removeSound }: any) => {
         item.sound.setVolume(value / 100);
     };
     const onRemoveSound = () => {
-        removeSound(item.type);
+        removeSound(item.file_name);
     };
     return (
         <View style={styles.container}>

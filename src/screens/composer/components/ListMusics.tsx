@@ -1,11 +1,17 @@
-import React from 'react';
+import services from 'models/services';
+import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import CategoryMusicItem from './CategoryMusicItem';
-const ListMusics = ({ data }) => {
-    const renderItem = () => <CategoryMusicItem data={data} />;
+const ListMusics = ({ addSoundToMixer }: any) => {
+    const [dataMusics, setDataMusics] = useState<any[]>([]);
+    const renderItem = ({ item }: any) => <CategoryMusicItem itemCategory={item} addSoundToMixer={addSoundToMixer} />;
+    useEffect(() => {
+        const dataMusicService = services.soundService.getAllMusics();
+        setDataMusics(dataMusicService);
+    }, []);
     return (
         <View>
-            <FlatList data={data} renderItem={renderItem} />
+            <FlatList data={dataMusics} renderItem={renderItem} />
         </View>
     );
 };

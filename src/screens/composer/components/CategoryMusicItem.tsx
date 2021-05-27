@@ -2,12 +2,12 @@ import React from 'react';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { Colors } from 'styles/global.style';
 import MusicItem from './MusicItem';
-const CategoryMusicItem = ({ data }) => {
-    const renderItem = () => <MusicItem data={data} />;
+const CategoryMusicItem = ({ itemCategory, addSoundToMixer }: any) => {
+    const renderItem = ({ item }: any) => <MusicItem itemMusic={item} addSoundToMixer={addSoundToMixer} />;
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>Category Name</Text>
-            <FlatList data={data} renderItem={renderItem} horizontal />
+            <Text style={styles.titleText}>{itemCategory.name}</Text>
+            <FlatList data={itemCategory.sounds} renderItem={renderItem} horizontal />
         </View>
     );
 };

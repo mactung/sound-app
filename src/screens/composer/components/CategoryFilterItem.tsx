@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
 import { Colors } from 'styles/global.style';
-const CategoryFilterItem = () => {
+const CategoryFilterItem = ({ item, onPress, currentCategoryId }: any) => {
     return (
-        <Pressable style={styles.container}>
-            <Text>Filter</Text>
+        <Pressable
+            style={[styles.container, currentCategoryId === item._id && { backgroundColor: Colors.light }]}
+            onPress={() => onPress(item._id)}>
+            <Text style={styles.nameText}>{item.name}</Text>
         </Pressable>
     );
 };
@@ -16,8 +18,12 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: Colors.light,
         height: 30,
+        borderWidth: 1,
+        borderColor: Colors.light,
+    },
+    nameText: {
+        color: Colors.white,
     },
 });
 

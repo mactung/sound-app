@@ -3,15 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Sound from 'react-native-sound';
 import CurrentMixFloat from 'components/CurrenMixFloat';
-import data from './data.json';
 import { Colors } from 'styles/global.style';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSound, play, removeSound } from 'store/player';
+import { addMusic, addSound, play, removeSound } from 'store/player';
 import usePlayer from 'hooks/usePlayer';
 import { Button, Icon } from 'react-native-elements';
 import ModalAdjustVolume from 'components/ModalAdjustVolume';
 import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
+import { useFocusEffect } from '@react-navigation/core';
 Sound.setCategory('Playback');
 const ComposerScreen = () => {
     const dispatch = useDispatch();
@@ -19,11 +19,17 @@ const ComposerScreen = () => {
     const { sounds, isPlaying } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [isShowAdjustVolume, setIsShowAdjustVolume] = useState<boolean>(false);
+    useFocusEffect(() => {
+        // fetch();
+    });
     const addSoundToMixer = (itemSound: any) => {
         if (itemSound.is_selected) {
-            dispatch(removeSound(itemSound.type));
+            dispatch(removeSound(itemSound.file_name));
         } else {
-            const sound = new Sound(itemSound.type + '.mp3', Sound.MAIN_BUNDLE, error => {
+            const sound = new Sound(itemSound.file_name + '.mp3', Sound.MAIN_BUNDLE, (error: any) => {
+                if (error) {
+                    return;
+                }
                 if (!isPlaying) {
                     playPlayer();
                 } else {
@@ -31,12 +37,21 @@ const ComposerScreen = () => {
                 }
                 sound.setVolume(0.8);
                 sound.setNumberOfLoops(-1);
-                dispatch(
-                    addSound({
-                        ...itemSound,
-                        sound,
-                    }),
-                );
+                if (itemSound.type === 'sound') {
+                    dispatch(
+                        addSound({
+                            ...itemSound,
+                            sound,
+                        }),
+                    );
+                } else {
+                    dispatch(
+                        addMusic({
+                            ...itemSound,
+                            sound,
+                        }),
+                    );
+                }
                 dispatch(play());
                 setIsShowAdjustVolume(true);
             });
@@ -64,9 +79,9 @@ const ComposerScreen = () => {
                 />
             </View>
             {activeIndex === 0 ? (
-                <ListSounds data={data} addSoundToMixer={addSoundToMixer} sounds={sounds} />
+                <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
             ) : (
-                <ListMusics data={data} />
+                <ListMusics addSoundToMixer={addSoundToMixer} />
             )}
 
             {sounds.length > 0 && <CurrentMixFloat />}

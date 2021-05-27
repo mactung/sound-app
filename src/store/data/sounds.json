@@ -1,0 +1,6 @@
+[
+    {"_id": 1, "file_name": "forest", "name": "Forest", "category_id": 2},
+    {"_id": 2, "file_name": "ocean", "name": "Ocean", "category_id": 2},
+    {"_id": 3, "file_name": "winds", "name": "Wind", "category_id": 2},
+    {"_id": 4, "file_name": "birds", "name": "Birds", "category_id": 3}
+]
