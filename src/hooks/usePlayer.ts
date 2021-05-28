@@ -5,22 +5,23 @@ const usePlayer = () => {
     const { sounds, music } = useSelector((state: any) => state.player);
 
     const pausePlayer = () => {
-        dispatch(pause());
         if (sounds.length > 0) {
             sounds.forEach(item => {
                 item.sound.pause();
             });
         }
+        dispatch(pause());
         music.sound.pause();
     };
 
     const playPlayer = () => {
-        dispatch(play());
         if (sounds.length > 0) {
             sounds.forEach(item => {
                 item.sound.play();
             });
         }
+        dispatch(play());
+
         music.sound.play();
     };
 

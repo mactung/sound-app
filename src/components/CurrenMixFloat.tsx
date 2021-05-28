@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import usePlayer from 'hooks/usePlayer';
 
 const CurrentMixFloat = () => {
-    const { sounds, isPlaying } = useSelector((state: any) => state.player);
+    const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     const { pausePlayer, playPlayer } = usePlayer();
     const [isVisibleMixer, setIsVisibleMixer] = useState<boolean>(false);
     return (
@@ -19,7 +19,8 @@ const CurrentMixFloat = () => {
                         ? sounds[0].name
                         : sounds.length === 2
                         ? sounds[0].name + ' & ' + sounds[1].name
-                        : sounds.length + ' items'}{' '}
+                        : sounds.length > 0 && sounds.length + ' items'}
+                    {music && [sounds.length > 0 ? ' & ' : ''] + music.name}
                 </Text>
                 <Text style={styles.textName}>Current Mix</Text>
             </View>

@@ -9,7 +9,7 @@ interface State {
 const initialState: State = {
     sounds: [],
     isPlaying: true,
-    music: {},
+    music: null,
 };
 
 const soundSlice = createSlice({
@@ -39,7 +39,7 @@ const soundSlice = createSlice({
         },
         removeMusic: state => {
             state.music.sound.stop();
-            state.music = {};
+            state.music = null;
         },
         play: (state: State) => {
             state.isPlaying = true;
@@ -49,5 +49,5 @@ const soundSlice = createSlice({
         },
     },
 });
-export const { addSound, clearSounds, removeSound, play, pause, addMusic, setSounds } = soundSlice.actions;
+export const { addSound, clearSounds, removeSound, play, pause, addMusic, removeMusic, setSounds } = soundSlice.actions;
 export default soundSlice.reducer;

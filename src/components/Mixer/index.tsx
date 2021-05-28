@@ -13,15 +13,15 @@ interface Iprops {
     setIsModalVisible: (value: boolean) => void;
 }
 const Mixer: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
-    const { sounds, isPlaying } = useSelector((state: any) => state.player);
+    const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     return (
         <Modal
             isVisible={isModalVisible}
             style={styles.container}
             backdropColor={Colors.background}
             backdropOpacity={0.98}>
-            <HeaderMixer setIsModalVisible={setIsModalVisible} sounds={sounds} />
-            <Music />
+            <HeaderMixer setIsModalVisible={setIsModalVisible} sounds={sounds} music={music} />
+            <Music music={music} />
             <ListSounds sounds={sounds} />
             <Player isPlaying={isPlaying} />
         </Modal>

@@ -1,16 +1,29 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
 import { Colors } from 'styles/global.style';
+import SoundItem from './SoundItem';
+import { removeMusic } from 'store/player';
 
-const Music = () => {
+const Music = ({ music }: any) => {
+    const dispatch = useDispatch();
+    const removeSound = () => {
+        dispatch(removeMusic());
+    };
     return (
         <View style={styles.container}>
             <Text style={styles.textTitle}>
                 MUSIC <Text style={styles.textNunber}>(0/1)</Text>
             </Text>
-            <Text style={styles.subText}>You don't have any music in this mix.</Text>
-            <Button buttonStyle={styles.buttonView} title="Add Music" />
+            {music ? (
+                <SoundItem item={music} removeSound={removeSound} />
+            ) : (
+                <>
+                    <Text style={styles.subText}>You don't have any music in this mix.</Text>
+                    <Button buttonStyle={styles.buttonView} title="Add Music" />
+                </>
+            )}
         </View>
     );
 };
@@ -19,12 +32,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderBottomWidth: 0.18,
         borderBottomColor: Colors.light,
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
     textTitle: {
         color: Colors.white,
         fontWeight: '500',
-        marginBottom: 20,
     },
     text: {
         color: Colors.white,

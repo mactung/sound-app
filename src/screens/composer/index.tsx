@@ -16,7 +16,7 @@ Sound.setCategory('Playback');
 const ComposerScreen = () => {
     const dispatch = useDispatch();
     const { playPlayer } = usePlayer();
-    const { sounds, isPlaying } = useSelector((state: any) => state.player);
+    const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [isShowAdjustVolume, setIsShowAdjustVolume] = useState<boolean>(false);
     useFocusEffect(() => {
@@ -44,6 +44,7 @@ const ComposerScreen = () => {
                             sound,
                         }),
                     );
+                    setIsShowAdjustVolume(true);
                 } else {
                     dispatch(
                         addMusic({
@@ -53,7 +54,6 @@ const ComposerScreen = () => {
                     );
                 }
                 dispatch(play());
-                setIsShowAdjustVolume(true);
             });
         }
     };
@@ -84,7 +84,7 @@ const ComposerScreen = () => {
                 <ListMusics addSoundToMixer={addSoundToMixer} />
             )}
 
-            {sounds.length > 0 && <CurrentMixFloat />}
+            {(sounds.length > 0 || music) && <CurrentMixFloat />}
             {isShowAdjustVolume && <ModalAdjustVolume sounds={sounds} setIsShowAdjustVolume={setIsShowAdjustVolume} />}
         </SafeAreaView>
     );
