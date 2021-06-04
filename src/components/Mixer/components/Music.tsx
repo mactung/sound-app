@@ -5,11 +5,17 @@ import { useDispatch } from 'react-redux';
 import { Colors } from 'styles/global.style';
 import SoundItem from './SoundItem';
 import { removeMusic } from 'store/player';
+import NavigationService from 'navigation/NavigationSerivce';
 
-const Music = ({ music }: any) => {
+const Music = ({ music, setIsModalVisible }: any) => {
     const dispatch = useDispatch();
     const removeSound = () => {
         dispatch(removeMusic());
+    };
+
+    const goToChooseMusic = () => {
+        setIsModalVisible(false);
+        NavigationService.navigate('ComposerScreen', { index: 1 });
     };
     return (
         <View style={styles.container}>
@@ -21,7 +27,7 @@ const Music = ({ music }: any) => {
             ) : (
                 <>
                     <Text style={styles.subText}>You don't have any music in this mix.</Text>
-                    <Button buttonStyle={styles.buttonView} title="Add Music" />
+                    <Button buttonStyle={styles.buttonView} title="Add Music" onPress={goToChooseMusic} />
                 </>
             )}
         </View>
@@ -37,6 +43,7 @@ const styles = StyleSheet.create({
     textTitle: {
         color: Colors.white,
         fontWeight: '500',
+        marginBottom: 10,
     },
     text: {
         color: Colors.white,
@@ -54,6 +61,7 @@ const styles = StyleSheet.create({
     },
     subText: {
         color: Colors.gray,
+        marginBottom: 10,
     },
 });
 export default Music;

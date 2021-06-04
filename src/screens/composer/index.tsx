@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Sound from 'react-native-sound';
 import CurrentMixFloat from 'components/CurrenMixFloat';
@@ -13,11 +13,12 @@ import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
 import { useFocusEffect } from '@react-navigation/core';
 Sound.setCategory('Playback');
-const ComposerScreen = () => {
+const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
     const { playPlayer } = usePlayer();
+    const { index } = route.params;
     const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
-    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number>(index ? index : 0);
     const [isShowAdjustVolume, setIsShowAdjustVolume] = useState<boolean>(false);
     useFocusEffect(() => {
         // fetch();
@@ -26,8 +27,10 @@ const ComposerScreen = () => {
         if (itemSound.is_selected) {
             dispatch(removeSound(itemSound.file_name));
         } else {
-            const sound = new Sound(itemSound.file_name + '.mp3', Sound.MAIN_BUNDLE, (error: any) => {
+            console.log(itemSound.audio_path);
+            const sound = new Sound(itemSound.audio_path, '', (error: any) => {
                 if (error) {
+                    console.log(error);
                     return;
                 }
                 if (!isPlaying) {
@@ -61,36 +64,50 @@ const ComposerScreen = () => {
         setActiveIndex(index);
     };
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.viewHeader}>
-                <View style={styles.menu}>
-                    <Text onPress={() => changeType(0)} style={[styles.title, activeIndex === 0 && styles.activeTitle]}>
-                        Sounds
-                    </Text>
-                    <Text onPress={() => changeType(1)} style={[styles.title, activeIndex === 1 && styles.activeTitle]}>
-                        Music
-                    </Text>
-                </View>
-                <Button
-                    title="Upgrade"
-                    icon={<Icon name="lock-open-outline" type="ionicon" size={14} color="white" />}
-                    buttonStyle={styles.buttonUpgrade}
-                    titleStyle={styles.titleButtonUpgrade}
-                />
-            </View>
-            {activeIndex === 0 ? (
-                <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
-            ) : (
-                <ListMusics addSoundToMixer={addSoundToMixer} />
-            )}
+        <View style={{ flex: 1 }}>
+            <ImageBackground style={styles.image} source={require('assets/images/background_sound.png')}>
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.viewHeader}>
+                        <View style={styles.menu}>
+                            <Text
+                                onPress={() => changeType(0)}
+                                style={[styles.title, activeIndex === 0 && styles.activeTitle]}>
+                                Sounds
+                            </Text>
+                            <Text
+                                onPress={() => changeType(1)}
+                                style={[styles.title, activeIndex === 1 && styles.activeTitle]}>
+                                Music
+                            </Text>
+                        </View>
+                        <Button
+                            title="Upgrade"
+                            icon={<Icon name="lock-open-outline" type="ionicon" size={14} color="white" />}
+                            buttonStyle={styles.buttonUpgrade}
+                            titleStyle={styles.titleButtonUpgrade}
+                        />
+                    </View>
+                    {activeIndex === 0 ? (
+                        <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
+                    ) : (
+                        <ListMusics addSoundToMixer={addSoundToMixer} />
+                    )}
 
-            {(sounds.length > 0 || music) && <CurrentMixFloat />}
-            {isShowAdjustVolume && <ModalAdjustVolume sounds={sounds} setIsShowAdjustVolume={setIsShowAdjustVolume} />}
-        </SafeAreaView>
+                    {(sounds.length > 0 || music) && <CurrentMixFloat />}
+                    {isShowAdjustVolume && (
+                        <ModalAdjustVolume sounds={sounds} setIsShowAdjustVolume={setIsShowAdjustVolume} />
+                    )}
+                </SafeAreaView>
+            </ImageBackground>
+        </View>
     );
 };
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: Colors.background },
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+    container: { flex: 1 },
     viewHeader: {
         flexDirection: 'row',
         alignItems: 'center',

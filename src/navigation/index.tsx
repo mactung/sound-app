@@ -4,7 +4,6 @@ import SoundScreen from 'screens/sound';
 import NavigationService from 'navigation/NavigationSerivce';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { Text } from 'react-native';
 
 const Stack = createStackNavigator();
 

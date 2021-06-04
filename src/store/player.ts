@@ -35,6 +35,9 @@ const soundSlice = createSlice({
             });
         },
         addMusic: (state, action: PayloadAction<any>) => {
+            if (state.music) {
+                state.music.sound.stop();
+            }
             state.music = action.payload;
         },
         removeMusic: state => {

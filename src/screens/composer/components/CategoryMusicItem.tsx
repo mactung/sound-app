@@ -7,6 +7,7 @@ const CategoryMusicItem = ({ itemCategory, addSoundToMixer }: any) => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>{itemCategory.name}</Text>
+            <Text style={styles.subText}>{itemCategory.description}</Text>
             <FlatList data={itemCategory.sounds} renderItem={renderItem} horizontal />
         </View>
     );
@@ -19,8 +20,13 @@ const styles = StyleSheet.create({
         color: Colors.white,
         marginLeft: 20,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 15,
         fontSize: 18,
+    },
+    subText: {
+        color: Colors.light,
+        paddingHorizontal: 20,
+        marginBottom: 15,
     },
 });
 export default CategoryMusicItem;

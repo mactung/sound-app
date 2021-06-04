@@ -1,44 +1,42 @@
 [
     {
         "_id": 1, 
-        "name": "Classic",
+        "name": "Soft Piano",
         "type": "music",
+        "description": "Feel your stress melt away tho the sound of these comforting piano melodies",
         "sounds": [
-            {"_id": 13, "file_name": "forest", "name": "Forest", "type": "music"},
-            {"_id": 14,"file_name": "ocean", "name": "Ocean", "type": "music"},
-            {"_id": 15,"file_name": "winds", "name": "Wind", "type": "music"},
-            {"_id": 16,"file_name": "birds", "name": "Birds", "type": "music"}
+            {"_id": 100, "file_name": "morning", "name": "Morning", "type": "music"},
+            {"_id": 101,"file_name": "dreams", "name": "Dreams", "type": "music"}
         ] 
     },
     {
-        "_id": 2, 
-        "name": "Nature",
-        "type": "music",
-        "sounds": [
-            {"_id": 1, "file_name": "forest", "name": "Forest", "type": "music"},
-            {"_id": 2,"file_name": "ocean", "name": "Ocean", "type": "music"},
-            {"_id": 3,"file_name": "winds", "name": "Wind", "type": "music"},
-            {"_id": 4,"file_name": "birds", "name": "Birds", "type": "music"}
-        ]
-    },
-    {
         "_id": 3, 
-        "name": "Animal",
+        "name": "Nature",
         "sounds": [
             {"_id": 5,"file_name": "forest", "name": "Forest"},
             {"_id": 6,"file_name": "ocean", "name": "Ocean"},
-            {"_id": 7,"file_name": "winds", "name": "Wind"},
-            {"_id": 8,"file_name": "birds", "name": "Birds"}
+            {"_id": 7,"file_name": "winds", "name": "Winds"},
+            {"_id": 20,"file_name": "birds", "name": "Birds"},
+            {"_id": 21,"file_name": "fire", "name": "Fire"},
+            {"_id": 22,"file_name": "grass", "name": "Grass"},
+            {"_id": 23,"file_name": "soft_wind", "name": "Soft Wind"}
         ]
     },
     {
         "_id": 4, 
-        "name": "City",
+        "name": "Animal",
         "sounds": [
-            {"_id": 9,"file_name": "forest", "name": "Forest"},
-            {"_id": 10,"file_name": "ocean", "name": "Ocean"},
-            {"_id": 11,"file_name": "winds", "name": "Wind"},
-            {"_id": 12,"file_name": "birds", "name": "Birds"}
+            {"_id": 9,"file_name": "frogs", "name": "Frogs"},
+            {"_id": 10,"file_name": "cat_purring", "name": "Cat Purring"},
+            {"_id": 11,"file_name": "peppers", "name": "Peppers"},
+            {"_id": 12,"file_name": "chirp", "name": "Chirp"},
+            {"_id": 13,"file_name": "whale", "name": "Whale"},
+            {"_id": 14,"file_name": "seagulls", "name": "Seagulls"},
+            {"_id": 15,"file_name": "owls", "name": "Owls"},
+            {"_id": 16,"file_name": "wolf", "name": "Wolf"},
+            {"_id": 17,"file_name": "loon", "name": "Loon"},
+            {"_id": 18,"file_name": "cicadas", "name": "Cicadas"},
+            {"_id": 19,"file_name": "cuckoo_bird", "name": "Cuckoo Bird"}
         ]
     }
 ]

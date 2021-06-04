@@ -11,7 +11,9 @@ const usePlayer = () => {
             });
         }
         dispatch(pause());
-        music.sound.pause();
+        if (music) {
+            music.sound.pause();
+        }
     };
 
     const playPlayer = () => {
@@ -21,8 +23,9 @@ const usePlayer = () => {
             });
         }
         dispatch(play());
-
-        music.sound.play();
+        if (music) {
+            music.sound.play();
+        }
     };
 
     return { pausePlayer, playPlayer };

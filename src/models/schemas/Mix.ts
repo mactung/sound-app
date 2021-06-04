@@ -7,6 +7,8 @@ const MixSchema: ObjectSchema = {
         status: 'string?',
         time: 'int?',
         sounds: { type: 'Sound[]', default: [] },
+        music: { type: 'Sound', default: {} },
+        type: 'string',
         created_at: { type: 'date', default: new Date() },
         updated_at: { type: 'date', default: new Date() },
     },

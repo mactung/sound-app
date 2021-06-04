@@ -40,9 +40,20 @@ const getAllMusics = () => {
         return [];
     }
 };
+
+const getAll = () => {
+    try {
+        return realm.objects('Sound').filtered('audio_path = null');
+    } catch (error) {
+        console.log('getAll', error);
+        return [];
+    }
+};
+
 export default {
     createSound,
     getAllSounds,
     getSoundsByCategoryId,
     getAllMusics,
+    getAll,
 };

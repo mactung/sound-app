@@ -54,7 +54,7 @@ const SoundItem = ({ item, removeSound }: any) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginTop: 10,
+        marginVertical: 10,
     },
     soundIcon: {
         height: 50,
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     content: {
         width: '85%',
         paddingHorizontal: 20,
-        paddingVertical: 10,
         justifyContent: 'center',
     },
     slider: {

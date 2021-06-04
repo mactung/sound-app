@@ -5,7 +5,8 @@ import { Button } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { clearSounds as clearAction, removeSound as removeAction } from 'store/player';
 import { Colors } from 'styles/global.style';
-const ListSounds = ({ sounds }: any) => {
+import NavigationService from 'navigation/NavigationSerivce';
+const ListSounds = ({ sounds, setIsModalVisible }: any) => {
     const dispatch = useDispatch();
     const clearSounds = () => {
         dispatch(clearAction());
@@ -13,12 +14,19 @@ const ListSounds = ({ sounds }: any) => {
     const removeSound = (fileName: string) => {
         dispatch(removeAction(fileName));
     };
+
     const renderItem = ({ item }: any) => {
         if (item.key === 'end') {
             return <Button title="Clear all" onPress={clearSounds} buttonStyle={styles.buttonView} />;
         }
         return <SoundItem key={item._id} item={item} removeSound={removeSound} />;
     };
+
+    const goToChooseSound = () => {
+        setIsModalVisible(false);
+        NavigationService.navigate('ComposerScreen', { index: 0 });
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.textTitle}>
@@ -31,6 +39,7 @@ const ListSounds = ({ sounds }: any) => {
                 bounces={false}
                 showsVerticalScrollIndicator={false}
             />
+            {sounds.length === 0 && <Button title="Add sound" onPress={goToChooseSound} />}
         </View>
     );
 };

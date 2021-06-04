@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Heart of Ocean",
+        "sounds": ["ocean", "shore"],
+        "music": "bird"
+    },
+    {
+        "name": "Big forest",
+        "sounds": ["ocean", "shore"],
+        "music": "bird"
+    },
+    {
+        "name": "Life of Peace",
+        "sounds": ["bird", "night"],
+        "music": "bird"
+    }
+]

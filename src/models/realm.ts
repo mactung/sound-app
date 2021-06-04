@@ -6,7 +6,7 @@ import CategorySchema from './schemas/Category';
 const realm = new Realm({
     path: 'soundApp.realm',
     schema: [SoundSchema, MixSchema, CategorySchema],
-    schemaVersion: 2,
+    schemaVersion: 3,
 });
 
 export default realm;
