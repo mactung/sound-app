@@ -7,7 +7,7 @@ const SoundSchema: ObjectSchema = {
         type: { type: 'string', default: 'sound' },
         file_name: 'string',
         image_path: 'string?',
-        audio_path: 'string?',
+        is_download: { type: 'bool', default: false },
         is_new: { type: 'bool', default: true },
         is_show: { type: 'bool', default: true },
         created_at: { type: 'date', default: new Date() },

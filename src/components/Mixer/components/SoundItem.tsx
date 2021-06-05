@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { StyleSheet, Image, View, Text } from 'react-native';
+import React, { useState, FC } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
 import { Colors } from 'styles/global.style';
-const SoundItem = ({ item, removeSound }: any) => {
+import { SoundIcon } from 'assets/svg';
+import { MusicIcon } from 'assets/svg';
+import { SoundType } from 'types/sound';
+interface Iprops {
+    item: SoundType;
+    removeSound: (value: string) => void;
+}
+const SoundItem: FC<Iprops> = ({ item, removeSound }) => {
     const [volume, setVolume] = useState<number>(item.sound.getVolume() * 100);
     const onChangeValue = (value: number) => {
         setVolume(value);
@@ -13,17 +20,20 @@ const SoundItem = ({ item, removeSound }: any) => {
     };
     return (
         <View style={styles.container}>
-            <Image style={styles.soundIcon} source={require('assets/images/image_large.png')} />
             <View style={styles.iconContainer}>
                 <Icon
                     type="ionicon"
                     name="close"
-                    size={20}
+                    size={16}
                     onPress={onRemoveSound}
                     color={Colors.white}
                     iconStyle={styles.icon}
                 />
             </View>
+            <View style={styles.soundIcon}>
+                {item.type === 'music' ? <MusicIcon width={30} height={30} /> : <SoundIcon width={30} height={30} />}
+            </View>
+
             <View style={styles.content}>
                 <Text style={styles.nameText}>{item.name}</Text>
                 <Slider
@@ -33,14 +43,14 @@ const SoundItem = ({ item, removeSound }: any) => {
                     step={1}
                     onValueChange={onChangeValue}
                     thumbTintColor={Colors.bright}
-                    thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
+                    thumbStyle={styles.thumbStyle}
                     thumbProps={{
                         children: (
                             <Icon
                                 name="radio-button-on"
                                 type="ionicon"
                                 size={21}
-                                containerStyle={{ bottom: 0, left: 0 }}
+                                containerStyle={styles.thumbProps}
                                 color="#fff"
                             />
                         ),
@@ -60,6 +70,9 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 10,
+        backgroundColor: Colors.secondary,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     content: {
         width: '85%',
@@ -76,11 +89,20 @@ const styles = StyleSheet.create({
         zIndex: 100,
     },
     icon: {
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange,
         borderRadius: 30,
     },
     nameText: {
         color: Colors.white,
+    },
+    thumbStyle: {
+        height: 20,
+        width: 20,
+        backgroundColor: 'transparent',
+    },
+    thumbProps: {
+        bottom: 0,
+        left: 0,
     },
 });
 export default SoundItem;

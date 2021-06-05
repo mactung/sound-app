@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import SoundItem from './SoundItem';
 import { Button } from 'react-native-elements';
@@ -6,7 +6,12 @@ import { useDispatch } from 'react-redux';
 import { clearSounds as clearAction, removeSound as removeAction } from 'store/player';
 import { Colors } from 'styles/global.style';
 import NavigationService from 'navigation/NavigationSerivce';
-const ListSounds = ({ sounds, setIsModalVisible }: any) => {
+import { SoundType } from 'types/sound';
+interface Iprops {
+    sounds: SoundType[];
+    setIsModalVisible: (value: boolean) => void;
+}
+const ListSounds: FC<Iprops> = ({ sounds, setIsModalVisible }) => {
     const dispatch = useDispatch();
     const clearSounds = () => {
         dispatch(clearAction());

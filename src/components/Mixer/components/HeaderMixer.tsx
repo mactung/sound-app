@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Colors } from 'styles/global.style';
-
-const HeaderMixer = ({ setIsModalVisible, sounds, music }: any) => {
+import { SoundType } from 'types/sound';
+interface Iprops {
+    setIsModalVisible: (value: any) => void;
+    sounds: SoundType[];
+    music: SoundType;
+}
+const HeaderMixer: FC<Iprops> = ({ setIsModalVisible, sounds, music }) => {
     return (
         <View style={styles.container}>
             <Icon

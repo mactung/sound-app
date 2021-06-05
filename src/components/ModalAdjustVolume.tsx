@@ -4,7 +4,9 @@ import { Icon, Slider } from 'react-native-elements';
 import { Colors } from 'styles/global.style';
 const { width } = Dimensions.get('screen');
 const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
-    const [volume, setVolume] = useState<number>(sounds[sounds.length - 1].sound.getVolume() * 100);
+    const [volume, setVolume] = useState<number>(
+        sounds[sounds.length - 1] ? sounds[sounds.length - 1].sound.getVolume() * 100 : 0,
+    );
     let myTimeout: any;
 
     const hideModal = () => {

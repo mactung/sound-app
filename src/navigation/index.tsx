@@ -4,6 +4,7 @@ import SoundScreen from 'screens/sound';
 import NavigationService from 'navigation/NavigationSerivce';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
+import ComposerScreen from 'screens/composer';
 
 const Stack = createStackNavigator();
 
@@ -17,12 +18,12 @@ function Navigation() {
     }, []);
     return (
         <NavigationContainer ref={ref}>
-            <Stack.Navigator initialRouteName="BottomTabs">
-                <Stack.Screen
+            <Stack.Navigator initialRouteName="ComposerScreen">
+                {/* <Stack.Screen
                     name="BottomTabs"
                     component={BottomTabs}
                     options={{ headerShown: false, gestureEnabled: false }}
-                />
+                /> */}
                 <Stack.Screen
                     name="SoundScreen"
                     component={SoundScreen}
@@ -32,6 +33,18 @@ function Navigation() {
                         headerBackTitleVisible: false,
                         title: route.params.name,
                     })}
+                />
+                <Stack.Screen
+                    name="ComposerScreen"
+                    component={ComposerScreen}
+                    options={({ route }: any) => ({
+                        gestureEnabled: false,
+                        headerTransparent: true,
+                        headerBackTitleVisible: false,
+                        title: route.params.name,
+                        headerShown: false,
+                    })}
+                    initialParams={{ index: 0 }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -10,7 +10,7 @@ const useInitData = () => {
                 services.categoryService.createCategory(category);
             });
         }
-        const sounds = services.soundService.getAll();
+        const sounds = services.soundService.getAllMusicDidntDownload();
         if (sounds.length > 0) {
             Promise.all(sounds.map((sound: any) => downloadAudio(sound)));
         }

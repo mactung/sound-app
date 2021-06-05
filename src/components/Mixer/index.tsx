@@ -18,8 +18,8 @@ const Mixer: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
         <Modal
             isVisible={isModalVisible}
             style={styles.container}
-            backdropColor={Colors.background}
-            backdropOpacity={0.98}>
+            backdropColor={Colors.primary}
+            backdropOpacity={0.95}>
             <HeaderMixer setIsModalVisible={setIsModalVisible} sounds={sounds} music={music} />
             <Music music={music} setIsModalVisible={setIsModalVisible} />
             <ListSounds sounds={sounds} setIsModalVisible={setIsModalVisible} />

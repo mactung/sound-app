@@ -41,9 +41,9 @@ const getAllMusics = () => {
     }
 };
 
-const getAll = () => {
+const getAllMusicDidntDownload = () => {
     try {
-        return realm.objects('Sound').filtered('audio_path = null');
+        return realm.objects('Sound').filtered('is_download = false');
     } catch (error) {
         console.log('getAll', error);
         return [];
@@ -55,5 +55,5 @@ export default {
     getAllSounds,
     getSoundsByCategoryId,
     getAllMusics,
-    getAll,
+    getAllMusicDidntDownload,
 };

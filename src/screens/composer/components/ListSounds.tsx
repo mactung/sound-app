@@ -1,9 +1,13 @@
 import services from 'models/services';
 import React, { useState, useEffect, useCallback } from 'react';
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
-import { Colors } from 'styles/global.style';
+import { FlatList, ScrollView } from 'react-native';
+import { SoundType } from 'types/sound';
 import CategoryFilter from './CategoryFilter';
 import SoundItem from './SoundItem';
+interface Iprops {
+    sounds: SoundType[];
+    addSoundToMixer: () => void;
+}
 const ListSounds = ({ addSoundToMixer, sounds }: any) => {
     const [currentCategoryId, setCurrentCategoryId] = useState<number>(0);
     const [dataSounds, setDataSounds] = useState<any[]>([]);
@@ -13,11 +17,10 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sounds]);
-    const setData = data => {
-        console.log(data);
+    const setData = (data: SoundType[]) => {
         setDataSounds(
-            data.map(item => {
-                if (sounds.some(sound => sound._id === item._id)) {
+            data.map((item: SoundType) => {
+                if (sounds.some((sound: SoundType) => sound._id === item._id)) {
                     item.is_selected = true;
                 } else {
                     item.is_selected = false;
@@ -28,6 +31,7 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
     };
     const renderItem = useCallback(
         ({ item, index }: any) => <SoundItem item={item} onPress={addSoundToMixer} index={index} />,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
     return (
@@ -43,11 +47,4 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
         </>
     );
 };
-const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: Colors.background },
-    buttonUpgrade: {
-        backgroundColor: Colors.light,
-        borderRadius: 20,
-    },
-});
 export default ListSounds;

@@ -20,7 +20,7 @@ const Music = ({ music, setIsModalVisible }: any) => {
     return (
         <View style={styles.container}>
             <Text style={styles.textTitle}>
-                MUSIC <Text style={styles.textNunber}>(0/1)</Text>
+                MUSIC <Text style={styles.textNunber}>({music ? 1 : 0}/1)</Text>
             </Text>
             {music ? (
                 <SoundItem item={music} removeSound={removeSound} />
@@ -36,9 +36,9 @@ const Music = ({ music, setIsModalVisible }: any) => {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        borderBottomWidth: 0.18,
-        borderBottomColor: Colors.light,
-        paddingVertical: 10,
+        borderBottomWidth: 0.2,
+        borderBottomColor: Colors.gray,
+        paddingVertical: 20,
     },
     textTitle: {
         color: Colors.white,

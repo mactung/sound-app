@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         width: '90%',
-        bottom: 10,
+        bottom: 50,
         marginHorizontal: 20,
         backgroundColor: Colors.opacity_background,
     },

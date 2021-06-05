@@ -5,13 +5,13 @@ import Sound from 'react-native-sound';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import { Colors } from 'styles/global.style';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMusic, addSound, play, removeSound } from 'store/player';
+import { addMusic, addSound, play, removeMusic, removeSound } from 'store/player';
 import usePlayer from 'hooks/usePlayer';
-import { Button, Icon } from 'react-native-elements';
 import ModalAdjustVolume from 'components/ModalAdjustVolume';
 import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
 import { useFocusEffect } from '@react-navigation/core';
+import RNFS from 'react-native-fs';
 Sound.setCategory('Playback');
 const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
@@ -24,13 +24,18 @@ const ComposerScreen = ({ route }: any) => {
         // fetch();
     });
     const addSoundToMixer = (itemSound: any) => {
+        const soundPath = RNFS.DocumentDirectoryPath + '/' + itemSound.file_name + '.mp3';
         if (itemSound.is_selected) {
-            dispatch(removeSound(itemSound.file_name));
+            if (itemSound.type === 'music') {
+                dispatch(removeMusic());
+            } else {
+                setIsShowAdjustVolume(false);
+                dispatch(removeSound(itemSound.file_name));
+            }
         } else {
-            console.log(itemSound.audio_path);
-            const sound = new Sound(itemSound.audio_path, '', (error: any) => {
+            const sound = new Sound(soundPath, '', (error: any) => {
                 if (error) {
-                    console.log(error);
+                    // console.log(error);
                     return;
                 }
                 if (!isPlaying) {
@@ -80,17 +85,17 @@ const ComposerScreen = ({ route }: any) => {
                                 Music
                             </Text>
                         </View>
-                        <Button
+                        {/* <Button
                             title="Upgrade"
                             icon={<Icon name="lock-open-outline" type="ionicon" size={14} color="white" />}
                             buttonStyle={styles.buttonUpgrade}
                             titleStyle={styles.titleButtonUpgrade}
-                        />
+                        /> */}
                     </View>
                     {activeIndex === 0 ? (
                         <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
                     ) : (
-                        <ListMusics addSoundToMixer={addSoundToMixer} />
+                        <ListMusics addSoundToMixer={addSoundToMixer} music={music} />
                     )}
 
                     {(sounds.length > 0 || music) && <CurrentMixFloat />}

@@ -19,7 +19,7 @@ const SoundScreen = ({ route }: any) => {
     const dispatch = useDispatch();
     const { image_url } = route.params;
     const { isPlaying, sounds } = useSelector((state: any) => state.player);
-    const { playPlayer, pausePlayer} = usePlayer();
+    const { playPlayer } = usePlayer();
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
     const refLottieVew = useRef<LottieView>();
     useEffect(() => {
