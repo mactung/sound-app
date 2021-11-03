@@ -9,11 +9,11 @@ import ModalSetTime from 'components/ModalSetTime';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSounds, addSound } from 'store/player';
 const { width } = Dimensions.get('screen');
-var Sound = require('react-native-sound');
+import Sound from 'react-native-sound';
 import usePlayer from 'hooks/usePlayer';
 
 // Enable playback in silence mode
-Sound.setCategory('Playback');
+// Sound.setCategory('Ambient', true);
 
 const SoundScreen = ({ route }: any) => {
     const dispatch = useDispatch();

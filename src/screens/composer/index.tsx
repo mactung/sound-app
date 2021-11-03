@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Sound from 'react-native-sound';
@@ -12,19 +12,45 @@ import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
 import { useFocusEffect } from '@react-navigation/core';
 import RNFS from 'react-native-fs';
+import MusicControl, { Command } from 'react-native-music-control';
+import shuffle from 'lodash/shuffle';
+
 Sound.setCategory('Playback');
 const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
-    const { playPlayer } = usePlayer();
+    const { playPlayer, pausePlayer } = usePlayer();
     const { index } = route.params;
     const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(index ? index : 0);
     const [isShowAdjustVolume, setIsShowAdjustVolume] = useState<boolean>(false);
+
+    useEffect(() => {
+        MusicControl.enableBackgroundMode(true);
+        MusicControl.handleAudioInterruptions(true);
+        MusicControl.enableControl('play', true);
+        MusicControl.enableControl('pause', true);
+        MusicControl.enableControl('stop', false);
+        MusicControl.enableControl('nextTrack', false);
+        MusicControl.enableControl('previousTrack', false);
+    }, []);
+
+    useEffect(() => {
+        MusicControl.on(Command.pause, () => {
+            pausePlayer();
+        });
+        MusicControl.on(Command.play, () => {
+            playPlayer();
+        });
+    }, [pausePlayer, playPlayer]);
+
+    console.log('aaaa');
+
     useFocusEffect(() => {
         // fetch();
     });
     const addSoundToMixer = (itemSound: any) => {
-        const soundPath = RNFS.DocumentDirectoryPath + '/' + itemSound.file_name + '.mp3';
+        const soundPath = './' + itemSound.file_name + '.mp3';
+
         if (itemSound.is_selected) {
             if (itemSound.type === 'music') {
                 dispatch(removeMusic());
@@ -33,36 +59,56 @@ const ComposerScreen = ({ route }: any) => {
                 dispatch(removeSound(itemSound.file_name));
             }
         } else {
-            const sound = new Sound(soundPath, '', (error: any) => {
-                if (error) {
-                    // console.log(error);
-                    return;
-                }
-                if (!isPlaying) {
-                    playPlayer();
-                } else {
-                    sound.play();
-                }
-                sound.setVolume(0.8);
-                sound.setNumberOfLoops(-1);
-                if (itemSound.type === 'sound') {
-                    dispatch(
-                        addSound({
-                            ...itemSound,
-                            sound,
-                        }),
-                    );
-                    setIsShowAdjustVolume(true);
-                } else {
-                    dispatch(
-                        addMusic({
-                            ...itemSound,
-                            sound,
-                        }),
-                    );
-                }
-                dispatch(play());
-            });
+            console.log('aaaaaaaaa');
+            const sound = new Sound(
+                itemSound?.file_name === 'forest'
+                    ? require('./forest.mp3')
+                    : itemSound?.file_name === 'birds'
+                    ? require('./birds.mp3')
+                    : itemSound?.file_name === 'ocean'
+                    ? require('./ocean.mp3')
+                    : require('./winds.mp3'),
+                // 'https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/pew2.aac',
+
+                (error: any) => {
+                    if (error) {
+                        console.log('error', error);
+                        return;
+                    }
+                    if (!isPlaying) {
+                        playPlayer();
+                    } else {
+                        sound.play(success => {
+                            if (success) {
+                                console.log('successfully finished playing');
+                            } else {
+                                console.log('playback failed due to audio decoding errors');
+                            }
+                        });
+                    }
+
+                    sound.setCurrentTime(0);
+                    sound.setVolume(0.8);
+                    sound.setNumberOfLoops(-1);
+                    if (itemSound.type === 'sound') {
+                        dispatch(
+                            addSound({
+                                ...itemSound,
+                                sound,
+                            }),
+                        );
+                        setIsShowAdjustVolume(true);
+                    } else {
+                        dispatch(
+                            addMusic({
+                                ...itemSound,
+                                sound,
+                            }),
+                        );
+                    }
+                    dispatch(play());
+                },
+            );
         }
     };
     const changeType = (index: number) => {

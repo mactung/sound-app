@@ -19,12 +19,12 @@ const usePlayer = () => {
     const playPlayer = () => {
         if (sounds.length > 0) {
             sounds.forEach(item => {
-                item.sound.play();
+                item.sound.play(() => {});
             });
         }
         dispatch(play());
         if (music) {
-            music.sound.play();
+            music.sound.play(() => {});
         }
     };
 
