@@ -4,9 +4,9 @@ import SoundSchema from './schemas/Sound';
 import CategorySchema from './schemas/Category';
 
 const realm = new Realm({
-    path: 'soundApp.realm',
+    path: 'relaxSoundApp.realm',
     schema: [SoundSchema, MixSchema, CategorySchema],
-    schemaVersion: 4,
+    schemaVersion: 2,
 });
 
 export default realm;

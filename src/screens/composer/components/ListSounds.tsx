@@ -42,7 +42,7 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
                 setCurrentCategoryId={setCurrentCategoryId}
             />
             <ScrollView horizontal={true}>
-                <FlatList data={dataSounds} renderItem={renderItem} numColumns={6} />
+                <FlatList data={dataSounds} renderItem={renderItem} numColumns={3} />
             </ScrollView>
         </>
     );

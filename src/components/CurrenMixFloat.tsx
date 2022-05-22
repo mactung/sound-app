@@ -19,7 +19,7 @@ const CurrentMixFloat = () => {
                         ? sounds[0].name
                         : sounds.length === 2
                         ? sounds[0].name + ' & ' + sounds[1].name
-                        : sounds.length > 0 && sounds.length + ' items'}
+                        : sounds.length > 0 && sounds.length + ' sounds'}
                     {music && [sounds.length > 0 ? ' & ' : ''] + music.name}
                 </Text>
                 <Text style={styles.textName}>Current Mix</Text>

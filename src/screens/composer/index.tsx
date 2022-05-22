@@ -7,31 +7,29 @@ import { Colors } from 'styles/global.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMusic, addSound, play, removeMusic, removeSound } from 'store/player';
 import usePlayer from 'hooks/usePlayer';
-import ModalAdjustVolume from 'components/ModalAdjustVolume';
 import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
-import { useFocusEffect } from '@react-navigation/core';
-import RNFS from 'react-native-fs';
 import MusicControl, { Command } from 'react-native-music-control';
-import shuffle from 'lodash/shuffle';
+import { Icon } from 'react-native-elements';
+import SettingModal from 'components/SettingModal';
 
-Sound.setCategory('Playback');
+// Sound.setCategory('Playback');
 const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
     const { playPlayer, pausePlayer } = usePlayer();
     const { index } = route.params;
-    const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
+    const { sounds, music, isPlaying } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(index ? index : 0);
-    const [isShowAdjustVolume, setIsShowAdjustVolume] = useState<boolean>(false);
+    const [isShowModalSetting, setIsShowModalSetting] = useState<boolean>(false);
 
     useEffect(() => {
-        MusicControl.enableBackgroundMode(true);
-        MusicControl.handleAudioInterruptions(true);
-        MusicControl.enableControl('play', true);
-        MusicControl.enableControl('pause', true);
-        MusicControl.enableControl('stop', false);
-        MusicControl.enableControl('nextTrack', false);
-        MusicControl.enableControl('previousTrack', false);
+        // MusicControl.enableBackgroundMode(true);
+        // MusicControl.handleAudioInterruptions(true);
+        // MusicControl.enableControl('play', true);
+        // MusicControl.enableControl('pause', true);
+        // MusicControl.enableControl('stop', false);
+        // MusicControl.enableControl('nextTrack', false);
+        // MusicControl.enableControl('previousTrack', false);
     }, []);
 
     useEffect(() => {
@@ -43,72 +41,48 @@ const ComposerScreen = ({ route }: any) => {
         });
     }, [pausePlayer, playPlayer]);
 
-    console.log('aaaa');
-
-    useFocusEffect(() => {
-        // fetch();
-    });
     const addSoundToMixer = (itemSound: any) => {
-        const soundPath = './' + itemSound.file_name + '.mp3';
-
         if (itemSound.is_selected) {
             if (itemSound.type === 'music') {
                 dispatch(removeMusic());
             } else {
-                setIsShowAdjustVolume(false);
                 dispatch(removeSound(itemSound.file_name));
             }
         } else {
-            console.log('aaaaaaaaa');
-            const sound = new Sound(
-                itemSound?.file_name === 'forest'
-                    ? require('./forest.mp3')
-                    : itemSound?.file_name === 'birds'
-                    ? require('./birds.mp3')
-                    : itemSound?.file_name === 'ocean'
-                    ? require('./ocean.mp3')
-                    : require('./winds.mp3'),
-                // 'https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/pew2.aac',
-
-                (error: any) => {
-                    if (error) {
-                        console.log('error', error);
-                        return;
-                    }
-                    if (!isPlaying) {
-                        playPlayer();
+            const sound = new Sound(itemSound.file_name, Sound.MAIN_BUNDLE, (error: any) => {
+                if (error) {
+                    console.log('error', error);
+                    return;
+                }
+                sound.play((success: any) => {
+                    if (success) {
+                        console.log('successfully finished playing');
                     } else {
-                        sound.play(success => {
-                            if (success) {
-                                console.log('successfully finished playing');
-                            } else {
-                                console.log('playback failed due to audio decoding errors');
-                            }
-                        });
+                        console.log('playback failed due to audio decoding errors');
                     }
-
-                    sound.setCurrentTime(0);
-                    sound.setVolume(0.8);
-                    sound.setNumberOfLoops(-1);
-                    if (itemSound.type === 'sound') {
-                        dispatch(
-                            addSound({
-                                ...itemSound,
-                                sound,
-                            }),
-                        );
-                        setIsShowAdjustVolume(true);
-                    } else {
-                        dispatch(
-                            addMusic({
-                                ...itemSound,
-                                sound,
-                            }),
-                        );
-                    }
+                });
+                sound.setCurrentTime(0);
+                sound.setVolume(0.8);
+                sound.setNumberOfLoops(-1);
+                if (itemSound.type === 'sound') {
+                    dispatch(
+                        addSound({
+                            ...itemSound,
+                            sound,
+                        }),
+                    );
+                } else {
+                    dispatch(
+                        addMusic({
+                            ...itemSound,
+                            sound,
+                        }),
+                    );
+                }
+                if (!isPlaying) {
                     dispatch(play());
-                },
-            );
+                }
+            });
         }
     };
     const changeType = (index: number) => {
@@ -131,6 +105,12 @@ const ComposerScreen = ({ route }: any) => {
                                 Music
                             </Text>
                         </View>
+                        <Icon
+                            name="settings"
+                            color="#fff"
+                            iconStyle={styles.iconSetting}
+                            onPress={() => setIsShowModalSetting(true)}
+                        />
                         {/* <Button
                             title="Upgrade"
                             icon={<Icon name="lock-open-outline" type="ionicon" size={14} color="white" />}
@@ -145,11 +125,9 @@ const ComposerScreen = ({ route }: any) => {
                     )}
 
                     {(sounds.length > 0 || music) && <CurrentMixFloat />}
-                    {isShowAdjustVolume && (
-                        <ModalAdjustVolume sounds={sounds} setIsShowAdjustVolume={setIsShowAdjustVolume} />
-                    )}
                 </SafeAreaView>
             </ImageBackground>
+            <SettingModal isModalVisible={isShowModalSetting} setIsModalVisible={setIsShowModalSetting} />
         </View>
     );
 };
@@ -192,5 +170,8 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
     columnStyles: {},
+    iconSetting: {
+        marginRight: 10,
+    },
 });
 export default ComposerScreen;

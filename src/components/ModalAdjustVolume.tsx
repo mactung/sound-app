@@ -5,7 +5,7 @@ import { Colors } from 'styles/global.style';
 const { width } = Dimensions.get('screen');
 const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
     const [volume, setVolume] = useState<number>(
-        sounds[sounds.length - 1] ? sounds[sounds.length - 1].sound.getVolume() * 100 : 0,
+        sounds[sounds.length - 1] ? sounds[sounds.length - 1].sound.getVolume() * 100 : 100,
     );
     let myTimeout: any;
 
@@ -27,7 +27,9 @@ const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.soundName}>{sounds[sounds.length - 1].name}</Text>
+            <Text style={styles.soundName} numberOfLines={1}>
+                {sounds[sounds.length - 1].name}
+            </Text>
             <Slider
                 style={styles.slider}
                 value={volume}
@@ -43,7 +45,7 @@ const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
                             name="radio-button-on"
                             type="ionicon"
                             size={21}
-                            containerStyle={{ bottom: 0, left: 0 }}
+                            containerStyle={{ bottom: 2, left: 0 }}
                             color="#fff"
                         />
                     ),
@@ -55,13 +57,13 @@ const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
 };
 const styles = StyleSheet.create({
     container: {
-        width: width / 1.3,
+        width: width / 1.1,
         paddingHorizontal: 20,
         paddingVertical: 5,
         borderRadius: 10,
         position: 'absolute',
         top: 110,
-        left: (width - width / 1.3) / 2,
+        left: (width - width / 1.1) / 2,
         backgroundColor: Colors.opacity_background,
         flexDirection: 'row',
         alignItems: 'center',
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
     },
     soundName: {
         color: Colors.white,
+        width: '18%',
     },
     slider: {
         width: '80%',

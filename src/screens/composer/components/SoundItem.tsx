@@ -12,7 +12,9 @@ const SoundItem: FC<Iprops> = ({ onPress, item }) => {
     return (
         <Pressable style={[styles.container, item.is_selected && styles.activeItem]} onPress={() => onPress(item)}>
             <SoundIcon width={35} height={35} />
-            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.title} numberOfLines={2}>
+                {item.name}
+            </Text>
         </Pressable>
     );
 };
@@ -22,10 +24,11 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
         backgroundColor: 'rgba(64, 50, 50, 0.3)',
-        marginBottom: 80,
+        marginBottom: 40,
         marginLeft: 40,
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 5,
     },
     activeItem: {
         backgroundColor: Colors.orange,

@@ -8,7 +8,7 @@ interface State {
 
 const initialState: State = {
     sounds: [],
-    isPlaying: true,
+    isPlaying: false,
     music: null,
 };
 

@@ -1,42 +1,25 @@
 [
     {
         "_id": 1, 
-        "name": "Soft Piano",
+        "name": "Relaxing",
         "type": "music",
-        "description": "Feel your stress melt away tho the sound of these comforting piano melodies",
+        "description": "",
         "sounds": [
-            {"_id": 100, "file_name": "morning", "name": "Morning", "type": "music"},
-            {"_id": 101,"file_name": "dreams", "name": "Dreams", "type": "music"}
+            {"_id": 1,"file_name": "mindfulness_relaxation_amp_meditation_music_22174.mp3", "name": "Mindfulness", "type": "music"},
+            {"_id": 2,"file_name": "morning_light_ambient_acoustic_guitar_background_music_for_videos_5712.mp3", "name": "Morning Light", "type": "music"},
+            {"_id": 3,"file_name": "nature_99499.mp3", "name": "Nature", "type": "music"}
         ] 
     },
     {
-        "_id": 3, 
+        "_id": 2, 
         "name": "Nature",
         "sounds": [
-            {"_id": 5,"file_name": "forest", "name": "Forest"},
-            {"_id": 6,"file_name": "ocean", "name": "Ocean"},
-            {"_id": 7,"file_name": "winds", "name": "Winds"},
-            {"_id": 20,"file_name": "birds", "name": "Birds"},
-            {"_id": 21,"file_name": "fire", "name": "Fire"},
-            {"_id": 22,"file_name": "grass", "name": "Grass"},
-            {"_id": 23,"file_name": "soft_wind", "name": "Soft Wind"}
-        ]
-    },
-    {
-        "_id": 4, 
-        "name": "Animal",
-        "sounds": [
-            {"_id": 9,"file_name": "frogs", "name": "Frogs"},
-            {"_id": 10,"file_name": "cat_purring", "name": "Cat Purring"},
-            {"_id": 11,"file_name": "peppers", "name": "Peppers"},
-            {"_id": 12,"file_name": "chirp", "name": "Chirp"},
-            {"_id": 13,"file_name": "whale", "name": "Whale"},
-            {"_id": 14,"file_name": "seagulls", "name": "Seagulls"},
-            {"_id": 15,"file_name": "owls", "name": "Owls"},
-            {"_id": 16,"file_name": "wolf", "name": "Wolf"},
-            {"_id": 17,"file_name": "loon", "name": "Loon"},
-            {"_id": 18,"file_name": "cicadas", "name": "Cicadas"},
-            {"_id": 19,"file_name": "cuckoo_bird", "name": "Cuckoo Bird"}
+            {"_id": 5,"file_name": "forest.wav", "name": "Forest"},
+            {"_id": 6,"file_name": "ocean_waves.wav", "name": "Ocean Wave"},
+            {"_id": 20,"file_name": "birds.wav", "name": "Birds"},
+            {"_id": 21,"file_name": "fire.wav", "name": "Fire"},
+            {"_id": 24,"file_name": "light_rain.wav", "name": "Rain"},
+            {"_id": 26,"file_name": "vehicle_wheels_trolley_small.wav", "name": "Vehicle Wheel Trolley"}
         ]
     }
 ]

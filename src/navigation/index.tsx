@@ -19,11 +19,11 @@ function Navigation() {
     return (
         <NavigationContainer ref={ref}>
             <Stack.Navigator initialRouteName="ComposerScreen">
-                {/* <Stack.Screen
+                <Stack.Screen
                     name="BottomTabs"
                     component={BottomTabs}
                     options={{ headerShown: false, gestureEnabled: false }}
-                /> */}
+                />
                 <Stack.Screen
                     name="SoundScreen"
                     component={SoundScreen}

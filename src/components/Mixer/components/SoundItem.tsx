@@ -35,7 +35,9 @@ const SoundItem: FC<Iprops> = ({ item, removeSound }) => {
             </View>
 
             <View style={styles.content}>
-                <Text style={styles.nameText}>{item.name}</Text>
+                <Text style={styles.nameText} numberOfLines={1}>
+                    {item.name}
+                </Text>
                 <Slider
                     value={volume}
                     maximumValue={100}
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     thumbProps: {
-        bottom: 0,
+        bottom: 1,
         left: 0,
     },
 });

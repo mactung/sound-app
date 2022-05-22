@@ -1,6 +1,0 @@
-[
-    {"_id": 1, "type": "forest", "name": "Forest"},
-    {"_id": 2, "type": "ocean", "name": "Ocean"},
-    {"_id": 3, "type": "winds", "name": "Wind"},
-    {"_id": 4, "type": "birds", "name": "Birds"}
-]
