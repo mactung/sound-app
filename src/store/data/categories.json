@@ -7,19 +7,29 @@
         "sounds": [
             {"_id": 1,"file_name": "mindfulness_relaxation_amp_meditation_music_22174.mp3", "name": "Mindfulness", "type": "music"},
             {"_id": 2,"file_name": "morning_light_ambient_acoustic_guitar_background_music_for_videos_5712.mp3", "name": "Morning Light", "type": "music"},
-            {"_id": 3,"file_name": "nature_99499.mp3", "name": "Nature", "type": "music"}
+            {"_id": 3,"file_name": "nature_99499.mp3", "name": "Nature", "type": "music"},
+            {"_id": 4,"file_name": "spring_flowers.mp3", "name": "Spring Flowers", "type": "music"},
+            {"_id": 31,"file_name": "calm_and_peaceful.mp3", "name": "Calm and Peaceful", "type": "music"},
+            {"_id": 32,"file_name": "autumn_scene.mp3", "name": "Autumn Scene", "type": "music"},
+            {"_id": 33,"file_name": "sunset_landscape.mp3", "name": "Sunset Landscape", "type": "music"}
         ] 
     },
     {
         "_id": 2, 
         "name": "Nature",
         "sounds": [
-            {"_id": 5,"file_name": "forest.wav", "name": "Forest"},
-            {"_id": 6,"file_name": "ocean_waves.wav", "name": "Ocean Wave"},
-            {"_id": 20,"file_name": "birds.wav", "name": "Birds"},
-            {"_id": 21,"file_name": "fire.wav", "name": "Fire"},
-            {"_id": 24,"file_name": "light_rain.wav", "name": "Rain"},
-            {"_id": 26,"file_name": "vehicle_wheels_trolley_small.wav", "name": "Vehicle Wheel Trolley"}
+            {"_id": 5,"file_name": "forest.mp3", "name": "Forest"},
+            {"_id": 6,"file_name": "ocean_waves.mp3", "name": "Ocean Waves"},
+            {"_id": 20,"file_name": "birds.mp3", "name": "Birds"},
+            {"_id": 21,"file_name": "fire.mp3", "name": "Fire"},
+            {"_id": 22,"file_name": "chicks.mp3", "name": "Chicks"},
+            {"_id": 23,"file_name": "steps_on_dry_grass.mp3", "name": "Step On Grass"},
+            {"_id": 24,"file_name": "light_rain.mp3", "name": "Rain"},
+            {"_id": 26,"file_name": "cricket.mp3", "name": "Cricket"},
+            {"_id": 27,"file_name": "stream_water_c.mp3", "name": "Stream"},
+            {"_id": 30,"file_name": "mountain_river.mp3", "name": "River"},
+            {"_id": 28,"file_name": "frogs_forever.mp3", "name": "Frogs"},
+            {"_id": 29,"file_name": "vehicle_wheels_trolley_small.mp3", "name": "Vehicle Wheel Trolley"}
         ]
     }
 ]

@@ -19,7 +19,7 @@ const HeaderMixer: FC<Iprops> = ({ setIsModalVisible, sounds, music }) => {
                 onPress={() => setIsModalVisible(false)}
             />
             <View style={styles.centerView}>
-                <Text style={styles.titleText}>
+                <Text style={styles.titleText} numberOfLines={1}>
                     {sounds.length === 1
                         ? sounds[0].name
                         : sounds.length === 2
@@ -39,9 +39,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 10,
+        maxWidth: '100%',
     },
     centerView: {
         alignItems: 'center',
+        textAlign: 'center',
+        width: '80%',
     },
     titleText: {
         color: Colors.white,

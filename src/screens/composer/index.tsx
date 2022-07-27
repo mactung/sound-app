@@ -10,26 +10,19 @@ import usePlayer from 'hooks/usePlayer';
 import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
 import MusicControl, { Command } from 'react-native-music-control';
-import { Icon } from 'react-native-elements';
-import SettingModal from 'components/SettingModal';
+Sound.setCategory('Playback');
 
-// Sound.setCategory('Playback');
 const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
     const { playPlayer, pausePlayer } = usePlayer();
     const { index } = route.params;
     const { sounds, music, isPlaying } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(index ? index : 0);
-    const [isShowModalSetting, setIsShowModalSetting] = useState<boolean>(false);
 
     useEffect(() => {
-        // MusicControl.enableBackgroundMode(true);
-        // MusicControl.handleAudioInterruptions(true);
-        // MusicControl.enableControl('play', true);
-        // MusicControl.enableControl('pause', true);
-        // MusicControl.enableControl('stop', false);
-        // MusicControl.enableControl('nextTrack', false);
-        // MusicControl.enableControl('previousTrack', false);
+        MusicControl.enableBackgroundMode(true);
+        MusicControl.enableControl('play', true);
+        MusicControl.enableControl('pause', true);
     }, []);
 
     useEffect(() => {
@@ -62,7 +55,7 @@ const ComposerScreen = ({ route }: any) => {
                     }
                 });
                 sound.setCurrentTime(0);
-                sound.setVolume(0.8);
+                sound.setVolume(0.75);
                 sound.setNumberOfLoops(-1);
                 if (itemSound.type === 'sound') {
                     dispatch(
@@ -85,9 +78,37 @@ const ComposerScreen = ({ route }: any) => {
             });
         }
     };
+    useEffect(() => {
+        if (isPlaying) {
+            playPlayer();
+            MusicControl.setNowPlaying({
+                title:
+                    sounds.length === 1
+                        ? sounds[0].name
+                        : sounds.length === 2
+                        ? sounds[0].name + ' & ' + sounds[1].name
+                        : sounds.length > 0 &&
+                          sounds.length + ' sounds' + (music ? [sounds.length > 0 ? ' & ' : ''] + music.name : ''),
+                description: 'Relax sound, better for sleep', // Android Only
+                color: 0xffffff, // Android Only - Notification Color
+                colorized: true, // Android 8+ Only - Notification Color extracted from the artwork. Set to false to use the color property instead
+            });
+            MusicControl.updatePlayback({
+                state: MusicControl.STATE_PLAYING,
+            });
+        } else {
+            MusicControl.updatePlayback({
+                state: MusicControl.STATE_PAUSED,
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sounds, music, isPlaying]);
     const changeType = (index: number) => {
         setActiveIndex(index);
     };
+    useEffect(() => {
+        changeType(index);
+    }, [index]);
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground style={styles.image} source={require('assets/images/background_sound.png')}>
@@ -105,18 +126,6 @@ const ComposerScreen = ({ route }: any) => {
                                 Music
                             </Text>
                         </View>
-                        <Icon
-                            name="settings"
-                            color="#fff"
-                            iconStyle={styles.iconSetting}
-                            onPress={() => setIsShowModalSetting(true)}
-                        />
-                        {/* <Button
-                            title="Upgrade"
-                            icon={<Icon name="lock-open-outline" type="ionicon" size={14} color="white" />}
-                            buttonStyle={styles.buttonUpgrade}
-                            titleStyle={styles.titleButtonUpgrade}
-                        /> */}
                     </View>
                     {activeIndex === 0 ? (
                         <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
@@ -127,7 +136,6 @@ const ComposerScreen = ({ route }: any) => {
                     {(sounds.length > 0 || music) && <CurrentMixFloat />}
                 </SafeAreaView>
             </ImageBackground>
-            <SettingModal isModalVisible={isShowModalSetting} setIsModalVisible={setIsShowModalSetting} />
         </View>
     );
 };

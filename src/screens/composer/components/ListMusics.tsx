@@ -13,7 +13,12 @@ const ListMusics = ({ addSoundToMixer, music }: any) => {
     }, []);
     return (
         <View>
-            <FlatList data={dataMusics} renderItem={renderItem} />
+            <FlatList
+                data={dataMusics}
+                renderItem={renderItem}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+            />
         </View>
     );
 };

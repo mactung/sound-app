@@ -1,4 +1,3 @@
-import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { play, pause } from 'store/player';
 const usePlayer = () => {
@@ -7,16 +6,14 @@ const usePlayer = () => {
 
     const pausePlayer = () => {
         if (sounds.length > 0) {
-            sounds.forEach(item => {
+            sounds.forEach((item: any) => {
                 if (item.sound._playing) {
                     item.sound.pause();
                 }
             });
         }
-        if (music) {
-            if (music.sound._playing) {
-                music.sound.pause();
-            }
+        if (music && music.sound._playing) {
+            music.sound.pause();
         }
         dispatch(pause());
     };
@@ -35,8 +32,7 @@ const usePlayer = () => {
                 }
             });
         }
-        if (music) {
-            console.log('play Music');
+        if (music && !music.sound._playing) {
             music.sound.play((success: any) => {
                 if (success) {
                     console.log('successfully finished playing');

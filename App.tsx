@@ -7,12 +7,12 @@ import { setCustomSectionList } from 'utils/customs/setCustomSectionList';
 import { setCustomScrollView } from 'utils/customs/setCustomScrollView';
 import { Provider } from 'react-redux';
 import { store } from 'store';
-import useInitData from 'hooks/useInitData';
+import { initData } from 'services';
 import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import MusicControl from 'react-native-music-control';
 
 function App() {
-    useInitData();
     setCustomFlatList({
         keyExtractor: (item: any, index: number) => index.toString(),
         showsHorizontalScrollIndicator: false,
@@ -24,7 +24,9 @@ function App() {
     });
     setCustomScrollView({ showsHorizontalScrollIndicator: false });
     useEffect(() => {
-        SplashScreen.hide();
+        initData().then(() => {
+            SplashScreen.hide();
+        });
     }, []);
     return (
         <Provider store={store}>

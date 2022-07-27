@@ -14,7 +14,7 @@ const CurrentMixFloat = () => {
         <TouchableOpacity style={styles.container} onPress={() => setIsVisibleMixer(true)}>
             <Icon size={20} name="chevron-up" type="ionicon" color={Colors.white} />
             <View style={styles.centerView}>
-                <Text style={styles.text}>
+                <Text style={styles.text} numberOfLines={1}>
                     {sounds.length === 1
                         ? sounds[0].name
                         : sounds.length === 2
@@ -46,12 +46,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         width: '90%',
-        bottom: 50,
+        bottom: 20,
         marginHorizontal: 20,
         backgroundColor: Colors.opacity_background,
     },
     centerView: {
         alignItems: 'center',
+        width: '80%',
     },
     text: {
         color: Colors.white,

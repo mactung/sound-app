@@ -45,7 +45,7 @@ const ListSounds: FC<Iprops> = ({ sounds, setIsModalVisible }) => {
                 showsVerticalScrollIndicator={false}
             />
             {sounds.length === 0 && (
-                <Button title="Add sound" onPress={goToChooseSound} buttonStyle={styles.addSound} />
+                <Button title="Add sound" onPress={goToChooseSound} buttonStyle={styles.buttonView} />
             )}
         </View>
     );
@@ -69,13 +69,6 @@ const styles = StyleSheet.create({
     },
     textNumber: {
         color: Colors.gray,
-    },
-    addSound: {
-        borderRadius: 30,
-        backgroundColor: Colors.dark,
-        borderColor: Colors.light,
-        borderWidth: 1,
-        width: '100%',
     },
 });
 export default ListSounds;

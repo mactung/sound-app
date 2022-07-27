@@ -1,10 +1,10 @@
 import React, { useRef, useCallback } from 'react';
 import BottomTabs from './BottomTabs';
-import SoundScreen from 'screens/sound';
 import NavigationService from 'navigation/NavigationSerivce';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import ComposerScreen from 'screens/composer';
+import SettingsScreen from 'screens/settings';
 
 const Stack = createStackNavigator();
 
@@ -18,21 +18,11 @@ function Navigation() {
     }, []);
     return (
         <NavigationContainer ref={ref}>
-            <Stack.Navigator initialRouteName="ComposerScreen">
+            <Stack.Navigator initialRouteName="BottomTabs">
                 <Stack.Screen
                     name="BottomTabs"
                     component={BottomTabs}
                     options={{ headerShown: false, gestureEnabled: false }}
-                />
-                <Stack.Screen
-                    name="SoundScreen"
-                    component={SoundScreen}
-                    options={({ route }: any) => ({
-                        gestureEnabled: false,
-                        headerTransparent: true,
-                        headerBackTitleVisible: false,
-                        title: route.params.name,
-                    })}
                 />
                 <Stack.Screen
                     name="ComposerScreen"
@@ -45,6 +35,17 @@ function Navigation() {
                         headerShown: false,
                     })}
                     initialParams={{ index: 0 }}
+                />
+                <Stack.Screen
+                    name="SettingsScreen"
+                    component={SettingsScreen}
+                    options={({ route }: any) => ({
+                        gestureEnabled: false,
+                        headerTransparent: true,
+                        headerBackTitleVisible: false,
+                        title: route.params.name,
+                        headerShown: false,
+                    })}
                 />
             </Stack.Navigator>
         </NavigationContainer>

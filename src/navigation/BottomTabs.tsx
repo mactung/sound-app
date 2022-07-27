@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeScreen from '../screens/home';
-// import SettingsScreen from '../screens/settings';
+import SettingsScreen from '../screens/settings';
 import ComposerScreen from '../screens/composer';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Colors } from 'styles/global.style';
@@ -36,7 +36,7 @@ function BottomTabs() {
                 }}
                 initialParams={{ index: 0 }}
             />
-            {/* <Tab.Screen
+            <Tab.Screen
                 name="SettingsScreen"
                 component={SettingsScreen}
                 options={{
@@ -45,7 +45,7 @@ function BottomTabs() {
                         <Icon size={24} name="settings-outline" type="ionicon" color={color} />
                     ),
                 }}
-            /> */}
+            />
         </Tab.Navigator>
     );
 }

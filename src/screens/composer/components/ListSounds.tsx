@@ -1,9 +1,10 @@
 import services from 'models/services';
 import React, { useState, useEffect, useCallback } from 'react';
-import { FlatList, ScrollView } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { SoundType } from 'types/sound';
 import CategoryFilter from './CategoryFilter';
 import SoundItem from './SoundItem';
+
 interface Iprops {
     sounds: SoundType[];
     addSoundToMixer: () => void;
@@ -12,9 +13,12 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
     const [currentCategoryId, setCurrentCategoryId] = useState<number>(0);
     const [dataSounds, setDataSounds] = useState<any[]>([]);
     useEffect(() => {
-        const soundsService = services.soundService.getSoundsByCategoryId(currentCategoryId);
-        setData(soundsService);
-
+        if (dataSounds.length == 0) {
+            const soundsService = services.soundService.getSoundsByCategoryId(currentCategoryId);
+            setData(soundsService);
+        } else {
+            setData(dataSounds);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sounds]);
     const setData = (data: SoundType[]) => {
@@ -41,10 +45,16 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
                 currentCategoryId={currentCategoryId}
                 setCurrentCategoryId={setCurrentCategoryId}
             />
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} style={styles.scrollView}>
                 <FlatList data={dataSounds} renderItem={renderItem} numColumns={3} />
             </ScrollView>
+            <View style={styles.floatMixer} />
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    scrollView: {},
+    floatMixer: { height: 60 },
+});
 export default ListSounds;
