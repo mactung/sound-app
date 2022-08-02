@@ -13,7 +13,6 @@ export const downloadAudio = async (sound: any) => {
     })
         .promise.then((res: any) => {
             if (res.statusCode === 200) {
-                console.log(111);
                 return realm.write(() => {
                     sound.is_download = true;
                 });

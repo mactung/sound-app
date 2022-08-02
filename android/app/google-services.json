@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "118658381741",
+    "project_id": "soundgood-25f3c",
+    "storage_bucket": "soundgood-25f3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118658381741:android:c6fdfa97fa70d8f0941324",
+        "android_client_info": {
+          "package_name": "mac.relaxsound.bettersleep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118658381741-b4qvh94rjdof84m0hcvmtianv4sboi0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mac.relaxsound.bettersleep",
+            "certificate_hash": "639c54457f8da22a54b7b26c406ee8a0f36343a0"
+          }
+        },
+        {
+          "client_id": "118658381741-dosio5gr4g83d987mvs89jlqoid5ap9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdVJjkLMQh9BMlWcA7YXv_SFp3AeyTHos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118658381741-dosio5gr4g83d987mvs89jlqoid5ap9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

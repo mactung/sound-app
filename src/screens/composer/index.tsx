@@ -17,7 +17,7 @@ const ComposerScreen = ({ route }: any) => {
     const { playPlayer, pausePlayer } = usePlayer();
     const { index } = route.params;
     const { sounds, music, isPlaying } = useSelector((state: any) => state.player);
-    const [activeIndex, setActiveIndex] = useState<number>(index ? index : 0);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
     useEffect(() => {
         MusicControl.enableBackgroundMode(true);
@@ -35,6 +35,9 @@ const ComposerScreen = ({ route }: any) => {
     }, [pausePlayer, playPlayer]);
 
     const addSoundToMixer = (itemSound: any) => {
+        if (sounds.length >= 5) {
+            return;
+        }
         if (itemSound.is_selected) {
             if (itemSound.type === 'music') {
                 dispatch(removeMusic());
@@ -87,8 +90,9 @@ const ComposerScreen = ({ route }: any) => {
                         ? sounds[0].name
                         : sounds.length === 2
                         ? sounds[0].name + ' & ' + sounds[1].name
-                        : sounds.length > 0 &&
-                          sounds.length + ' sounds' + (music ? [sounds.length > 0 ? ' & ' : ''] + music.name : ''),
+                        : sounds.length > 0
+                        ? sounds.length + ' sounds' + (music ? [sounds.length > 0 ? ' & ' : ''] + music.name : '')
+                        : sounds.length === 0 && music && music.name,
                 description: 'Relax sound, better for sleep', // Android Only
                 color: 0xffffff, // Android Only - Notification Color
                 colorized: true, // Android 8+ Only - Notification Color extracted from the artwork. Set to false to use the color property instead

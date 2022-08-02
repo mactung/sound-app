@@ -85,7 +85,7 @@ npx jetifier && npx react-native bundle --platform android --dev false --entry-f
 
 <!-- npx jetifier && cd android/app && cp buildRelease.gradle build.gradle && cp google-services_prod.json google-services.json  && cd .. && ./gradlew clean && ./gradlew assembleRelease && cd .. -->
 
-npx jetifier && cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..
+npx jetifier && cd android && ./gradlew clean && ./gradlew bundleRelease && cd ..
 
 ### codepush
 
