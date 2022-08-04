@@ -85,14 +85,7 @@ const ComposerScreen = ({ route }: any) => {
         if (isPlaying) {
             playPlayer();
             MusicControl.setNowPlaying({
-                title:
-                    sounds.length === 1
-                        ? sounds[0].name
-                        : sounds.length === 2
-                        ? sounds[0].name + ' & ' + sounds[1].name
-                        : sounds.length > 0
-                        ? sounds.length + ' sounds' + (music ? [sounds.length > 0 ? ' & ' : ''] + music.name : '')
-                        : sounds.length === 0 && music && music.name,
+                title: 'Calm, Relax',
                 description: 'Relax sound, better for sleep', // Android Only
                 color: 0xffffff, // Android Only - Notification Color
                 colorized: true, // Android 8+ Only - Notification Color extracted from the artwork. Set to false to use the color property instead

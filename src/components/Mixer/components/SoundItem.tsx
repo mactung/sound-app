@@ -24,7 +24,7 @@ const SoundItem: FC<Iprops> = ({ item, removeSound }) => {
                 <Icon
                     type="ionicon"
                     name="close"
-                    size={18}
+                    size={20}
                     onPress={onRemoveSound}
                     color={Colors.white}
                     iconStyle={styles.icon}
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         backgroundColor: Colors.orange,
-        borderRadius: 50,
+        borderRadius: 20 / 2,
+        padding: 0,
     },
     nameText: {
         color: Colors.white,
