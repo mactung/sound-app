@@ -10,16 +10,31 @@ const createCategory = (category: any) => {
     }
 };
 
-const getAllCategoriesSound = () => {
+const getCategoryById = (id: number) => {
     try {
-        return realm.objects('Category').filtered('type = "sound"').toJSON();
+        const categories = realm.objects('Category').filtered(`_id = "${id}"`);
+        if (categories.length > 0) {
+            return categories[0].toJSON();
+        } else {
+            return null;
+        }
     } catch (error) {
-        console.log('getAllCategories', error);
+        console.log('getCategoryById', error);
+        return [];
+    }
+};
+
+const getAllCategoriesByType = (type = 'sound') => {
+    try {
+        return realm.objects('Category').filtered(`type = "${type}"`).toJSON();
+    } catch (error) {
+        console.log('getAllCategoriesByType', error);
         return [];
     }
 };
 
 export default {
     createCategory,
-    getAllCategoriesSound,
+    getCategoryById,
+    getAllCategoriesByType,
 };

@@ -1,19 +1,19 @@
 import services from 'models/services';
 import React, { useState, useEffect, useCallback } from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SoundType } from 'types/sound';
 import CategoryFilter from './CategoryFilter';
 import SoundItem from './SoundItem';
 
 interface Iprops {
     sounds: SoundType[];
-    addSoundToMixer: () => void;
+    addSoundToMixer: (value: SoundType) => void;
 }
-const ListSounds = ({ addSoundToMixer, sounds }: any) => {
+const ListSounds = ({ addSoundToMixer, sounds }: Iprops) => {
     const [currentCategoryId, setCurrentCategoryId] = useState<number>(0);
     const [dataSounds, setDataSounds] = useState<any[]>([]);
     useEffect(() => {
-        if (dataSounds.length == 0) {
+        if (dataSounds.length === 0) {
             const soundsService = services.soundService.getSoundsByCategoryId(currentCategoryId);
             setData(soundsService);
         } else {
@@ -34,7 +34,7 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
         );
     };
     const renderItem = useCallback(
-        ({ item, index }: any) => <SoundItem item={item} onPress={addSoundToMixer} index={index} />,
+        ({ item, index }) => <SoundItem item={item} onPress={() => addSoundToMixer(item)} index={index} />,
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
@@ -45,16 +45,26 @@ const ListSounds = ({ addSoundToMixer, sounds }: any) => {
                 currentCategoryId={currentCategoryId}
                 setCurrentCategoryId={setCurrentCategoryId}
             />
-            <ScrollView horizontal={true} style={styles.scrollView}>
-                <FlatList data={dataSounds} renderItem={renderItem} numColumns={3} />
-            </ScrollView>
+            <FlatList
+                style={styles.flatlist}
+                data={dataSounds}
+                renderItem={renderItem}
+                numColumns={3}
+                columnWrapperStyle={styles.row}
+            />
             <View style={styles.floatMixer} />
         </>
     );
 };
 
 const styles = StyleSheet.create({
-    scrollView: {},
+    flatlist: {
+        // alignItems: 'space-between',
+    },
+    row: {
+        flex: 1,
+        justifyContent: 'space-around',
+    },
     floatMixer: { height: 60 },
 });
 export default ListSounds;

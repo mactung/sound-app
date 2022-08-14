@@ -27,6 +27,16 @@ const copyrights = [
     Creative Commons CC BY 4.0
     https://creativecommons.org/licenses/by/4.0/
     `,
+    ` Somewhere in the Clouds by Keys of Moon | https://soundcloud.com/keysofmoon
+    Music promoted by https://www.chosic.com/free-music/all/
+    Creative Commons CC BY 4.0
+    https://creativecommons.org/licenses/by/4.0/
+    `,
+    `Glimpse of Eternity by Meydän | https://linktr.ee/meydan
+    Music promoted by https://www.chosic.com/free-music/all/
+    Creative Commons CC BY 4.0
+    https://creativecommons.org/licenses/by/4.0/
+    `,
 ];
 const Description: FC<IProps> = ({ isModalVisible, setIsModalVisible }) => {
     return (

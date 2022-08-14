@@ -2,15 +2,16 @@ import React, { FC } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { Colors } from 'styles/global.style';
 import { SoundIcon } from 'assets/svg';
+import { SoundType } from 'types/sound';
 interface Iprops {
-    onPress: (value: string) => void;
-    item: any;
+    onPress: () => void;
+    item: SoundType;
     index: number;
 }
 
 const SoundItem: FC<Iprops> = ({ onPress, item }) => {
     return (
-        <Pressable style={[styles.container, item.is_selected && styles.activeItem]} onPress={() => onPress(item)}>
+        <Pressable style={[styles.container, item.is_selected && styles.activeItem]} onPress={onPress}>
             <SoundIcon width={35} height={35} />
             <Text style={styles.title} numberOfLines={2}>
                 {item.name}
@@ -20,15 +21,15 @@ const SoundItem: FC<Iprops> = ({ onPress, item }) => {
 };
 const styles = StyleSheet.create({
     container: {
-        width: 100,
+        width: 80,
         height: 100,
         borderRadius: 20,
         backgroundColor: 'rgba(64, 50, 50, 0.3)',
-        marginBottom: 40,
-        marginHorizontal: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 5,
+        margin: 8,
+        padding: 3,
+        flex: 1 / 3,
     },
     activeItem: {
         backgroundColor: Colors.orange,

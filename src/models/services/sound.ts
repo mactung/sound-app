@@ -50,10 +50,25 @@ const getAllMusicDidntDownload = () => {
     }
 };
 
+const getSoundById = (id: number) => {
+    try {
+        const sounds = realm.objects('Sound').filtered(`_id = ${id}`);
+        if (sounds.length > 0) {
+            return sounds[0].toJSON();
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.log('getSoundById', error);
+        return [];
+    }
+};
+
 export default {
     createSound,
     getAllSounds,
     getSoundsByCategoryId,
     getAllMusics,
     getAllMusicDidntDownload,
+    getSoundById,
 };

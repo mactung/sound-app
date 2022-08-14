@@ -8,7 +8,7 @@ const ListMusics = ({ addSoundToMixer, music }: any) => {
         <CategoryMusicItem itemCategory={item} addSoundToMixer={addSoundToMixer} music={music} />
     );
     useEffect(() => {
-        const dataMusicService = services.soundService.getAllMusics();
+        const dataMusicService = services.categoryService.getAllCategoriesByType('music');
         setDataMusics(dataMusicService);
     }, []);
     return (

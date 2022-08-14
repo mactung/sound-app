@@ -35,9 +35,6 @@ const ComposerScreen = ({ route }: any) => {
     }, [pausePlayer, playPlayer]);
 
     const addSoundToMixer = (itemSound: any) => {
-        if (sounds.length >= 5) {
-            return;
-        }
         if (itemSound.is_selected) {
             if (itemSound.type === 'music') {
                 dispatch(removeMusic());
@@ -82,6 +79,7 @@ const ComposerScreen = ({ route }: any) => {
         }
     };
     useEffect(() => {
+        console.log(isPlaying);
         if (isPlaying) {
             playPlayer();
             MusicControl.setNowPlaying({
@@ -100,6 +98,7 @@ const ComposerScreen = ({ route }: any) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sounds, music, isPlaying]);
+
     const changeType = (index: number) => {
         setActiveIndex(index);
     };

@@ -20,7 +20,8 @@ const soundSlice = createSlice({
             state.sounds = action.payload;
         },
         addSound: (state, action: PayloadAction<any>) => {
-            state.sounds = [...state.sounds, action.payload];
+            const sounds = [...state.sounds, action.payload];
+            state.sounds = sounds;
         },
         clearSounds: state => {
             state.sounds.forEach(item => item.sound.stop());

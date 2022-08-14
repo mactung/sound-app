@@ -11,7 +11,10 @@
             {"_id": 4,"file_name": "spring_flowers.mp3", "name": "Spring Flowers", "type": "music"},
             {"_id": 31,"file_name": "calm_and_peaceful.mp3", "name": "Calm and Peaceful", "type": "music"},
             {"_id": 32,"file_name": "autumn_scene.mp3", "name": "Autumn Scene", "type": "music"},
-            {"_id": 33,"file_name": "sunset_landscape.mp3", "name": "Sunset Landscape", "type": "music"}
+            {"_id": 33,"file_name": "sunset_landscape.mp3", "name": "Sunset Landscape", "type": "music"},
+            {"_id": 35,"file_name": "somewhere_in_the_clouds_ambient_relaxing_music.mp3", "name": "Somewhere in the Clouds", "type": "music"},
+            {"_id": 35,"file_name": "meydan_glimpse_of_eternity.mp3", "name": "Glimpse of Eternity", "type": "music"}
+
         ] 
     },
     {
@@ -29,7 +32,8 @@
             {"_id": 27,"file_name": "stream_water_c.mp3", "name": "Stream"},
             {"_id": 30,"file_name": "mountain_river.mp3", "name": "River"},
             {"_id": 28,"file_name": "frogs_forever.mp3", "name": "Frogs"},
-            {"_id": 29,"file_name": "vehicle_wheels_trolley_small.mp3", "name": "Vehicle Wheel Trolley"}
+            {"_id": 29,"file_name": "vehicle_wheels_trolley_small.mp3", "name": "Vehicle Wheel Trolley"},
+            {"_id": 34,"file_name": "thunder_clap_01.mp3", "name": "Thunder"}
         ]
     }
 ]

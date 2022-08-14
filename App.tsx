@@ -10,7 +10,6 @@ import { store } from 'store';
 import { initData } from 'services';
 import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import MusicControl from 'react-native-music-control';
 
 function App() {
     setCustomFlatList({

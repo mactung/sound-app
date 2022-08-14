@@ -10,7 +10,7 @@ const CategoryFilter = ({ setData, setCurrentCategoryId, currentCategoryId }: an
         setCurrentCategoryId(categoryId);
     };
     useEffect(() => {
-        const categoriesService = services.categoryService.getAllCategoriesSound();
+        const categoriesService = services.categoryService.getAllCategoriesByType();
         setCategoriesData(categoriesService);
     }, []);
     const renderItemCategoryFilter = ({ item }: any) => (
