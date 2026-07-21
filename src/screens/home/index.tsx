@@ -2,8 +2,8 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet } from 'react-native';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import AppBackground from 'components/AppBackground';
-// import PlayList from './components/PlayList';
 import CreateYourMix from './components/CreateYourMix';
+import MyMixList from './components/MyMixList';
 import { useSelector } from 'react-redux';
 
 const HomeScreen = () => {
@@ -12,9 +12,8 @@ const HomeScreen = () => {
         <AppBackground>
             <ScrollView style={styles.container} bounces={false}>
                 <Image style={styles.imageHeader} source={require('assets/images/header.jpg')} />
-                {/* <PlayList title="Recently Play" /> */}
                 <CreateYourMix />
-                {/* <PlayList title="My Mix" /> */}
+                <MyMixList />
             </ScrollView>
             {(sounds.length > 0 || music) && <CurrentMixFloat />}
         </AppBackground>

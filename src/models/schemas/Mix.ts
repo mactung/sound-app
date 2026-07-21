@@ -3,14 +3,10 @@ const MixSchema: ObjectSchema = {
     name: 'Mix',
     properties: {
         _id: { type: 'int', indexed: true },
-        name: { type: 'string', default: 'Unsaved Mix' },
-        status: 'string?',
-        time: 'int?',
-        sounds: { type: 'Sound[]', default: [] },
-        music: { type: 'Sound', default: {} },
-        type: 'string',
+        name: { type: 'string', default: 'My Mix' },
+        // JSON payload: { sounds: [{_id,name,file_name,type,volume}], music: {...}|null }
+        data: { type: 'string', default: '{}' },
         created_at: { type: 'date', default: new Date() },
-        updated_at: { type: 'date', default: new Date() },
     },
     primaryKey: '_id',
 };

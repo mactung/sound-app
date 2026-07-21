@@ -6,7 +6,8 @@ import CategorySchema from './schemas/Category';
 const realm = new Realm({
     path: 'relaxSoundApp.realm',
     schema: [SoundSchema, MixSchema, CategorySchema],
-    schemaVersion: 2,
+    // v3: Mix redesigned to store its payload as a JSON string (data).
+    schemaVersion: 3,
 });
 
 export default realm;

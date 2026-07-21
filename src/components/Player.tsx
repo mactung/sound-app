@@ -1,17 +1,35 @@
 import usePlayer from 'hooks/usePlayer';
+import useMixLibrary from 'hooks/useMixLibrary';
 import React, { FC, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useSelector } from 'react-redux';
 import { Colors, Radius } from 'styles/global.style';
+import ModalSaveMix from './ModalSaveMix';
 interface Iprops {
     isPlaying: boolean;
 }
 const Player: FC<Iprops> = ({ isPlaying }) => {
     const { pausePlayer, playPlayer } = usePlayer();
+    const { saveMix } = useMixLibrary();
+    const { sounds, music } = useSelector((state: any) => state.player);
     const [isSave, setIsSave] = useState<boolean>(false);
-    const saveMix = () => {
-        setIsSave(!isSave);
+    const [showSaveModal, setShowSaveModal] = useState<boolean>(false);
+
+    const canSave = sounds.length > 0 || !!music;
+
+    const onHeart = () => {
+        if (!canSave) {
+            return;
+        }
+        setShowSaveModal(true);
     };
+    const onSave = (name: string) => {
+        saveMix(name, sounds, music);
+        setShowSaveModal(false);
+        setIsSave(true);
+    };
+
     return (
         <View style={styles.container}>
             <Icon size={28} name="timer-outline" type="ionicon" color={Colors.textMuted} />
@@ -29,8 +47,14 @@ const Player: FC<Iprops> = ({ isPlaying }) => {
                 size={28}
                 name={isSave ? 'heart' : 'heart-outline'}
                 type="ionicon"
-                color={isSave ? Colors.accent : Colors.textMuted}
-                onPress={saveMix}
+                color={isSave ? Colors.accent : canSave ? Colors.textMuted : 'rgba(154,166,212,0.4)'}
+                onPress={onHeart}
+            />
+
+            <ModalSaveMix
+                isVisible={showSaveModal}
+                onClose={() => setShowSaveModal(false)}
+                onSave={onSave}
             />
         </View>
     );
