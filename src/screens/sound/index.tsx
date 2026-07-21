@@ -3,11 +3,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View, Dimensions, Pressable } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
+import { Icon } from 'react-native-elements';
 import AppBackground from 'components/AppBackground';
+import NavigationService from 'navigation/NavigationSerivce';
 import ListSounds from './components/ListSounds';
 import ModalSetTime from 'components/ModalSetTime';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSounds, addSound } from 'store/player';
+import { Colors } from 'styles/global.style';
 const { width } = Dimensions.get('screen');
 import Sound from 'react-native-sound';
 import usePlayer from 'hooks/usePlayer';
@@ -69,6 +72,9 @@ const SoundScreen = () => {
     return (
         <AppBackground>
             <SafeAreaView style={styles.container}>
+                <TouchableOpacity style={styles.backButton} onPress={() => NavigationService.goBack()} hitSlop={10}>
+                    <Icon name="chevron-back" type="ionicon" size={26} color={Colors.white} />
+                </TouchableOpacity>
                 <View>
                     <View>
                         <LottieView
@@ -95,6 +101,12 @@ const SoundScreen = () => {
 };
 const styles = StyleSheet.create({
     container: { flex: 1, alignItems: 'center' },
+    backButton: {
+        alignSelf: 'flex-start',
+        marginLeft: 12,
+        marginTop: 8,
+        marginBottom: 4,
+    },
     buttonPlay: {
         borderRadius: 40,
         borderWidth: 1,

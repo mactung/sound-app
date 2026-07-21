@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import ComposerScreen from 'screens/composer';
 import SettingsScreen from 'screens/settings';
+import SoundScreen from 'screens/sound';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,14 @@ function Navigation() {
                     component={SettingsScreen}
                     options={{
                         gestureEnabled: false,
+                        headerTransparent: true,
+                    }}
+                />
+                <Stack.Screen
+                    name="SoundScreen"
+                    component={SoundScreen}
+                    options={{
+                        gestureEnabled: true,
                         headerTransparent: true,
                     }}
                 />
