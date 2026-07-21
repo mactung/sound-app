@@ -53,12 +53,13 @@ const MyMixList = () => {
 
 const styles = StyleSheet.create({
     wrapper: {
+        marginTop: Spacing.lg,
         marginBottom: Spacing.md,
     },
     title: {
         color: Colors.white,
-        fontSize: 22,
-        fontWeight: 'bold',
+        fontSize: 20,
+        fontWeight: '700',
         marginBottom: 15,
         marginLeft: Spacing.md,
     },
