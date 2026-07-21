@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Icon } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import usePlayer from 'hooks/usePlayer';
+import AppBackground from 'components/AppBackground';
 import { Colors, Radius, Spacing } from 'styles/global.style';
 import VinylDisc from './components/VinylDisc';
 import FloatingNotes from './components/FloatingNotes';
@@ -109,8 +110,7 @@ const RelaxMode = () => {
     const relaxToggle = () => (isPlaying ? pausePlayer() : playPlayer());
 
     return (
-        <ImageBackground source={require('assets/images/background_sound.png')} style={styles.bg}>
-            <View style={styles.dim} />
+        <AppBackground>
             <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
                 <Text style={styles.screenTitle}>Relax Mode</Text>
 
@@ -197,13 +197,11 @@ const RelaxMode = () => {
                     </View>
                 )}
             </SafeAreaView>
-        </ImageBackground>
+        </AppBackground>
     );
 };
 
 const styles = StyleSheet.create({
-    bg: { flex: 1, backgroundColor: Colors.background },
-    dim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(15, 18, 45, 0.55)' },
     container: {
         flex: 1,
         alignItems: 'center',

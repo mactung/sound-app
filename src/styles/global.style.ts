@@ -20,14 +20,19 @@ export const Colors = {
     opacity_background: 'rgba(30, 38, 82, 0.82)',
 
     // --- Relaxing design tokens ---
-    accent: '#89c2d9', // soft calming blue used for highlights/controls
-    card: '#2B3662', // raised surface (list rows, tiles)
-    sheet: '#232B57', // bottom-sheet / modal panel background
-    overlay: 'rgba(15, 18, 45, 0.65)', // dimmed modal backdrop
+    accent: '#9FD3E6', // soft calming blue used for highlights/controls
+    accent2: '#C9B6E4', // gentle lavender secondary accent
+    card: '#34335E', // raised surface (list rows, tiles)
+    sheet: '#2A2A54', // bottom-sheet / modal panel background
+    overlay: 'rgba(20, 22, 48, 0.6)', // dimmed modal backdrop
     textMuted: '#9AA6D4', // secondary text
     divider: 'rgba(255, 255, 255, 0.08)',
     glassBorder: 'rgba(169, 214, 229, 0.25)',
+    branch: '#7C6F63', // muted twig/branch color for the hanging sound list
 };
+
+// Vertical gradient stops for the app background — soft twilight (no image).
+export const BackgroundGradient = ['#3A3470', '#2B2C55', '#1B1D38'];
 
 export const BACKGROUND_RANDOM = ['#40E0D0', '#FF8C00', '#FF0080', '#659999', '#f4791f'];
 

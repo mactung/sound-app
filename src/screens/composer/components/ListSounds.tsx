@@ -2,6 +2,7 @@ import services from 'models/services';
 import React, { useState, useEffect, useCallback } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SoundType } from 'types/sound';
+import { Colors } from 'styles/global.style';
 import CategoryFilter from './CategoryFilter';
 import SoundItem from './SoundItem';
 
@@ -59,11 +60,18 @@ const ListSounds = ({ addSoundToMixer, sounds }: Iprops) => {
 
 const styles = StyleSheet.create({
     flatlist: {
-        // alignItems: 'space-between',
+        paddingHorizontal: 8,
     },
     row: {
         flex: 1,
         justifyContent: 'space-around',
+        // the "branch" each ornament hangs from
+        borderTopWidth: 3,
+        borderTopColor: Colors.branch,
+        borderTopLeftRadius: 3,
+        borderTopRightRadius: 3,
+        marginTop: 6,
+        marginBottom: 4,
     },
     floatMixer: { height: 60 },
 });

@@ -1,9 +1,9 @@
 import React, { MutableRefObject, useEffect, useState, useRef } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text, View, Image, Dimensions, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Pressable } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
+import AppBackground from 'components/AppBackground';
 import ListSounds from './components/ListSounds';
 import ModalSetTime from 'components/ModalSetTime';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,9 +15,8 @@ import usePlayer from 'hooks/usePlayer';
 // Enable playback in silence mode
 // Sound.setCategory('Ambient', true);
 
-const SoundScreen = ({ route }: any) => {
+const SoundScreen = () => {
     const dispatch = useDispatch();
-    const { image_url } = route.params;
     const { isPlaying, sounds } = useSelector((state: any) => state.player);
     const { playPlayer, pausePlayer } = usePlayer();
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
@@ -56,39 +55,30 @@ const SoundScreen = ({ route }: any) => {
         setIsModalSetTimeVisible(true);
     };
     return (
-        <SafeAreaView style={styles.container}>
-            <Image
-                key={'blurryImage'}
-                source={image_url ? { uri: image_url } : require('assets/images/mix_bg.jpg')}
-                style={styles.absolute}
-            />
-            <BlurView
-                style={styles.absolute}
-                blurType="light"
-                blurAmount={20}
-                reducedTransparencyFallbackColor="white"
-            />
-            <View>
+        <AppBackground>
+            <SafeAreaView style={styles.container}>
                 <View>
-                    <LottieView
-                        ref={refLottieVew as MutableRefObject<LottieView>}
-                        style={styles.lottieView}
-                        source={require('assets/lottie/circle-waves.json')}
-                        autoPlay={true}
-                        loop={true}
-                    />
-                    <Pressable style={styles.timmerView} onPress={goToSettingTime}>
-                        <Text style={styles.timmer}>Timer</Text>
-                    </Pressable>
+                    <View>
+                        <LottieView
+                            ref={refLottieVew as MutableRefObject<LottieView>}
+                            style={styles.lottieView}
+                            source={require('assets/lottie/circle-waves.json')}
+                            autoPlay={true}
+                            loop={true}
+                        />
+                        <Pressable style={styles.timmerView} onPress={goToSettingTime}>
+                            <Text style={styles.timmer}>Timer</Text>
+                        </Pressable>
+                    </View>
+                    <ListSounds sounds={sounds} />
                 </View>
-                <ListSounds sounds={sounds} />
-            </View>
 
-            <TouchableOpacity style={styles.buttonPlay} onPress={playSoundHandle}>
-                <Text style={styles.buttonTitle}>{isPlaying ? 'Pause' : 'Play'}</Text>
-            </TouchableOpacity>
-            <ModalSetTime isModalVisible={isModalSetTimeVisible} setIsModalVisible={setIsModalSetTimeVisible} />
-        </SafeAreaView>
+                <TouchableOpacity style={styles.buttonPlay} onPress={playSoundHandle}>
+                    <Text style={styles.buttonTitle}>{isPlaying ? 'Pause' : 'Play'}</Text>
+                </TouchableOpacity>
+                <ModalSetTime isModalVisible={isModalSetTimeVisible} setIsModalVisible={setIsModalSetTimeVisible} />
+            </SafeAreaView>
+        </AppBackground>
     );
 };
 const styles = StyleSheet.create({
@@ -108,13 +98,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
         letterSpacing: 1,
-    },
-    absolute: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
     },
     lottieView: {
         width: width / 1.2,

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Sound from 'react-native-sound';
+import AppBackground from 'components/AppBackground';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import { Colors } from 'styles/global.style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -76,41 +77,35 @@ const ComposerScreen = ({ route }: any) => {
         changeType(index);
     }, [index]);
     return (
-        <View style={{ flex: 1 }}>
-            <ImageBackground style={styles.image} source={require('assets/images/background_sound.png')}>
-                <SafeAreaView style={styles.container}>
-                    <View style={styles.viewHeader}>
-                        <View style={styles.menu}>
-                            <Text
-                                onPress={() => changeType(0)}
-                                style={[styles.title, activeIndex === 0 && styles.activeTitle]}>
-                                Sounds
-                            </Text>
-                            <Text
-                                onPress={() => changeType(1)}
-                                style={[styles.title, activeIndex === 1 && styles.activeTitle]}>
-                                Music
-                            </Text>
-                        </View>
+        <AppBackground>
+            <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+                <View style={styles.viewHeader}>
+                    <View style={styles.menu}>
+                        <Text
+                            onPress={() => changeType(0)}
+                            style={[styles.title, activeIndex === 0 && styles.activeTitle]}>
+                            Sounds
+                        </Text>
+                        <Text
+                            onPress={() => changeType(1)}
+                            style={[styles.title, activeIndex === 1 && styles.activeTitle]}>
+                            Music
+                        </Text>
                     </View>
-                    {activeIndex === 0 ? (
-                        <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
-                    ) : (
-                        <ListMusics addSoundToMixer={addSoundToMixer} music={music} />
-                    )}
+                </View>
+                {activeIndex === 0 ? (
+                    <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
+                ) : (
+                    <ListMusics addSoundToMixer={addSoundToMixer} music={music} />
+                )}
 
-                    {(sounds.length > 0 || music) && <CurrentMixFloat />}
-                </SafeAreaView>
-            </ImageBackground>
-        </View>
+                {(sounds.length > 0 || music) && <CurrentMixFloat />}
+            </SafeAreaView>
+        </AppBackground>
     );
 };
 const styles = StyleSheet.create({
-    image: {
-        flex: 1,
-        resizeMode: 'cover',
-    },
-    container: { flex: 1 },
+    container: { flex: 1, paddingTop: 8 },
     viewHeader: {
         flexDirection: 'row',
         alignItems: 'center',

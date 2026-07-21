@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Linking, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Icon } from 'react-native-elements';
+import AppBackground from 'components/AppBackground';
 import Description from './components/Description';
 import { Colors, Radius, Spacing } from 'styles/global.style';
 
@@ -28,18 +29,19 @@ const SettingsScreen = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-            <Text style={styles.title}>Settings</Text>
-            <Row label="Privacy Policy" icon="shield-checkmark-outline" onPress={() => handlePress(urlPolicy)} />
-            <Row label="Description" icon="information-circle-outline" onPress={() => setIsShowDescription(true)} />
-            <Description isModalVisible={isShowDescription} setIsModalVisible={setIsShowDescription} />
-        </SafeAreaView>
+        <AppBackground>
+            <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+                <Text style={styles.title}>Settings</Text>
+                <Row label="Privacy Policy" icon="shield-checkmark-outline" onPress={() => handlePress(urlPolicy)} />
+                <Row label="Description" icon="information-circle-outline" onPress={() => setIsShowDescription(true)} />
+                <Description isModalVisible={isShowDescription} setIsModalVisible={setIsShowDescription} />
+            </SafeAreaView>
+        </AppBackground>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.background,
         flex: 1,
         paddingHorizontal: Spacing.md,
     },
