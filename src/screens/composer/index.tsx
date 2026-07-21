@@ -79,19 +79,18 @@ const ComposerScreen = ({ route }: any) => {
     return (
         <AppBackground>
             <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-                <View style={styles.viewHeader}>
-                    <View style={styles.menu}>
-                        <Text
-                            onPress={() => changeType(0)}
-                            style={[styles.title, activeIndex === 0 && styles.activeTitle]}>
-                            Sounds
-                        </Text>
-                        <Text
-                            onPress={() => changeType(1)}
-                            style={[styles.title, activeIndex === 1 && styles.activeTitle]}>
-                            Music
-                        </Text>
-                    </View>
+                <Text style={styles.screenTitle}>Create your mix</Text>
+                <View style={styles.segment}>
+                    <Text
+                        onPress={() => changeType(0)}
+                        style={[styles.segItem, activeIndex === 0 && styles.segItemActive]}>
+                        Sounds
+                    </Text>
+                    <Text
+                        onPress={() => changeType(1)}
+                        style={[styles.segItem, activeIndex === 1 && styles.segItemActive]}>
+                        Music
+                    </Text>
                 </View>
                 {activeIndex === 0 ? (
                     <ListSounds addSoundToMixer={addSoundToMixer} sounds={sounds} />
@@ -106,21 +105,33 @@ const ComposerScreen = ({ route }: any) => {
 };
 const styles = StyleSheet.create({
     container: { flex: 1, paddingTop: 8 },
-    viewHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
-    menu: { flexDirection: 'row' },
-    title: {
-        color: Colors.gray,
-        fontSize: 28,
-        marginLeft: 20,
-        fontWeight: 'bold',
-    },
-    activeTitle: {
+    screenTitle: {
         color: Colors.white,
+        fontSize: 24,
+        fontWeight: '800',
+        marginLeft: 20,
+        marginBottom: 14,
+    },
+    segment: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        borderRadius: 999,
+        padding: 4,
+        marginBottom: 18,
+    },
+    segItem: {
+        color: Colors.textMuted,
+        fontWeight: '700',
+        fontSize: 14,
+        paddingVertical: 8,
+        paddingHorizontal: 28,
+        borderRadius: 999,
+        overflow: 'hidden',
+    },
+    segItemActive: {
+        color: Colors.primary,
+        backgroundColor: Colors.accent,
     },
     customeStyle: {
         marginBottom: 40,

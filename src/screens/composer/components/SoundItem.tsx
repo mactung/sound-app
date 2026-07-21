@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Colors, Radius } from 'styles/global.style';
-import { SoundIcon } from 'assets/svg';
+import { Icon } from 'react-native-elements';
+import { Colors } from 'styles/global.style';
+import { soundIcon } from 'utils/soundIcon';
 import { SoundType } from 'types/sound';
 interface Iprops {
     onPress: () => void;
@@ -9,74 +10,57 @@ interface Iprops {
     index: number;
 }
 
-// Stagger the hanging string length per column so ornaments dangle naturally.
-const STRING_HEIGHTS = [16, 30, 22];
-
-const SoundItem: FC<Iprops> = ({ onPress, item, index }) => {
-    const stringHeight = STRING_HEIGHTS[index % STRING_HEIGHTS.length];
+const SoundItem: FC<Iprops> = ({ onPress, item }) => {
+    const active = !!item.is_selected;
     return (
         <Pressable style={styles.wrapper} onPress={onPress}>
-            {/* string hanging from the branch above */}
-            <View style={[styles.string, { height: stringHeight }]} />
-            <View style={styles.knot} />
-            {/* the ornament */}
-            <View style={[styles.ornament, item.is_selected && styles.ornamentActive]}>
-                <SoundIcon width={30} height={30} />
+            <View style={[styles.circle, active && styles.circleActive]}>
+                <Icon
+                    name={soundIcon(item.name || item.file_name)}
+                    type="ionicon"
+                    size={28}
+                    color={active ? Colors.primary : Colors.white}
+                />
             </View>
-            <Text style={[styles.title, item.is_selected && styles.titleActive]} numberOfLines={2}>
+            <Text style={[styles.title, active && styles.titleActive]} numberOfLines={1}>
                 {item.name}
             </Text>
         </Pressable>
     );
 };
+const TILE = 70;
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1 / 3,
+        width: '25%',
         alignItems: 'center',
-        paddingHorizontal: 4,
+        marginBottom: 22,
+        paddingHorizontal: 2,
     },
-    string: {
-        width: 2,
-        backgroundColor: Colors.branch,
-        opacity: 0.7,
-    },
-    knot: {
-        width: 6,
-        height: 6,
-        borderRadius: 3,
-        backgroundColor: Colors.branch,
-        marginBottom: -3,
-        zIndex: 2,
-    },
-    ornament: {
-        width: 68,
-        height: 68,
-        borderRadius: 34,
-        backgroundColor: Colors.card,
-        borderWidth: 1,
-        borderColor: Colors.glassBorder,
+    circle: {
+        width: TILE,
+        height: TILE,
+        borderRadius: TILE / 2,
+        backgroundColor: 'rgba(255,255,255,0.06)',
+        borderWidth: 1.5,
+        borderColor: 'rgba(255,255,255,0.12)',
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 4,
     },
-    ornamentActive: {
+    circleActive: {
         backgroundColor: Colors.accent,
         borderColor: Colors.white,
         shadowColor: Colors.accent,
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.7,
-        shadowRadius: 12,
+        shadowRadius: 14,
+        elevation: 8,
     },
     title: {
         color: Colors.textMuted,
-        fontSize: 12,
+        fontSize: 11,
         textAlign: 'center',
-        marginTop: 6,
-        marginBottom: 14,
-        borderRadius: Radius.sm,
+        marginTop: 8,
+        maxWidth: TILE + 12,
     },
     titleActive: {
         color: Colors.white,

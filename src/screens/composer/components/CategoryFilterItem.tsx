@@ -1,29 +1,38 @@
 import React from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
-import { Colors } from 'styles/global.style';
+import { Colors, Radius } from 'styles/global.style';
 const CategoryFilterItem = ({ item, onPress, currentCategoryId }: any) => {
+    const active = currentCategoryId === item._id;
     return (
-        <Pressable
-            style={[styles.container, currentCategoryId === item._id && { backgroundColor: Colors.light }]}
-            onPress={() => onPress(item._id)}>
-            <Text style={styles.nameText}>{item.name}</Text>
+        <Pressable style={[styles.container, active && styles.active]} onPress={() => onPress(item._id)}>
+            <Text style={[styles.nameText, active && styles.nameTextActive]}>{item.name}</Text>
         </Pressable>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 30,
-        paddingHorizontal: 20,
-        marginLeft: 20,
+        borderRadius: Radius.pill,
+        paddingHorizontal: 18,
+        marginLeft: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 30,
+        height: 34,
+        backgroundColor: 'rgba(255,255,255,0.06)',
         borderWidth: 1,
-        borderColor: Colors.light,
+        borderColor: 'rgba(255,255,255,0.12)',
+    },
+    active: {
+        backgroundColor: Colors.accent,
+        borderColor: Colors.accent,
     },
     nameText: {
-        color: Colors.white,
+        color: Colors.textMuted,
+        fontWeight: '600',
+        fontSize: 13,
+    },
+    nameTextActive: {
+        color: Colors.primary,
     },
 });
 

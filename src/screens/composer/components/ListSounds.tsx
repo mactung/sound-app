@@ -48,10 +48,11 @@ const ListSounds = ({ addSoundToMixer, sounds }: Iprops) => {
             />
             <FlatList
                 style={styles.flatlist}
+                contentContainerStyle={styles.listContent}
                 data={dataSounds}
                 renderItem={renderItem}
-                numColumns={3}
-                columnWrapperStyle={styles.row}
+                numColumns={4}
+                showsVerticalScrollIndicator={false}
             />
             <View style={styles.floatMixer} />
         </>
@@ -62,16 +63,9 @@ const styles = StyleSheet.create({
     flatlist: {
         paddingHorizontal: 8,
     },
-    row: {
-        flex: 1,
-        justifyContent: 'space-around',
-        // the "branch" each ornament hangs from
-        borderTopWidth: 3,
-        borderTopColor: Colors.branch,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        marginTop: 6,
-        marginBottom: 4,
+    listContent: {
+        paddingTop: 8,
+        paddingBottom: 20,
     },
     floatMixer: { height: 60 },
 });
