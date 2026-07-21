@@ -1,21 +1,3 @@
-import dataCategories from 'store/data/categories.json';
-import services from 'models/services';
-
-export const initData = () => {
-    return new Promise(resolve => {
-        dataCategories.forEach((category: any) => {
-            const categoryRealm: any = services.categoryService.getCategoryById(category._id);
-            if (categoryRealm) {
-                category.sounds.forEach((sound: any) => {
-                    const sounndRealm: any = services.soundService.getSoundById(sound._id);
-                    if (!sounndRealm) {
-                        services.soundService.createSound(sound);
-                    }
-                });
-            } else {
-                services.categoryService.createCategory(category);
-            }
-        });
-        resolve(1);
-    });
-};
+// Sound & category data is read directly from the bundled categories.json
+// (see models/services). Nothing to seed at startup anymore.
+export const initData = () => Promise.resolve(1);

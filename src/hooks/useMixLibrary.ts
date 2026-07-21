@@ -25,23 +25,24 @@ const useMixLibrary = () => {
     const dispatch = useDispatch();
     const [mixes, setMixes] = useState<SavedMix[]>([]);
 
-    const reload = useCallback(() => {
-        setMixes(services.mixService.getMixes() as SavedMix[]);
+    const reload = useCallback(async () => {
+        const list = (await services.mixService.getMixes()) as SavedMix[];
+        setMixes(list);
     }, []);
 
     const saveMix = useCallback(
-        (name: string, sounds: any[], music: any) => {
-            const id = services.mixService.saveMix(name, sounds, music);
-            reload();
+        async (name: string, sounds: any[], music: any) => {
+            const id = await services.mixService.saveMix(name, sounds, music);
+            await reload();
             return id;
         },
         [reload],
     );
 
     const deleteMix = useCallback(
-        (id: number) => {
-            services.mixService.deleteMix(id);
-            reload();
+        async (id: number) => {
+            await services.mixService.deleteMix(id);
+            await reload();
         },
         [reload],
     );

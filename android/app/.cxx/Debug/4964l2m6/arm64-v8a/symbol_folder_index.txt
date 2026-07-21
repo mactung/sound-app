@@ -1,0 +1,1 @@
+/Users/mactrantung/Documents/WorkingSpace/my-space/sound-app/android/app/build/intermediates/cxx/Debug/4964l2m6/obj/arm64-v8a

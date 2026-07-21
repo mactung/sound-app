@@ -1,71 +1,43 @@
-import realm from '../realm';
+import categories from 'store/data/categories.json';
 
-const createSound = (sound: any) => {
-    try {
-        realm.write(() => {
-            realm.create('Sound', sound);
-        });
-    } catch (error) {
-        console.log('createSound', error);
-    }
-};
+const isMusicCategory = (c: any) => (c.type || 'sound') === 'music';
+const clone = (arr: any[]) => arr.map((s: any) => ({ ...s }));
 
 const getAllSounds = () => {
-    try {
-        return realm.objects('Sound').filtered('type = "sound"').toJSON();
-    } catch (error) {
-        console.log('getAllSounds', error);
-        return [];
-    }
-};
-const getSoundsByCategoryId = (_id: number = 0) => {
-    try {
-        if (_id === 0) {
-            return getAllSounds();
+    const list: any[] = [];
+    (categories as any[]).forEach(c => {
+        if (!isMusicCategory(c)) {
+            list.push(...c.sounds);
         }
-        return realm
-            .objects('Category')
-            .filtered('_id = ' + _id)
-            .toJSON()[0].sounds;
-    } catch (error) {
-        console.log('getgetSoundsByCategoryIdAllSounds', error);
-        return [];
-    }
-};
-const getAllMusics = () => {
-    try {
-        return realm.objects('Category').filtered('type = "music"').toJSON();
-    } catch (error) {
-        console.log('getgetSoundsByCategoryIdAllSounds', error);
-        return [];
-    }
+    });
+    return clone(list);
 };
 
-const getAllMusicDidntDownload = () => {
-    try {
-        return realm.objects('Sound').filtered('is_download = false');
-    } catch (error) {
-        console.log('getAll', error);
-        return [];
+const getSoundsByCategoryId = (_id: number = 0) => {
+    if (!_id) {
+        return getAllSounds();
     }
+    const cat = (categories as any[]).find(c => c._id === _id);
+    return cat ? clone(cat.sounds) : [];
+};
+
+const getAllMusics = () => {
+    return (categories as any[]).filter(isMusicCategory).map(c => ({ ...c, sounds: clone(c.sounds) }));
 };
 
 const getSoundById = (id: number) => {
-    try {
-        const sounds = realm.objects('Sound').filtered(`_id = ${id}`);
-        if (sounds.length > 0) {
-            return sounds[0].toJSON();
-        } else {
-            return null;
+    for (const c of categories as any[]) {
+        const s = c.sounds.find((x: any) => x._id === id);
+        if (s) {
+            return { ...s };
         }
-    } catch (error) {
-        console.log('getSoundById', error);
-        return [];
     }
+    return null;
 };
 
+const getAllMusicDidntDownload = () => [];
+
 export default {
-    createSound,
     getAllSounds,
     getSoundsByCategoryId,
     getAllMusics,

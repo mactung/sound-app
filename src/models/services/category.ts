@@ -1,37 +1,18 @@
-import realm from '../realm';
+import categories from 'store/data/categories.json';
 
-const createCategory = (category: any) => {
-    try {
-        realm.write(() => {
-            realm.create('Category', category);
-        });
-    } catch (error) {
-        console.log('createCategory', error);
-    }
+const normalize = (c: any) => ({ ...c, sounds: (c.sounds || []).map((s: any) => ({ ...s })) });
+
+const getAllCategoriesByType = (type = 'sound') => {
+    return (categories as any[]).filter(c => (c.type || 'sound') === type).map(normalize);
 };
 
 const getCategoryById = (id: number) => {
-    try {
-        const categories = realm.objects('Category').filtered(`_id = "${id}"`);
-        if (categories.length > 0) {
-            return categories[0].toJSON();
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.log('getCategoryById', error);
-        return [];
-    }
+    const c = (categories as any[]).find(x => x._id === id);
+    return c ? normalize(c) : null;
 };
 
-const getAllCategoriesByType = (type = 'sound') => {
-    try {
-        return realm.objects('Category').filtered(`type = "${type}"`).toJSON();
-    } catch (error) {
-        console.log('getAllCategoriesByType', error);
-        return [];
-    }
-};
+// No-op: categories come from the bundled JSON, nothing to persist.
+const createCategory = () => {};
 
 export default {
     createCategory,
