@@ -19,7 +19,7 @@ const SoundItem: FC<Iprops> = ({ onPress, item }) => {
                     name={soundIcon(item.name || item.file_name)}
                     type="ionicon"
                     size={28}
-                    color={active ? Colors.primary : Colors.white}
+                    color={active ? Colors.onAccent : Colors.white}
                 />
             </View>
             <Text style={[styles.title, active && styles.titleActive]} numberOfLines={1}>

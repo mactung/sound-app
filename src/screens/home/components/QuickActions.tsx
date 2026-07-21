@@ -41,7 +41,7 @@ const QuickActions = () => {
 const TileView: FC<{ tile: Tile }> = ({ tile }) => (
     <Pressable style={styles.tile} onPress={tile.onPress}>
         <View style={[styles.iconWrap, { backgroundColor: tile.color }]}>
-            <Icon name={tile.icon} type="ionicon" size={22} color={Colors.primary} />
+            <Icon name={tile.icon} type="ionicon" size={22} color={Colors.onAccent} />
         </View>
         <Text style={styles.label}>{tile.label}</Text>
         <Text style={styles.sub}>{tile.sub}</Text>

@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
+import { Icon } from 'react-native-elements';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { Colors, Radius } from 'styles/global.style';
+import { Colors, Radius, Spacing } from 'styles/global.style';
 import Player from '../Player';
 import HeaderMixer from './components/HeaderMixer';
 import ListSounds from './components/ListSounds';
@@ -16,6 +17,7 @@ interface Iprops {
 const Mixer: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
     const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     const insets = useSafeAreaInsets();
+    const count = sounds.length + (music ? 1 : 0);
     return (
         <Modal
             isVisible={isModalVisible}
@@ -37,6 +39,15 @@ const Mixer: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
             <View style={[styles.sheet, { paddingTop: insets.top + 8, paddingBottom: insets.bottom }]}>
                 <View style={styles.handle} />
                 <HeaderMixer setIsModalVisible={setIsModalVisible} sounds={sounds} music={music} />
+                <View style={styles.hero}>
+                    <View style={styles.heroArt}>
+                        <Icon name="disc" type="ionicon" size={54} color={Colors.onAccent} />
+                    </View>
+                    <Text style={styles.heroTitle}>Your Mix</Text>
+                    <Text style={styles.heroSub}>
+                        {count} {count === 1 ? 'sound' : 'sounds'} {isPlaying ? 'playing' : 'paused'}
+                    </Text>
+                </View>
                 <Music music={music} setIsModalVisible={setIsModalVisible} />
                 <ListSounds sounds={sounds} setIsModalVisible={setIsModalVisible} />
                 <Player isPlaying={isPlaying} />
@@ -66,6 +77,34 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.textMuted,
         opacity: 0.6,
         marginBottom: 8,
+    },
+    hero: {
+        alignItems: 'center',
+        paddingVertical: Spacing.md,
+    },
+    heroArt: {
+        width: 96,
+        height: 96,
+        borderRadius: 28,
+        backgroundColor: Colors.accent,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12,
+        shadowColor: Colors.accent,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.6,
+        shadowRadius: 18,
+        elevation: 10,
+    },
+    heroTitle: {
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: '800',
+    },
+    heroSub: {
+        color: Colors.textMuted,
+        fontSize: 13,
+        marginTop: 2,
     },
 });
 export default Mixer;

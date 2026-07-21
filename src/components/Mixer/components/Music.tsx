@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
     },
     buttonTitle: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         fontWeight: '700',
     },
     textNunber: {

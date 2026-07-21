@@ -13,7 +13,7 @@ const HeroCard = () => {
                 imageStyle={styles.imageInner}>
                 <View style={styles.overlay} />
                 <View style={styles.badge}>
-                    <Icon name="sparkles" type="ionicon" size={13} color={Colors.primary} />
+                    <Icon name="sparkles" type="ionicon" size={13} color={Colors.onAccent} />
                     <Text style={styles.badgeText}>FEATURED</Text>
                 </View>
                 <View style={styles.bottom}>
@@ -22,7 +22,7 @@ const HeroCard = () => {
                         <Text style={styles.subtitle}>Forest & ocean ambience</Text>
                     </View>
                     <View style={styles.playFab}>
-                        <Icon name="play" type="ionicon" size={26} color={Colors.primary} />
+                        <Icon name="play" type="ionicon" size={26} color={Colors.onAccent} />
                     </View>
                 </View>
             </ImageBackground>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         margin: Spacing.sm,
     },
     badgeText: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         fontWeight: '800',
         fontSize: 10,
         letterSpacing: 1,

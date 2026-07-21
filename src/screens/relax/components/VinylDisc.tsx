@@ -39,7 +39,7 @@ const VinylDisc: FC<{ spinning: boolean }> = ({ spinning }) => {
                 <View style={styles.groove2} />
                 <View style={styles.groove3} />
                 <View style={styles.label}>
-                    <Icon name="musical-notes" type="ionicon" size={34} color={Colors.primary} />
+                    <Icon name="musical-notes" type="ionicon" size={34} color={Colors.onAccent} />
                 </View>
                 <View style={styles.hole} />
             </Animated.View>

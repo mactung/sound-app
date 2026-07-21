@@ -159,7 +159,7 @@ const RelaxMode = () => {
                             name={isPlaying ? 'pause' : 'play'}
                             type="ionicon"
                             size={30}
-                            color={Colors.primary}
+                            color={Colors.onAccent}
                         />
                     </TouchableOpacity>
                 ) : (
@@ -189,7 +189,7 @@ const RelaxMode = () => {
                                     name={running ? 'pause' : 'play'}
                                     type="ionicon"
                                     size={30}
-                                    color={Colors.primary}
+                                    color={Colors.onAccent}
                                 />
                             </TouchableOpacity>
                             <View style={styles.ghostButton} />
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     segmentTextActive: {
-        color: Colors.primary,
+        color: Colors.onAccent,
     },
     discArea: {
         height: 300,

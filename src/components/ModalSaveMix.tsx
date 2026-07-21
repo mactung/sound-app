@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.accent,
     },
     saveText: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         fontWeight: '700',
     },
 });

@@ -1,38 +1,39 @@
 export const Colors = {
-    primary: '#1E2652',
-    secondary: '#2B3662',
-    danger: '#4d194d',
+    // Deep-violet sleep/meditation palette (Sleepie-style).
+    primary: '#150A2B', // deep base (dark backdrops)
+    secondary: '#241539', // tab bar / raised surface
+    danger: '#E5484D',
     white: '#ffffff',
     gray: '#BDBDBD',
     gray_light: '#E0E0E0',
-    light: '#a9d6e5',
+    light: '#A99BC7', // muted lavender
     silver: '#C0C0C0',
-    dark: '#012a4a',
+    dark: '#0F0620',
     black: '#000',
     teal: '#008080',
     orange: '#FFA863',
     darkorange: '#E76F51',
     green: '#006400',
     gold: '#DAA520',
-    bright: '#89c2d9',
-    background: '#35245A',
-    // Softer, blue-tinted translucent surface — calmer than the old flat gray.
-    opacity_background: 'rgba(30, 38, 82, 0.82)',
+    bright: '#B794F6',
+    background: '#1C0D38',
+    opacity_background: 'rgba(30, 18, 52, 0.9)',
 
-    // --- Relaxing design tokens ---
-    accent: '#9FD3E6', // soft calming blue used for highlights/controls
-    accent2: '#C9B6E4', // gentle lavender secondary accent
-    card: '#34335E', // raised surface (list rows, tiles)
-    sheet: '#2A2A54', // bottom-sheet / modal panel background
-    overlay: 'rgba(20, 22, 48, 0.6)', // dimmed modal backdrop
-    textMuted: '#9AA6D4', // secondary text
+    // --- Purple design tokens ---
+    accent: '#8B5CF6', // vivid violet — main highlight/control
+    accent2: '#C46BE0', // pink-violet secondary
+    onAccent: '#FFFFFF', // text/icons placed on top of accent
+    card: '#241539', // raised surface (list rows, tiles)
+    sheet: '#1F1235', // bottom-sheet / modal panel background
+    overlay: 'rgba(15, 8, 30, 0.65)', // dimmed modal backdrop
+    textMuted: '#A99BC7', // secondary text (lavender)
     divider: 'rgba(255, 255, 255, 0.08)',
-    glassBorder: 'rgba(169, 214, 229, 0.25)',
-    branch: '#7C6F63', // muted twig/branch color for the hanging sound list
+    glassBorder: 'rgba(139, 92, 246, 0.35)',
+    branch: '#7C6F63',
 };
 
-// Vertical gradient stops for the app background — soft twilight (no image).
-export const BackgroundGradient = ['#3A3470', '#2B2C55', '#1B1D38'];
+// Vertical gradient stops for the app background — deep violet night.
+export const BackgroundGradient = ['#2A1250', '#1C0D38', '#120726'];
 
 export const BACKGROUND_RANDOM = ['#40E0D0', '#FF8C00', '#FF0080', '#659999', '#f4791f'];
 

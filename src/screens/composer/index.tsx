@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     segItemActive: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         backgroundColor: Colors.accent,
     },
     customeStyle: {

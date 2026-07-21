@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     nameTextActive: {
-        color: Colors.primary,
+        color: Colors.onAccent,
     },
 });
 

@@ -5,10 +5,8 @@ import { Icon } from 'react-native-elements';
 import CurrentMixFloat from 'components/CurrenMixFloat';
 import AppBackground from 'components/AppBackground';
 import NavigationService from 'navigation/NavigationSerivce';
-import HeroCard from './components/HeroCard';
-import QuickActions from './components/QuickActions';
-import FeaturedSounds from './components/FeaturedSounds';
 import MyMixList from './components/MyMixList';
+import SoundscapeGrid from './components/SoundscapeGrid';
 import { useSelector } from 'react-redux';
 import { Colors, Spacing } from 'styles/global.style';
 
@@ -32,21 +30,27 @@ const HomeScreen = () => {
                     <View style={styles.headerRow}>
                         <View>
                             <Text style={styles.greeting}>{greeting()}</Text>
-                            <Text style={styles.tagline}>Find your calm</Text>
+                            <Text style={styles.tagline}>Time to unwind & drift off</Text>
                         </View>
-                        <Icon
-                            name="settings-outline"
-                            type="ionicon"
-                            size={24}
-                            color={Colors.white}
-                            onPress={() => NavigationService.navigate('BottomTabs', { screen: 'SettingsScreen' })}
-                        />
+                        <View style={styles.headerIcons}>
+                            <View style={styles.iconBtn}>
+                                <Icon name="search" type="ionicon" size={20} color={Colors.white} />
+                            </View>
+                            <View style={styles.iconBtn}>
+                                <Icon
+                                    name="settings-outline"
+                                    type="ionicon"
+                                    size={20}
+                                    color={Colors.white}
+                                    onPress={() => NavigationService.navigate('BottomTabs', { screen: 'SettingsScreen' })}
+                                />
+                            </View>
+                        </View>
                     </View>
 
-                    <HeroCard />
-                    <QuickActions />
                     <MyMixList />
-                    <FeaturedSounds />
+                    <Text style={styles.sectionTitle}>Explore sounds</Text>
+                    <SoundscapeGrid />
                 </ScrollView>
             </SafeAreaView>
             {(sounds.length > 0 || music) && <CurrentMixFloat />}
@@ -55,12 +59,8 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    safe: {
-        flex: 1,
-    },
-    content: {
-        paddingBottom: 120,
-    },
+    safe: { flex: 1 },
+    content: { paddingBottom: 140 },
     headerRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -69,15 +69,25 @@ const styles = StyleSheet.create({
         paddingTop: Spacing.sm,
         paddingBottom: Spacing.md,
     },
-    greeting: {
-        color: Colors.white,
-        fontSize: 26,
-        fontWeight: '800',
+    greeting: { color: Colors.white, fontSize: 26, fontWeight: '800' },
+    tagline: { color: Colors.textMuted, fontSize: 14, marginTop: 2 },
+    headerIcons: { flexDirection: 'row' },
+    iconBtn: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 10,
     },
-    tagline: {
-        color: Colors.textMuted,
-        fontSize: 14,
-        marginTop: 2,
+    sectionTitle: {
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: '700',
+        marginLeft: Spacing.md,
+        marginBottom: Spacing.sm,
+        marginTop: Spacing.sm,
     },
 });
 

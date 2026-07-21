@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
     },
     buttonAddTitle: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         fontWeight: '700',
     },
     buttonClear: {

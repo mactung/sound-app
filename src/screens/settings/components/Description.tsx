@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
     },
     closeTitle: {
-        color: Colors.primary,
+        color: Colors.onAccent,
         fontWeight: '700',
     },
 });
