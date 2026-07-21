@@ -2,12 +2,23 @@ import React, { useRef, useCallback } from 'react';
 import BottomTabs from './BottomTabs';
 import NavigationService from 'navigation/NavigationSerivce';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
+import { DarkTheme, NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import ComposerScreen from 'screens/composer';
 import SettingsScreen from 'screens/settings';
 import SoundScreen from 'screens/sound';
+import { Colors } from 'styles/global.style';
 
 const Stack = createStackNavigator();
+
+const AppTheme = {
+    ...DarkTheme,
+    colors: {
+        ...DarkTheme.colors,
+        background: Colors.background,
+        card: Colors.background,
+        border: 'transparent',
+    },
+};
 
 function Navigation() {
     const navigationRef = useRef<NavigationContainerRef<any> | null>(null);
@@ -19,7 +30,7 @@ function Navigation() {
         }
     }, []);
     return (
-        <NavigationContainer ref={ref}>
+        <NavigationContainer ref={ref} theme={AppTheme}>
             <Stack.Navigator initialRouteName="BottomTabs" screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="BottomTabs"

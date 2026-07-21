@@ -69,7 +69,7 @@ function BottomTabs() {
 
 const styles = StyleSheet.create({
     wrap: {
-        backgroundColor: 'transparent',
+        backgroundColor: Colors.background,
         paddingHorizontal: 16,
         paddingTop: 6,
     },
