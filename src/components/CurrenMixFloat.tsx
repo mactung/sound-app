@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Mixer from './Mixer';
 import { Colors } from 'styles/global.style';
 import { useSelector } from 'react-redux';
@@ -10,8 +11,12 @@ const CurrentMixFloat = () => {
     const { sounds, isPlaying, music } = useSelector((state: any) => state.player);
     const { pausePlayer, playPlayer } = usePlayer();
     const [isVisibleMixer, setIsVisibleMixer] = useState<boolean>(false);
+    const insets = useSafeAreaInsets();
     return (
-        <TouchableOpacity style={styles.container} onPress={() => setIsVisibleMixer(true)}>
+        <TouchableOpacity
+            activeOpacity={0.85}
+            style={[styles.container, { bottom: 16 + insets.bottom }]}
+            onPress={() => setIsVisibleMixer(true)}>
             <Icon size={20} name="chevron-up" type="ionicon" color={Colors.white} />
             <View style={styles.centerView}>
                 <Text style={styles.text} numberOfLines={1}>
@@ -37,18 +42,23 @@ const CurrentMixFloat = () => {
 };
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 10,
-        borderColor: '#ddd',
+        borderRadius: 18,
+        borderColor: Colors.glassBorder,
         borderWidth: 1,
-        padding: 8,
+        paddingVertical: 12,
+        paddingHorizontal: 14,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         position: 'absolute',
         width: '90%',
-        bottom: 20,
-        marginHorizontal: 20,
+        alignSelf: 'center',
         backgroundColor: Colors.opacity_background,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
     },
     centerView: {
         alignItems: 'center',

@@ -9,43 +9,38 @@ import SettingsScreen from 'screens/settings';
 const Stack = createStackNavigator();
 
 function Navigation() {
-    const navigationRef = useRef<NavigationContainerRef>();
-    // const routeNameRef = useRef<string>();
+    const navigationRef = useRef<NavigationContainerRef<any> | null>(null);
 
-    const ref = useCallback(refNavigaiton => {
+    const ref = useCallback((refNavigaiton: NavigationContainerRef<any> | null) => {
         navigationRef.current = refNavigaiton;
-        NavigationService.setTopLevelNavigator(refNavigaiton);
+        if (refNavigaiton) {
+            NavigationService.setTopLevelNavigator(refNavigaiton);
+        }
     }, []);
     return (
         <NavigationContainer ref={ref}>
-            <Stack.Navigator initialRouteName="BottomTabs">
+            <Stack.Navigator initialRouteName="BottomTabs" screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="BottomTabs"
                     component={BottomTabs}
-                    options={{ headerShown: false, gestureEnabled: false }}
+                    options={{ gestureEnabled: false }}
                 />
                 <Stack.Screen
                     name="ComposerScreen"
                     component={ComposerScreen}
-                    options={({ route }: any) => ({
+                    options={{
                         gestureEnabled: false,
                         headerTransparent: true,
-                        headerBackTitleVisible: false,
-                        title: route.params.name,
-                        headerShown: false,
-                    })}
+                    }}
                     initialParams={{ index: 0 }}
                 />
                 <Stack.Screen
                     name="SettingsScreen"
                     component={SettingsScreen}
-                    options={({ route }: any) => ({
+                    options={{
                         gestureEnabled: false,
                         headerTransparent: true,
-                        headerBackTitleVisible: false,
-                        title: route.params.name,
-                        headerShown: false,
-                    })}
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

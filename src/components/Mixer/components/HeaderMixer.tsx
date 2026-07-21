@@ -15,7 +15,7 @@ const HeaderMixer: FC<Iprops> = ({ setIsModalVisible, sounds, music }) => {
                 size={32}
                 name="chevron-down"
                 type="ionicon"
-                color="#517fa4"
+                color={Colors.accent}
                 onPress={() => setIsModalVisible(false)}
             />
             <View style={styles.centerView}>
@@ -29,7 +29,7 @@ const HeaderMixer: FC<Iprops> = ({ setIsModalVisible, sounds, music }) => {
                 </Text>
                 <Text style={styles.subText}>Current Mix</Text>
             </View>
-            <Icon size={30} name="share-social" type="ionicon" color="#517fa4" />
+            <Icon size={30} name="share-social" type="ionicon" color={Colors.accent} />
         </View>
     );
 };

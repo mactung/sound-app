@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
-import { Icon, Slider } from 'react-native-elements';
-import { Colors } from 'styles/global.style';
+import { Slider } from 'react-native-elements';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Colors, Radius } from 'styles/global.style';
 const { width } = Dimensions.get('screen');
 const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
+    const insets = useSafeAreaInsets();
     const [volume, setVolume] = useState<number>(
         sounds[sounds.length - 1] ? sounds[sounds.length - 1].sound.getVolume() * 100 : 100,
     );
@@ -26,7 +28,7 @@ const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
         hideModal();
     };
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { top: insets.top + 64 }]}>
             <Text style={styles.soundName} numberOfLines={1}>
                 {sounds[sounds.length - 1].name}
             </Text>
@@ -37,20 +39,11 @@ const ModalAdjustVolume = ({ sounds, setIsShowAdjustVolume }: any) => {
                 minimumValue={0}
                 step={1}
                 onValueChange={onChangeValue}
-                thumbTintColor={Colors.bright}
-                thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
-                thumbProps={{
-                    children: (
-                        <Icon
-                            name="radio-button-on"
-                            type="ionicon"
-                            size={21}
-                            containerStyle={{ bottom: 2, left: 0 }}
-                            color="#fff"
-                        />
-                    ),
-                }}
-                minimumTrackTintColor={Colors.bright}
+                trackStyle={styles.track}
+                minimumTrackTintColor={Colors.accent}
+                maximumTrackTintColor={Colors.divider}
+                thumbTintColor={Colors.white}
+                thumbStyle={styles.thumbStyle}
             />
         </View>
     );
@@ -59,17 +52,21 @@ const styles = StyleSheet.create({
     container: {
         width: width / 1.1,
         paddingHorizontal: 20,
-        paddingVertical: 5,
-        borderRadius: 10,
+        paddingVertical: 8,
+        borderRadius: 16,
         position: 'absolute',
-        top: 110,
         left: (width - width / 1.1) / 2,
         backgroundColor: Colors.opacity_background,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderWidth: 1,
-        borderColor: Colors.light,
+        borderColor: Colors.glassBorder,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
     },
     soundName: {
         color: Colors.white,
@@ -77,6 +74,18 @@ const styles = StyleSheet.create({
     },
     slider: {
         width: '80%',
+    },
+    track: {
+        height: 5,
+        borderRadius: Radius.pill,
+    },
+    thumbStyle: {
+        height: 18,
+        width: 18,
+        borderRadius: 9,
+        backgroundColor: Colors.white,
+        borderWidth: 3,
+        borderColor: Colors.accent,
     },
 });
 

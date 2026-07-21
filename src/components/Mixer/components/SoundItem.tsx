@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
-import { Colors } from 'styles/global.style';
+import { Colors, Radius } from 'styles/global.style';
 import { SoundIcon } from 'assets/svg';
 import { MusicIcon } from 'assets/svg';
 import { SoundType } from 'types/sound';
@@ -20,18 +20,8 @@ const SoundItem: FC<Iprops> = ({ item, removeSound }) => {
     };
     return (
         <View style={styles.container}>
-            <View style={styles.iconContainer}>
-                <Icon
-                    type="ionicon"
-                    name="close"
-                    size={20}
-                    onPress={onRemoveSound}
-                    color={Colors.white}
-                    iconStyle={styles.icon}
-                />
-            </View>
             <View style={styles.soundIcon}>
-                {item.type === 'music' ? <MusicIcon width={30} height={30} /> : <SoundIcon width={30} height={30} />}
+                {item.type === 'music' ? <MusicIcon width={28} height={28} /> : <SoundIcon width={28} height={28} />}
             </View>
 
             <View style={styles.content}>
@@ -44,68 +34,73 @@ const SoundItem: FC<Iprops> = ({ item, removeSound }) => {
                     minimumValue={0}
                     step={1}
                     onValueChange={onChangeValue}
-                    thumbTintColor={Colors.bright}
+                    trackStyle={styles.track}
+                    minimumTrackTintColor={Colors.accent}
+                    maximumTrackTintColor={Colors.divider}
                     thumbStyle={styles.thumbStyle}
-                    thumbProps={{
-                        children: (
-                            <Icon
-                                name="radio-button-on"
-                                type="ionicon"
-                                size={21}
-                                containerStyle={styles.thumbProps}
-                                color="#fff"
-                            />
-                        ),
-                    }}
-                    minimumTrackTintColor={Colors.bright}
+                    thumbTintColor={Colors.white}
                 />
             </View>
+
+            <TouchableOpacity style={styles.deleteButton} onPress={onRemoveSound} hitSlop={8}>
+                <Icon type="ionicon" name="trash-outline" size={18} color={Colors.textMuted} />
+            </TouchableOpacity>
         </View>
     );
 };
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginVertical: 10,
+        alignItems: 'center',
+        marginVertical: 6,
+        backgroundColor: Colors.card,
+        borderRadius: Radius.md,
+        paddingVertical: 12,
+        paddingHorizontal: 12,
     },
     soundIcon: {
-        height: 50,
-        width: 50,
-        borderRadius: 10,
-        backgroundColor: Colors.secondary,
+        height: 46,
+        width: 46,
+        borderRadius: Radius.sm,
+        backgroundColor: 'rgba(137, 194, 217, 0.15)',
         alignItems: 'center',
         justifyContent: 'center',
     },
     content: {
-        width: '85%',
-        paddingHorizontal: 20,
+        flex: 1,
+        paddingHorizontal: 14,
         justifyContent: 'center',
-    },
-    slider: {
-        color: '#517fa4',
-    },
-    iconContainer: {
-        position: 'absolute',
-        top: -10,
-        left: 40,
-        zIndex: 100,
-    },
-    icon: {
-        backgroundColor: Colors.orange,
-        borderRadius: 20 / 2,
-        padding: 0,
     },
     nameText: {
         color: Colors.white,
+        fontSize: 14,
+        fontWeight: '500',
+        marginBottom: 2,
+    },
+    track: {
+        height: 5,
+        borderRadius: Radius.pill,
     },
     thumbStyle: {
-        height: 20,
-        width: 20,
-        backgroundColor: 'transparent',
+        height: 18,
+        width: 18,
+        borderRadius: 9,
+        backgroundColor: Colors.white,
+        borderWidth: 3,
+        borderColor: Colors.accent,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 3,
     },
-    thumbProps: {
-        bottom: 1,
-        left: 0,
+    deleteButton: {
+        height: 34,
+        width: 34,
+        borderRadius: 17,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.06)',
     },
 });
 export default SoundItem;

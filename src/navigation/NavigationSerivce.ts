@@ -1,8 +1,8 @@
 import { CommonActions, StackActions, NavigationContainerRef, DrawerActions } from '@react-navigation/native';
 
-let navigator: NavigationContainerRef;
+let navigator: NavigationContainerRef<any>;
 
-function setTopLevelNavigator(navigatorRef: NavigationContainerRef): void {
+function setTopLevelNavigator(navigatorRef: NavigationContainerRef<any>): void {
     navigator = navigatorRef;
 }
 

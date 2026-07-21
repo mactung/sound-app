@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
-import { View, Alert, Linking, Text, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Alert, Linking, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Icon } from 'react-native-elements';
 import Description from './components/Description';
+import { Colors, Radius, Spacing } from 'styles/global.style';
+
 const urlPolicy = 'https://aienglish.megaads.vn/privacy-policy';
+
+const Row = ({ label, icon, onPress }: { label: string; icon: string; onPress: () => void }) => (
+    <TouchableOpacity style={styles.row} activeOpacity={0.7} onPress={onPress}>
+        <Icon name={icon} type="ionicon" size={20} color={Colors.accent} containerStyle={styles.rowIcon} />
+        <Text style={styles.rowLabel}>{label}</Text>
+        <Icon name="chevron-forward" type="ionicon" size={18} color={Colors.textMuted} />
+    </TouchableOpacity>
+);
+
 const SettingsScreen = () => {
     const [isShowDescription, setIsShowDescription] = useState<boolean>(false);
+
     const handlePress = async (url: string) => {
         const supported = await Linking.canOpenURL(url);
-
         if (supported) {
             await Linking.openURL(url);
         } else {
@@ -16,32 +28,46 @@ const SettingsScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
             <Text style={styles.title}>Settings</Text>
-            <ListItem onPress={() => handlePress(urlPolicy)}>
-                <ListItem.Content>
-                    <ListItem.Title>Privacy Policy</ListItem.Title>
-                </ListItem.Content>
-            </ListItem>
-            <ListItem onPress={() => setIsShowDescription(true)}>
-                <ListItem.Content>
-                    <ListItem.Title>Description</ListItem.Title>
-                </ListItem.Content>
-            </ListItem>
+            <Row label="Privacy Policy" icon="shield-checkmark-outline" onPress={() => handlePress(urlPolicy)} />
+            <Row label="Description" icon="information-circle-outline" onPress={() => setIsShowDescription(true)} />
             <Description isModalVisible={isShowDescription} setIsModalVisible={setIsShowDescription} />
-        </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         flex: 1,
+        paddingHorizontal: Spacing.md,
     },
     title: {
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '600',
+        color: Colors.white,
+        fontSize: 28,
+        fontWeight: '700',
+        marginTop: Spacing.md,
+        marginBottom: Spacing.lg,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: Colors.card,
+        borderRadius: Radius.md,
+        paddingVertical: 16,
+        paddingHorizontal: Spacing.md,
+        marginBottom: Spacing.sm,
+    },
+    rowIcon: {
+        marginRight: Spacing.sm,
+    },
+    rowLabel: {
+        flex: 1,
+        color: Colors.white,
+        fontSize: 15,
+        fontWeight: '500',
     },
 });
+
 export default SettingsScreen;

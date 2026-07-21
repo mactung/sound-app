@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
-import { StyleSheet, ScrollView, Text } from 'react-native';
+import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors, ModalAnim, Radius, Spacing } from 'styles/global.style';
 interface IProps {
     isModalVisible: boolean;
     setIsModalVisible: (value: boolean) => void;
@@ -40,15 +42,39 @@ const copyrights = [
 ];
 const Description: FC<IProps> = ({ isModalVisible, setIsModalVisible }) => {
     return (
-        <Modal isVisible={isModalVisible} backdropOpacity={0.95} style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-                {copyrights.map((copyright, key) => (
-                    <Text style={styles.copyrightContent} key={key}>
-                        {copyright}
-                    </Text>
-                ))}
-            </ScrollView>
-            <Button onPress={() => setIsModalVisible(false)} title="Close" />
+        <Modal
+            isVisible={isModalVisible}
+            style={styles.container}
+            backdropColor={Colors.primary}
+            animationIn="slideInUp"
+            animationOut="slideOutDown"
+            animationInTiming={ModalAnim.animationInTiming}
+            animationOutTiming={ModalAnim.animationOutTiming}
+            backdropTransitionInTiming={ModalAnim.backdropTransitionInTiming}
+            backdropTransitionOutTiming={ModalAnim.backdropTransitionOutTiming}
+            useNativeDriverForBackdrop
+            hideModalContentWhileAnimating
+            swipeDirection={['down']}
+            propagateSwipe
+            onSwipeComplete={() => setIsModalVisible(false)}
+            onBackdropPress={() => setIsModalVisible(false)}>
+            <SafeAreaView style={styles.sheet} edges={['top', 'bottom']}>
+                <View style={styles.handle} />
+                <Text style={styles.title}>Credits</Text>
+                <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
+                    {copyrights.map((copyright, key) => (
+                        <Text style={styles.copyrightContent} key={key}>
+                            {copyright}
+                        </Text>
+                    ))}
+                </ScrollView>
+                <Button
+                    onPress={() => setIsModalVisible(false)}
+                    title="Close"
+                    buttonStyle={styles.closeButton}
+                    titleStyle={styles.closeTitle}
+                />
+            </SafeAreaView>
         </Modal>
     );
 };
@@ -56,21 +82,55 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         margin: 0,
-        paddingTop: 30,
-        backgroundColor: '#fff',
+        justifyContent: 'flex-end',
+    },
+    sheet: {
+        flex: 1,
+        marginTop: 60,
+        backgroundColor: Colors.sheet,
+        borderTopLeftRadius: Radius.lg,
+        borderTopRightRadius: Radius.lg,
+        paddingHorizontal: Spacing.md,
+        paddingTop: 10,
+    },
+    handle: {
+        alignSelf: 'center',
+        width: 44,
+        height: 5,
+        borderRadius: Radius.pill,
+        backgroundColor: Colors.textMuted,
+        opacity: 0.6,
+        marginBottom: 12,
+    },
+    title: {
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: '700',
+        alignSelf: 'center',
+        marginBottom: Spacing.md,
     },
     scrollView: {
-        height: '100%',
         flex: 1,
-        color: '#000',
+    },
+    scrollContent: {
+        paddingBottom: Spacing.md,
     },
     copyrightContent: {
         textAlign: 'center',
-        marginBottom: 20,
-        paddingHorizontal: 30,
+        marginBottom: 18,
+        color: Colors.textMuted,
+        fontSize: 12,
+        lineHeight: 18,
     },
-    buttonClose: {
-        backgroundColor: 'transparent',
+    closeButton: {
+        backgroundColor: Colors.accent,
+        borderRadius: Radius.pill,
+        marginVertical: Spacing.sm,
+        paddingVertical: 12,
+    },
+    closeTitle: {
+        color: Colors.primary,
+        fontWeight: '700',
     },
 });
 export default Description;

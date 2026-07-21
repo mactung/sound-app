@@ -1,6 +1,9 @@
 // In App.js in a new project
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigation from './src/navigation';
 import { setCustomFlatList } from 'utils/customs/setCustomFlatList';
 import { setCustomSectionList } from 'utils/customs/setCustomSectionList';
@@ -8,8 +11,6 @@ import { setCustomScrollView } from 'utils/customs/setCustomScrollView';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { initData } from 'services';
-import { useEffect } from 'react';
-import SplashScreen from 'react-native-splash-screen';
 
 function App() {
     setCustomFlatList({
@@ -23,14 +24,21 @@ function App() {
     });
     setCustomScrollView({ showsHorizontalScrollIndicator: false });
     useEffect(() => {
-        initData().then(() => {
-            SplashScreen.hide();
-        });
+        initData();
     }, []);
     return (
-        <Provider store={store}>
-            <Navigation />
-        </Provider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaProvider>
+                <Provider store={store}>
+                    <StatusBar
+                        barStyle="light-content"
+                        backgroundColor="transparent"
+                        translucent
+                    />
+                    <Navigation />
+                </Provider>
+            </SafeAreaProvider>
+        </GestureHandlerRootView>
     );
 }
 

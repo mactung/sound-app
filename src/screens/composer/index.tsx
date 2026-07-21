@@ -9,30 +9,14 @@ import { addMusic, addSound, play, removeMusic, removeSound } from 'store/player
 import usePlayer from 'hooks/usePlayer';
 import ListSounds from './components/ListSounds';
 import ListMusics from './components/ListMusics';
-import MusicControl, { Command } from 'react-native-music-control';
 Sound.setCategory('Playback');
 
 const ComposerScreen = ({ route }: any) => {
     const dispatch = useDispatch();
-    const { playPlayer, pausePlayer } = usePlayer();
+    const { playPlayer } = usePlayer();
     const { index } = route.params;
     const { sounds, music, isPlaying } = useSelector((state: any) => state.player);
     const [activeIndex, setActiveIndex] = useState<number>(0);
-
-    useEffect(() => {
-        MusicControl.enableBackgroundMode(true);
-        MusicControl.enableControl('play', true);
-        MusicControl.enableControl('pause', true);
-    }, []);
-
-    useEffect(() => {
-        MusicControl.on(Command.pause, () => {
-            pausePlayer();
-        });
-        MusicControl.on(Command.play, () => {
-            playPlayer();
-        });
-    }, [pausePlayer, playPlayer]);
 
     const addSoundToMixer = (itemSound: any) => {
         if (itemSound.is_selected) {
@@ -79,22 +63,8 @@ const ComposerScreen = ({ route }: any) => {
         }
     };
     useEffect(() => {
-        console.log(isPlaying);
         if (isPlaying) {
             playPlayer();
-            MusicControl.setNowPlaying({
-                title: 'Calm, Relax',
-                description: 'Relax sound, better for sleep', // Android Only
-                color: 0xffffff, // Android Only - Notification Color
-                colorized: true, // Android 8+ Only - Notification Color extracted from the artwork. Set to false to use the color property instead
-            });
-            MusicControl.updatePlayback({
-                state: MusicControl.STATE_PLAYING,
-            });
-        } else {
-            MusicControl.updatePlayback({
-                state: MusicControl.STATE_PAUSED,
-            });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sounds, music, isPlaying]);

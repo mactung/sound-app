@@ -16,7 +16,47 @@ export const Colors = {
     gold: '#DAA520',
     bright: '#89c2d9',
     background: '#35245A',
-    opacity_background: 'rgba(52, 52, 52, 0.9)',
+    // Softer, blue-tinted translucent surface — calmer than the old flat gray.
+    opacity_background: 'rgba(30, 38, 82, 0.82)',
+
+    // --- Relaxing design tokens ---
+    accent: '#89c2d9', // soft calming blue used for highlights/controls
+    card: '#2B3662', // raised surface (list rows, tiles)
+    sheet: '#232B57', // bottom-sheet / modal panel background
+    overlay: 'rgba(15, 18, 45, 0.65)', // dimmed modal backdrop
+    textMuted: '#9AA6D4', // secondary text
+    divider: 'rgba(255, 255, 255, 0.08)',
+    glassBorder: 'rgba(169, 214, 229, 0.25)',
 };
 
 export const BACKGROUND_RANDOM = ['#40E0D0', '#FF8C00', '#FF0080', '#659999', '#f4791f'];
+
+export const Radius = {
+    sm: 10,
+    md: 16,
+    lg: 24,
+    pill: 999,
+};
+
+export const Spacing = {
+    xs: 6,
+    sm: 12,
+    md: 20,
+    lg: 28,
+};
+
+/**
+ * Shared props for react-native-modal to make every modal open/close feel
+ * smooth and gentle (relaxing) instead of snappy. Spread onto <Modal />.
+ */
+export const ModalAnim = {
+    animationIn: 'fadeInUp' as const,
+    animationOut: 'fadeOutDown' as const,
+    animationInTiming: 420,
+    animationOutTiming: 320,
+    backdropTransitionInTiming: 420,
+    backdropTransitionOutTiming: 320,
+    backdropOpacity: 0.6,
+    useNativeDriverForBackdrop: true,
+    hideModalContentWhileAnimating: true,
+};

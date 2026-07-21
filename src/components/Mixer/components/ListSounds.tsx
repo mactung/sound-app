@@ -4,7 +4,7 @@ import SoundItem from './SoundItem';
 import { Button } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { clearSounds as clearAction, removeSound as removeAction } from 'store/player';
-import { Colors } from 'styles/global.style';
+import { Colors, Radius } from 'styles/global.style';
 import NavigationService from 'navigation/NavigationSerivce';
 import { SoundType } from 'types/sound';
 interface Iprops {
@@ -22,7 +22,16 @@ const ListSounds: FC<Iprops> = ({ sounds, setIsModalVisible }) => {
 
     const renderItem = ({ item }: any) => {
         if (item.key === 'end') {
-            return <Button title="Clear all" onPress={clearSounds} buttonStyle={styles.buttonView} />;
+            return (
+                <Button
+                    title="Clear all"
+                    onPress={clearSounds}
+                    type="clear"
+                    icon={{ name: 'trash-outline', type: 'ionicon', size: 16, color: Colors.textMuted }}
+                    buttonStyle={styles.buttonClear}
+                    titleStyle={styles.buttonClearTitle}
+                />
+            );
         }
         return <SoundItem key={item._id} item={item} removeSound={removeSound} />;
     };
@@ -45,7 +54,12 @@ const ListSounds: FC<Iprops> = ({ sounds, setIsModalVisible }) => {
                 showsVerticalScrollIndicator={false}
             />
             {sounds.length === 0 && (
-                <Button title="Add sound" onPress={goToChooseSound} buttonStyle={styles.buttonView} />
+                <Button
+                    title="Add sound"
+                    onPress={goToChooseSound}
+                    buttonStyle={styles.buttonAdd}
+                    titleStyle={styles.buttonAddTitle}
+                />
             )}
         </View>
     );
@@ -53,22 +67,40 @@ const ListSounds: FC<Iprops> = ({ sounds, setIsModalVisible }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingTop: 12,
     },
-    buttonView: {
-        borderRadius: 30,
+    buttonAdd: {
+        borderRadius: Radius.pill,
         marginHorizontal: 40,
-        backgroundColor: Colors.dark,
-        borderColor: Colors.light,
-        borderWidth: 1,
+        marginTop: 12,
+        backgroundColor: Colors.accent,
+        paddingVertical: 12,
+    },
+    buttonAddTitle: {
+        color: Colors.primary,
+        fontWeight: '700',
+    },
+    buttonClear: {
+        borderRadius: Radius.pill,
+        alignSelf: 'center',
+        marginTop: 6,
+        paddingHorizontal: 20,
+    },
+    buttonClearTitle: {
+        color: Colors.textMuted,
+        fontSize: 14,
+        marginLeft: 6,
     },
     textTitle: {
         color: Colors.white,
-        fontWeight: '500',
+        fontWeight: '600',
+        fontSize: 13,
+        letterSpacing: 1,
         marginBottom: 10,
     },
     textNumber: {
-        color: Colors.gray,
+        color: Colors.textMuted,
     },
 });
 export default ListSounds;

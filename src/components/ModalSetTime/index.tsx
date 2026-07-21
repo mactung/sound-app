@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image } from 'react-native-elements/dist/image/Image';
+import { ModalAnim } from 'styles/global.style';
 import ItemSetTime from './ItemSetTime';
 interface Iprops {
     isModalVisible: boolean;
@@ -37,7 +37,7 @@ const ModalSetTime: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
         },
         {
             name: '50 minutes',
-            id: '40m',
+            id: '50m',
         },
         {
             name: '1 hour',
@@ -50,6 +50,14 @@ const ModalSetTime: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
             isVisible={isModalVisible}
             backdropColor="black"
             backdropOpacity={1}
+            animationIn={ModalAnim.animationIn}
+            animationOut={ModalAnim.animationOut}
+            animationInTiming={ModalAnim.animationInTiming}
+            animationOutTiming={ModalAnim.animationOutTiming}
+            backdropTransitionInTiming={ModalAnim.backdropTransitionInTiming}
+            backdropTransitionOutTiming={ModalAnim.backdropTransitionOutTiming}
+            hideModalContentWhileAnimating
+            onBackdropPress={() => setIsModalVisible(false)}
             customBackdrop={<Image style={styles.backdrop} source={require('assets/images/set_time_bg.jpeg')} />}>
             <SafeAreaView style={styles.container}>
                 <Text style={styles.textTitle}>Set Timer</Text>

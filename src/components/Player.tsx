@@ -2,7 +2,7 @@ import usePlayer from 'hooks/usePlayer';
 import React, { FC, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Colors } from 'styles/global.style';
+import { Colors, Radius } from 'styles/global.style';
 interface Iprops {
     isPlaying: boolean;
 }
@@ -14,20 +14,22 @@ const Player: FC<Iprops> = ({ isPlaying }) => {
     };
     return (
         <View style={styles.container}>
-            <Icon size={32} name="timer-outline" type="ionicon" color={Colors.white} />
-            <Icon
-                size={80}
-                name={isPlaying ? 'pause-circle' : 'play-circle'}
-                type="ionicon"
-                color={Colors.white}
-                onPress={isPlaying ? pausePlayer : playPlayer}
-            />
+            <Icon size={28} name="timer-outline" type="ionicon" color={Colors.textMuted} />
+            <View style={styles.playButton}>
+                <Icon
+                    size={72}
+                    name={isPlaying ? 'pause-circle' : 'play-circle'}
+                    type="ionicon"
+                    color={Colors.white}
+                    onPress={isPlaying ? pausePlayer : playPlayer}
+                />
+            </View>
 
             <Icon
-                size={32}
+                size={28}
                 name={isSave ? 'heart' : 'heart-outline'}
                 type="ionicon"
-                color={Colors.white}
+                color={isSave ? Colors.accent : Colors.textMuted}
                 onPress={saveMix}
             />
         </View>
@@ -38,10 +40,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderTopLeftRadius: Radius.lg,
+        borderTopRightRadius: Radius.lg,
         backgroundColor: Colors.secondary,
-        paddingBottom: 20,
+        paddingVertical: 16,
+    },
+    playButton: {
+        shadowColor: Colors.accent,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 12,
+        elevation: 6,
     },
 });
 export default Player;

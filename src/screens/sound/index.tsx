@@ -19,9 +19,9 @@ const SoundScreen = ({ route }: any) => {
     const dispatch = useDispatch();
     const { image_url } = route.params;
     const { isPlaying, sounds } = useSelector((state: any) => state.player);
-    const { playPlayer } = usePlayer();
+    const { playPlayer, pausePlayer } = usePlayer();
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
-    const refLottieVew = useRef<LottieView>();
+    const refLottieVew = useRef<LottieView | null>(null);
     useEffect(() => {
         clearSounds();
         const forest = new Sound('forest.mp3', Sound.MAIN_BUNDLE, error => {
@@ -96,16 +96,18 @@ const styles = StyleSheet.create({
     buttonPlay: {
         borderRadius: 40,
         borderWidth: 1,
-        borderColor: '#fff',
-        padding: 10,
-        width: 150,
+        borderColor: 'rgba(255,255,255,0.7)',
+        backgroundColor: 'rgba(255,255,255,0.12)',
+        paddingVertical: 12,
+        width: 160,
         alignItems: 'center',
         alignSelf: 'center',
     },
     buttonTitle: {
         fontWeight: 'bold',
         fontSize: 16,
-        color: '#fffF',
+        color: '#fff',
+        letterSpacing: 1,
     },
     absolute: {
         position: 'absolute',

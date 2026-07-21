@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const HomeScreen = () => {
     const { sounds, music } = useSelector((state: any) => state.player);
     return (
-        <View>
+        <View style={styles.root}>
             <ScrollView style={styles.container} bounces={false}>
                 <Image style={styles.imageHeader} source={require('assets/images/header.jpg')} />
                 {/* <PlayList title="Recently Play" /> */}
@@ -21,8 +21,11 @@ const HomeScreen = () => {
     );
 };
 const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        backgroundColor: Colors.background,
+    },
     container: {
-        // flex: 1,
         backgroundColor: Colors.background,
         paddingBottom: 100,
     },
@@ -30,13 +33,6 @@ const styles = StyleSheet.create({
         height: 320,
         width: '100%',
         marginBottom: 30,
-    },
-    absolute: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
     },
     flatListCotainer: { justifyContent: 'space-between' },
 });
