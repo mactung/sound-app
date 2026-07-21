@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { Colors, Radius, Spacing } from 'styles/global.style';
 import Player from '../Player';
+import ArtThumb from '../ArtThumb';
 import HeaderMixer from './components/HeaderMixer';
 import ListSounds from './components/ListSounds';
 import Music from './components/Music';
@@ -40,9 +41,11 @@ const Mixer: FC<Iprops> = ({ isModalVisible, setIsModalVisible }) => {
                 <View style={styles.handle} />
                 <HeaderMixer setIsModalVisible={setIsModalVisible} sounds={sounds} music={music} />
                 <View style={styles.hero}>
-                    <View style={styles.heroArt}>
-                        <Icon name="disc" type="ionicon" size={54} color={Colors.onAccent} />
-                    </View>
+                    <ArtThumb index={2} radius={30} style={styles.heroArt}>
+                        <View style={styles.heroGlass}>
+                            <Icon name="musical-notes" type="ionicon" size={44} color={Colors.white} />
+                        </View>
+                    </ArtThumb>
                     <Text style={styles.heroTitle}>Your Mix</Text>
                     <Text style={styles.heroSub}>
                         {count} {count === 1 ? 'sound' : 'sounds'} {isPlaying ? 'playing' : 'paused'}
@@ -83,18 +86,24 @@ const styles = StyleSheet.create({
         paddingVertical: Spacing.md,
     },
     heroArt: {
-        width: 96,
-        height: 96,
-        borderRadius: 28,
-        backgroundColor: Colors.accent,
+        width: 120,
+        height: 120,
+        marginBottom: 14,
+        shadowColor: Colors.accent,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.6,
+        shadowRadius: 20,
+        elevation: 12,
+    },
+    heroGlass: {
+        width: 66,
+        height: 66,
+        borderRadius: 33,
+        backgroundColor: 'rgba(255,255,255,0.18)',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.35)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 12,
-        shadowColor: Colors.accent,
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.6,
-        shadowRadius: 18,
-        elevation: 10,
     },
     heroTitle: {
         color: Colors.white,

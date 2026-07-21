@@ -4,9 +4,8 @@ import { Icon } from 'react-native-elements';
 import services from 'models/services';
 import useMixLibrary from 'hooks/useMixLibrary';
 import { soundIcon } from 'utils/soundIcon';
+import ArtThumb from 'components/ArtThumb';
 import { Colors, Radius, Spacing } from 'styles/global.style';
-
-const ART = ['#5B3F9E', '#7C3AED', '#4C3A8A', '#8B5CF6', '#6D28D9', '#B15CD1', '#3F3A8A', '#9D4EDD', '#7E4FD8'];
 
 type Filter = 'all' | 'sound' | 'music';
 const FILTERS: { key: Filter; label: string }[] = [
@@ -64,15 +63,17 @@ const SoundscapeGrid = () => {
             <View style={styles.grid}>
                 {items.map((item: any, i: number) => (
                     <Pressable key={String(item._id) + i} style={styles.card} onPress={() => play(item)}>
-                        <View style={[styles.art, { backgroundColor: ART[i % ART.length] }]}>
-                            <Icon name={soundIcon(item.name)} type="ionicon" size={40} color="rgba(255,255,255,0.9)" />
+                        <ArtThumb index={i} radius={Radius.lg} style={styles.art}>
+                            <View style={styles.iconGlass}>
+                                <Icon name={soundIcon(item.name)} type="ionicon" size={30} color={Colors.white} />
+                            </View>
                             <View style={styles.badge}>
                                 <Text style={styles.badgeText}>free</Text>
                             </View>
                             <View style={styles.playChip}>
                                 <Icon name="play" type="ionicon" size={14} color={Colors.onAccent} />
                             </View>
-                        </View>
+                        </ArtThumb>
                         <Text style={styles.name} numberOfLines={1}>
                             {item.name}
                         </Text>
@@ -121,8 +122,15 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.md,
     },
     art: {
-        height: 130,
-        borderRadius: Radius.lg,
+        height: 140,
+    },
+    iconGlass: {
+        width: 58,
+        height: 58,
+        borderRadius: 29,
+        backgroundColor: 'rgba(255,255,255,0.18)',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.35)',
         alignItems: 'center',
         justifyContent: 'center',
     },

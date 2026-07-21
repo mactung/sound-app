@@ -7,6 +7,7 @@ import AppBackground from 'components/AppBackground';
 import NavigationService from 'navigation/NavigationSerivce';
 import MyMixList from './components/MyMixList';
 import SoundscapeGrid from './components/SoundscapeGrid';
+import FeaturedHero from './components/FeaturedHero';
 import { useSelector } from 'react-redux';
 import { Colors, Spacing } from 'styles/global.style';
 
@@ -48,6 +49,7 @@ const HomeScreen = () => {
                         </View>
                     </View>
 
+                    <FeaturedHero />
                     <MyMixList />
                     <Text style={styles.sectionTitle}>Explore sounds</Text>
                     <SoundscapeGrid />
