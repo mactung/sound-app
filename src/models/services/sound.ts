@@ -1,7 +1,9 @@
 import categories from 'store/data/categories.json';
 
 const isMusicCategory = (c: any) => (c.type || 'sound') === 'music';
-const clone = (arr: any[]) => arr.map((s: any) => ({ ...s }));
+// Ensure every item carries a type ('sound' by default) — the bundled JSON omits it
+// on plain sounds, and the composer branches on item.type to pick sound vs music.
+const clone = (arr: any[]) => arr.map((s: any) => ({ ...s, type: s.type || 'sound' }));
 
 const getAllSounds = () => {
     const list: any[] = [];
