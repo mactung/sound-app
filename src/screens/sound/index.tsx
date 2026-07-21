@@ -22,21 +22,33 @@ const SoundScreen = () => {
     const [isModalSetTimeVisible, setIsModalSetTimeVisible] = useState<boolean>(false);
     const refLottieVew = useRef<LottieView | null>(null);
     useEffect(() => {
-        clearSounds();
+        dispatch(clearSounds());
         const forest = new Sound('forest.mp3', Sound.MAIN_BUNDLE, error => {
+            if (error) {
+                return;
+            }
+            forest.setNumberOfLoops(-1);
             forest.play();
             dispatch(
                 addSound({
-                    name: 'forest',
+                    name: 'Forest',
+                    file_name: 'forest.mp3',
+                    type: 'sound',
                     sound: forest,
                 }),
             );
         });
-        const ocean = new Sound('ocean.mp3', Sound.MAIN_BUNDLE, error => {
+        const ocean = new Sound('ocean_waves.mp3', Sound.MAIN_BUNDLE, error => {
+            if (error) {
+                return;
+            }
+            ocean.setNumberOfLoops(-1);
             ocean.play();
             dispatch(
                 addSound({
-                    name: 'ocean',
+                    name: 'Ocean Waves',
+                    file_name: 'ocean_waves.mp3',
+                    type: 'sound',
                     sound: ocean,
                 }),
             );
